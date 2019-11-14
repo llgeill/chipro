@@ -1,0 +1,33 @@
+package
+
+import lombok.Data;
+
+import java.io.Serializable;
+
+${package.EntitySpecParams}
+        ;
+
+/**
+ * <p>
+ * $!{table.comment}
+ * </p>
+ *
+ * @author ${author}
+ * @since ${date}
+ */
+@Data
+public class ${entity}Param implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+
+    #foreach($field in ${table.fields})
+
+        #if("$!field.comment" != "")
+            /**
+             * ${field.comment}
+             */
+        #end
+        private ${field.propertyType} ${field.propertyName};
+    #end
+
+}

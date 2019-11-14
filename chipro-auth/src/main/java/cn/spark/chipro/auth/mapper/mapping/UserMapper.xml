@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.spark.chipro.auth.mapper.UserMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="cn.spark.chipro.auth.entity.User">
+        <id column="USER_ID" property="userId"/>
+        <result column="USER_NAME" property="userName"/>
+        <result column="USER_NAME_ALIAS" property="userNameAlias"/>
+        <result column="PASSWORD" property="password"/>
+        <result column="MOBILE" property="mobile"/>
+        <result column="EMAIL" property="email"/>
+        <result column="GENDER" property="gender"/>
+        <result column="BIRTHDAY" property="birthday"/>
+        <result column="IS_ENABLED" property="isEnabled"/>
+        <result column="FAILURE_TIME" property="failureTime"/>
+        <result column="CREATE_TIME" property="createTime"/>
+        <result column="CREATE_PERSON" property="createPerson"/>
+        <result column="UPDATE_TIME" property="updateTime"/>
+        <result column="UPDATE_PERSON" property="updatePerson"/>
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        USER_ID AS "userId", USER_NAME AS "userName", USER_NAME_ALIAS AS "userNameAlias", PASSWORD AS "password", MOBILE AS "mobile", EMAIL AS "email", GENDER AS "gender", BIRTHDAY AS "birthday", IS_ENABLED AS "isEnabled", FAILURE_TIME AS "failureTime", CREATE_TIME AS "createTime", CREATE_PERSON AS "createPerson", UPDATE_TIME AS "updateTime", UPDATE_PERSON AS "updatePerson"
+    </sql>
+
+    <!-- 角色查询结果列 -->
+    <sql id="Role_Base_Column_List">
+        OSS_ROLE.ROLE_ID AS "roleId", OSS_ROLE.ROLE_NAME AS "roleName", OSS_ROLE.CREATE_TIME AS "createTime", OSS_ROLE.CREATE_PERSON AS "createPerson", OSS_ROLE.UPDATE_TIME AS "updateTime", OSS_ROLE.UPDATE_PERSON AS "updatePerson"
+    </sql>
+
+    <!-- 权限查询结果列 -->
+    <sql id="Permission_Base_Column_List">
+        OSS_PERMISSION.PERMISSION_ID AS "permissionId", OSS_PERMISSION.PERMISSION_NAME AS "permissionName", OSS_PERMISSION.PERMISSION_NOTE AS "permissionNote", OSS_PERMISSION.PERMISSION_REMARK AS "permissionRemark", OSS_PERMISSION.PERMISSION_ICON AS "permissionIcon", OSS_PERMISSION.PERMISSION_PATH AS "permissionPath", OSS_PERMISSION.CREATE_TIME AS "createTime", OSS_PERMISSION.CREATE_PERSON AS "createPerson", OSS_PERMISSION.UPDATE_TIME AS "updateTime", OSS_PERMISSION.UPDATE_PERSON AS "updatePerson"
+    </sql>
+
+    <select id="selectUserByUserName" resultType="userInfo">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM OSS_USER
+        <where>
+            OSS_USER.USER_NAME = #{userName,jdbcType=VARCHAR}
+        </where>
+    </select>
+
+    <select id="selectRoleByUserId" resultType="roleInfo">
+        SELECT
+        <include refid="Role_Base_Column_List"/>
+        FROM OSS_ROLE INNER JOIN OSS_USER_ROLE
+        ON OSS_ROLE.ROLE_ID=OSS_USER_ROLE.ROLE_ID
+        <where>
+            OSS_USER_ROLE.USER_ID = #{userId,jdbcType=VARCHAR}
+        </where>
+
+    </select>
+
+    <select id="selectPermissionByUserId" resultType="permissionInfo">
+        SELECT
+        <include refid="Permission_Base_Column_List"/>
+        FROM OSS_USER_ROLE ur
+        INNER JOIN OSS_ROLE r on ur.role_id = r.role_id
+        INNER JOIN OSS_ROLE_PERMISSION rp on r.role_id = rp.role_id
+        INNER JOIN OSS_PERMISSION on rp.permission_id = OSS_PERMISSION.permission_id
+        <where>
+            ur.user_id = #{userId,jdbcType=VARCHAR}
+        </where>
+    </select>
+
+
+</mapper>

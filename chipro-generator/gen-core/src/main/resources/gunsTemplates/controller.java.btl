@@ -1,0 +1,95 @@
+package ${controllerPackage};
+
+import cn.spark.chipro.core.page.PageInfo;
+import ${package.Entity}.${entity};
+import ${package.EntitySpecParams}.${entity}Param;
+import ${package.Service}.${table.serviceName};
+import cn.spark.chipro.core.result.Result;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+<% var lowerEntityService = lowerEntity + 'Service'; %>
+
+/**
+ * ${tool.cleanWhite(table.comment)}控制器
+ *
+ * @author ${author}
+ * @Date ${tool.currentTime()}
+ */
+@Controller
+@RequestMapping("/${lowerEntity}")
+public class ${entity}Controller {
+
+    @Autowired
+    private ${entity}Service ${lowerEntityService};
+
+
+    /**
+     * 新增接口
+     *
+     * @author ${author}
+     * @Date ${date}
+     */
+    @RequestMapping("/addItem")
+    @ResponseBody
+    public Result addItem(${entity}Param ${lowerEntity}Param) {
+        this.${lowerEntity}Service.add(${lowerEntity}Param);
+        return Result.success();
+    }
+
+    /**
+     * 编辑接口
+     *
+     * @author ${author}
+     * @Date ${date}
+     */
+    @RequestMapping("/editItem")
+    @ResponseBody
+    public Result editItem(${entity}Param ${lowerEntity}Param) {
+        this.${lowerEntity}Service.update(${lowerEntity}Param);
+        return Result.success();
+    }
+
+    /**
+     * 删除接口
+     *
+     * @author ${author}
+     * @Date ${date}
+     */
+    @RequestMapping("/delete")
+    @ResponseBody
+    public Result delete(${entity}Param ${lowerEntity}Param) {
+        this.${lowerEntity}Service.delete(${lowerEntity}Param);
+        return Result.success();
+    }
+
+    /**
+     * 查看详情接口
+     *
+     * @author ${author}
+     * @Date ${date}
+     */
+    @RequestMapping("/detail")
+    @ResponseBody
+    public Result detail(${entity}Param ${lowerEntity}Param) {
+        ${entity} detail = this.${lowerEntity}Service.getById(${lowerEntity}Param.get${bigKeyPropertyName}());
+        return Result.success(detail);
+    }
+
+    /**
+     * 查询列表
+     *
+     * @author ${author}
+     * @Date ${date}
+     */
+    @ResponseBody
+    @RequestMapping("/list")
+    public PageInfo list(${entity}Param ${lowerEntity}Param) {
+        return this.${lowerEntity}Service.findPageBySpec(${lowerEntity}Param);
+    }
+
+}
+
+
