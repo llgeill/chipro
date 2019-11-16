@@ -5,11 +5,10 @@
     <parent>
         <artifactId>chipro-core</artifactId>
         <groupId>cn.spark</groupId>
-        <version>1.0-SNAPSHOT</version>
+        <version>1.0.4</version>
     </parent>
 
     <artifactId>core-auth</artifactId>
-    <version>0.0.2</version>
     <name>core-auth</name>
     <description>授权服务器</description>
 
@@ -34,19 +33,19 @@
         <dependency>
             <groupId>cn.spark</groupId>
             <artifactId>core-api</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <version>1.0.4</version>
         </dependency>
         <!--auth-base-->
         <dependency>
             <groupId>cn.spark</groupId>
             <artifactId>core-auth-base</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <version>1.0.4</version>
         </dependency>
         <!--core-exception-->
         <dependency>
             <groupId>cn.spark</groupId>
             <artifactId>core-exception</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <version>1.0.4</version>
         </dependency>
         <!--端点检查-->
         <dependency>
@@ -79,12 +78,10 @@
         </dependency>
     </dependencies>
 
-    <properties>
-        <docker.image.prefix>liliguang</docker.image.prefix> <!--镜像前缀，随便取-->
-    </properties>
+
 
     <build>
-        <finalName>${project.artifactId}</finalName>
+
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
@@ -110,33 +107,11 @@
                     <useDefaultDelimiters>false</useDefaultDelimiters>
                 </configuration>
             </plugin>
+            <!--docker打包-->
             <plugin>
                 <groupId>com.spotify</groupId>
                 <artifactId>dockerfile-maven-plugin</artifactId>
-                <version>1.4.13</version>
-                <executions>
-                    <execution>
-                        <id>default</id>
-                        <goals>
-                            <goal>build</goal>
-                            <goal>push</goal>
-                        </goals>
-                    </execution>
-                </executions>
-                <configuration>
-                    <username>13711919653</username>
-                    <password>llg1997729</password>
-                    <repository>${docker.image.prefix}/${project.artifactId}</repository>
-                    <dockerfile>Dockerfile</dockerfile>
-                    <contextDirectory>${project.basedir}</contextDirectory>
-                    <tag>${project.version}</tag>
-                    <buildArgs>
-                        <JAR_FILE>target/${project.build.finalName}.jar</JAR_FILE>
-                    </buildArgs>
-                </configuration>
             </plugin>
-
-
         </plugins>
         <resources>
             <resource>

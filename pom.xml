@@ -6,7 +6,7 @@
 
     <groupId>cn.spark</groupId>
     <artifactId>chipro</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0.4</version>
     <modules>
         <module>chipro-core</module>
         <module>chipro-test</module>
@@ -68,6 +68,9 @@
         <swagger.version>2.9.2</swagger.version>
         <!--mysql-->
         <mysql.version>5.1.45</mysql.version>
+        <docker.image.host>docker.io</docker.image.host>
+        <!--镜像前缀，随便取-->
+        <docker.image.prefix>13711919653</docker.image.prefix>
     </properties>
     <!--父类依赖，子项目按需继承，可以不用写版本号-->
     <dependencyManagement>
@@ -386,6 +389,53 @@
 
     </dependencies>
     <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>com.spotify</groupId>
+                    <artifactId>dockerfile-maven-plugin</artifactId>
+                    <version>1.4.13</version>
+                    <executions>
+                        <!--通过mvn package 将会执行docker构建，推送功能-->
+                        <execution>
+                            <id>tag-version</id>
+                            <phase>package</phase>
+                            <goals>
+                                <goal>build</goal>
+                                <goal>tag</goal>
+                                <goal>push</goal>
+                            </goals>
+                            <configuration>
+                                <tag>${project.version}</tag>
+                            </configuration>
+                        </execution>
+                        <!--<execution>-->
+                            <!--<id>default</id>-->
+                            <!--<goals>-->
+                                <!--<goal>build</goal>-->
+                                <!--<goal>push</goal>-->
+                            <!--</goals>-->
+                        <!--</execution>-->
+                    </executions>
+                    <configuration>
+                        <!--使用maven的setting.xml方式配置授权-->
+                        <useMavenSettingsForAuth>true</useMavenSettingsForAuth>
+                        <googleContainerRegistryEnabled>false</googleContainerRegistryEnabled>
+                        <!--授权的账号密码，经测试不起作用-->
+                        <username>13711919653</username>
+                        <password>llg1997729</password>
+                        <!--仓库地址-->
+                        <repository>${docker.image.host}/${docker.image.prefix}/${project.artifactId}</repository>
+                        <dockerfile>Dockerfile</dockerfile>
+                        <contextDirectory>${project.basedir}</contextDirectory>
+                        <tag>${project.version}</tag>
+                        <buildArgs>
+                            <JAR_FILE>target/${project.build.finalName}.jar</JAR_FILE>
+                        </buildArgs>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
         <plugins>
             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>

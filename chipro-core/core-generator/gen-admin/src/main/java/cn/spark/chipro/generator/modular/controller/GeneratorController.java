@@ -3,11 +3,11 @@ package cn.spark.chipro.generator.modular.controller;
 
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.core.util.ZipUtil;
+import cn.spark.chipro.generator.core.generator.param.ContextParam;
+import cn.spark.chipro.generator.modular.guns.GunsExecutor;
 import cn.spark.chipro.generator.modular.model.DatabaseInfo;
 import cn.spark.chipro.generator.modular.repository.DatabaseInfoRepository;
-import cn.stylefeng.guns.generator.core.generator.param.ContextParam;
-import cn.stylefeng.guns.generator.modular.guns.GunsExecutor;
-import cn.stylefeng.guns.generator.modular.restful.mybatisplus.param.MpParam;
+import cn.spark.chipro.generator.modular.restful.mybatisplus.param.MpParam;
 import com.baomidou.mybatisplus.core.toolkit.IdWorker;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.InputStreamResource;
