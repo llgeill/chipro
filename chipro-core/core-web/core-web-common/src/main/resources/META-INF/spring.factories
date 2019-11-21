@@ -1,0 +1,3 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+ cn.spark.chipro.core.web.common.config.CustomResAuthConfig,\
+ cn.spark.chipro.core.web.common.config.XssFilterConfig

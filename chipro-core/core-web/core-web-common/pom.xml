@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>core-web</artifactId>
+        <groupId>cn.spark</groupId>
+        <version>1.0.6</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>core-web-common</artifactId>
+
+    <dependencies>
+        <!--web-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <!--base-auth-->
+        <dependency>
+            <groupId>cn.spark</groupId>
+            <artifactId>core-auth-base</artifactId>
+            <version>1.0.6</version>
+        </dependency>
+        <!--configuration-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-configuration-processor</artifactId>
+            <optional>true</optional>
+        </dependency>
+        <!--lombok-->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <optional>true</optional>
+        </dependency>
+        <!--test-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+        </dependency>
+        <!--actuator-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+        <!--api-->
+        <dependency>
+            <groupId>cn.spark</groupId>
+            <artifactId>core-api</artifactId>
+            <version>1.0.6</version>
+        </dependency>
+        <!--exception-->
+        <dependency>
+            <groupId>cn.spark</groupId>
+            <artifactId>core-exception</artifactId>
+            <version>1.0.6</version>
+        </dependency>
+        <!--cache-->
+        <dependency>
+            <groupId>cn.spark</groupId>
+            <artifactId>core-cache</artifactId>
+            <version>1.0.6</version>
+        </dependency>
+        <!--dao-->
+        <dependency>
+            <groupId>cn.spark</groupId>
+            <artifactId>core-dao-mybatis</artifactId>
+            <version>1.0.6</version>
+        </dependency>
+
+        <!--swagger-->
+        <dependency>
+            <groupId>cn.spark</groupId>
+            <artifactId>core-swagger</artifactId>
+            <version>1.0.6</version>
+        </dependency>
+        <!--log 需要自己实现日志吸写入实现类-->
+        <dependency>
+            <groupId>cn.spark</groupId>
+            <artifactId>core-log</artifactId>
+            <version>1.0.6</version>
+        </dependency>
+        <!--util-->
+        <dependency>
+            <groupId>cn.spark</groupId>
+            <artifactId>core-util</artifactId>
+            <version>1.0.6</version>
+        </dependency>
+
+
+
+
+    </dependencies>
+
+</project>

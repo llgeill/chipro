@@ -5,7 +5,7 @@
     <parent>
         <artifactId>chipro</artifactId>
         <groupId>cn.spark</groupId>
-        <version>1.0.4</version>
+        <version>1.0.6</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <description>测试资源服务器</description>
@@ -13,8 +13,8 @@
     <artifactId>chipro-test</artifactId>
     <packaging>pom</packaging>
     <modules>
-        <module>test-api</module>
-        <module>test-biz</module>
+        <module>chipro-test-api</module>
+        <module>chipro-test-biz</module>
     </modules>
 
 

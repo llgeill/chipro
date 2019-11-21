@@ -5,7 +5,7 @@
     <parent>
         <artifactId>chipro</artifactId>
         <groupId>cn.spark</groupId>
-        <version>1.0.4</version>
+        <version>1.0.6</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <description>核心包</description>
@@ -19,5 +19,11 @@
         <module>core-generator</module>
         <module>core-exception</module>
         <module>core-auth</module>
+        <module>core-cache</module>
+        <module>core-dao</module>
+        <module>core-pool</module>
+        <module>core-web</module>
+        <module>core-swagger</module>
+        <module>core-log</module>
     </modules>
 </project>
