@@ -1,0 +1,29 @@
+server:
+  port: 1200
+spring:
+  activemq:
+    #ActiveMQ通讯地址
+    broker-url: tcp://www.liliguang.top:61616
+    #用户名
+    user: admin
+    #密码
+    password: admin
+    #是否启用内存模式（就是不安装MQ，项目启动时同时启动一个MQ实例）
+    in-memory: false
+    packages:
+      #信任所有的包
+      trust-all: true
+    pool:
+      #是否替换默认的连接池，使用ActiveMQ的连接池需引入的依赖
+      enabled: false
+
+  mail:
+    host: smtp.163.com #SMTP服务器地址
+    username: 13711919653@163.com #登陆账号
+    password: llg1997729 #登陆密码（或授权码）
+    properties:
+      from:  13711919653@163.com #邮件发信人（即真实邮箱）
+  servlet:
+    multipart:
+      max-file-size: 10MB #限制单个文件大小
+      max-request-size: 50MB #限制请求总量

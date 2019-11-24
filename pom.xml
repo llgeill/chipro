@@ -10,6 +10,7 @@
     <modules>
         <module>chipro-core</module>
         <module>chipro-test</module>
+        <module>chipro-jms</module>
     </modules>
     <packaging>pom</packaging>
     <!--设置springboot为父类-->

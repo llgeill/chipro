@@ -25,5 +25,7 @@
         <module>core-web</module>
         <module>core-swagger</module>
         <module>core-log</module>
+        <module>core-mail</module>
+        <module>core-mq</module>
     </modules>
 </project>
