@@ -1,0 +1,95 @@
+spring:
+  redis:
+    database: 1
+    host: 127.0.0.1
+    port: 6379
+    password: 
+    jedis:
+      pool:
+        max-active: 8
+        max-idle: 8
+        min-idle: 0
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true #表明gateway开启服务注册和发现的功能
+          lowerCaseServiceId: true #请求路径上的服务名配置为小写
+      default-filters:
+        - StripPrefix=1
+      routes:
+      - id: winfo-msa-auth #认证中心
+        uri: lb://WINFO-MSA-AUTH
+        predicates:
+          - Path=/oauth2/**
+        filters:
+         # - AuthFilter  #在本路由启用跳过全局过滤器
+         # 验证码处理
+         # - ImageCodeGatewayFilter
+         # - StripPrefix=1
+      - id: winfo-msa-oss #OSS 服务
+        uri: lb://WINFO-MSA-OSS
+        predicates:
+          - Path=/oss/**
+        filters:
+      - id: winfo-msa-emergency #应急指挥
+        uri: lb://WINFO-MSA-EMERGENCY
+        predicates:
+          - Path=/emergency/**
+      - id: winfo-msa-adminstrative-punishment #行政处罚
+        uri: lb://WINFO-MSA-ADMINSTRATIVE-PUNISHMENT
+        predicates:
+          - Path=/adminstrative/punishment/**      
+        filters: 
+          - StripPrefix=1
+      - id: winfo-tool #工具
+        uri: lb://WINFO-MSA-TOOL
+        predicates:
+          - Path=/tool/**  
+      - id: winfo-bayone #卡口
+        uri: lb://WINFO-MSA-BAYONE
+        predicates:
+          - Path=/bayone/**  
+      - id: winfo-detection #检测
+        uri: lb://WINFO-MSA-DETECTION
+        predicates:
+          - Path=/detection/**  
+      - id: winfo-navigation-elements #通航要素
+        uri: lb://WINFO-MSA-NAVIGATION-ELEMENTS
+        predicates:
+          - Path=/navigation/elements/**  
+        filters: 
+          - StripPrefix=1
+      - id: winfo-regional-control #区域管控
+        uri: lb://WINFO-MSA-REGIONAL-CONTROL
+        predicates:
+          - Path=/regional/control/** 
+        filters: 
+          - StripPrefix=1
+      - id: winfo-ship-control #船舶管控
+        uri: lb://WINFO-MSA-SHIP-CONTROL
+        predicates:
+          - Path=/ship/control/** 
+        filters: 
+          - StripPrefix=1
+      - id: winfo-supervision #智能监管
+        uri: lb://WINFO-MSA-SUPERVISION
+        predicates:
+          - Path=/supervision/** 
+      - id: winfo-wharf #码头
+        uri: lb://WINFO-MSA-WHARF
+        predicates:
+          - Path=/wharf/**
+      - id: winfo-msa-waterway-navigation #导航
+        uri: lb://WINFO-MSA-WATERWAY-NAVIGATION
+        predicates:
+          - Path=/waterwayNavigation/**
+# 暴露监控端点
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: ALWAYS

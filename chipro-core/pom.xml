@@ -27,5 +27,7 @@
         <module>core-log</module>
         <module>core-mail</module>
         <module>core-mq</module>
+        <module>core-validator</module>
+        <module>core-gateway</module>
     </modules>
 </project>

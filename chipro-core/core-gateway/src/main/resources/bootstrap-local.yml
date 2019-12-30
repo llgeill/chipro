@@ -1,0 +1,58 @@
+server:
+  port: 4000
+spring:
+  #缓存配置
+#  redis:
+#    password: gdmsa790
+#    database: 11
+#    jedis:
+#      pool:
+#        max-active: 50
+#        max-wait: -1
+#        max-idle: 100
+#        min-idle: 0
+#    timeout: 10000
+#    cluster:
+#      nodes:
+#        - 198.18.2.103:6379
+  datasource:
+    driver-class-name: oracle.jdbc.driver.OracleDriver
+    url: jdbc:oracle:thin:@198.18.2.114:1521:dwmsa
+    username: wx_msa
+    password: wx_msa
+
+  data:
+    mongodb:
+      host: 127.0.0.1
+      database: routelog
+      port: 27017
+  application:
+    name:  WINFO-MSA-CONFIG
+  #配置中心
+  cloud:
+    config:
+      fail-fast: true
+      name: ${spring.application.name}
+      profile: dev
+      discovery:
+        enabled: true
+        service-id: WINFO-MSA-CONFIG
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+#eureka
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    service-url:
+#      defaultZone: http://winfo:winfo@localhost:1026/eureka/
+       defaultZone: http://scf:scf@198.18.2.131:1025/eureka/,http://scf:scf@198.18.2.123:1025/eureka/，http://scf:scf@198.18.2.132:1025/eureka/
+
+
+
+logging:
+  level:
+    org.springframework.cloud.gateway: debug
+
