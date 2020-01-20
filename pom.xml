@@ -6,11 +6,10 @@
 
     <groupId>cn.spark</groupId>
     <artifactId>chipro</artifactId>
-    <version>1.0.6</version>
+    <version>latest</version>
     <modules>
         <module>chipro-core</module>
         <module>chipro-test</module>
-        <module>chipro-jms</module>
     </modules>
     <packaging>pom</packaging>
     <!--设置springboot为父类-->
@@ -70,9 +69,9 @@
         <!--mysql-->
         <mysql.version>5.1.45</mysql.version>
         <!--docker私服地址-->
-        <docker.image.host>docker.io</docker.image.host>
-        <!--镜像前缀，随便取-->
-        <docker.image.prefix>13711919653</docker.image.prefix>
+        <docker.image.host>www.liliguang.top</docker.image.host>
+        <!--镜像前缀-->
+        <docker.image.prefix>chipro</docker.image.prefix>
         <!--swagger-->
         <swagger.version>2.9.2</swagger.version>
     </properties>
@@ -408,18 +407,18 @@
                             <goals>
                                 <goal>build</goal>
                                 <goal>tag</goal>
-                                <!--<goal>push</goal>-->
+                                <goal>push</goal>
                             </goals>
                             <configuration>
                                 <tag>${project.version}</tag>
                             </configuration>
                         </execution>
                         <!--<execution>-->
-                            <!--<id>default</id>-->
-                            <!--<goals>-->
-                                <!--<goal>build</goal>-->
-                                <!--<goal>push</goal>-->
-                            <!--</goals>-->
+                        <!--<id>default</id>-->
+                        <!--<goals>-->
+                        <!--<goal>build</goal>-->
+                        <!--<goal>push</goal>-->
+                        <!--</goals>-->
                         <!--</execution>-->
                     </executions>
                     <configuration>

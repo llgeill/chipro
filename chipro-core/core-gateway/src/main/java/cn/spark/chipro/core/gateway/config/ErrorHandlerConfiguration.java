@@ -20,7 +20,7 @@ import java.util.List;
 
 /**
  *
- * 异常拦截
+ * 网关异常拦截配置类
  * @author liliguang
  * @description
  * @date 2019-12-30 16:36
@@ -50,6 +50,8 @@ public class ErrorHandlerConfiguration {
         this.viewResolvers = viewResolversProvider.getIfAvailable(Collections::emptyList);
         this.serverCodecConfigurer = serverCodecConfigurer;
     }
+
+
 
     @Bean
     @Order(Ordered.HIGHEST_PRECEDENCE)

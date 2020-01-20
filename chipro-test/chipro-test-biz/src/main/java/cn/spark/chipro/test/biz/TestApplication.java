@@ -2,6 +2,7 @@ package cn.spark.chipro.test.biz;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 
 /**
  * @author liliguang
@@ -9,6 +10,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @date 2019/11/13
  */
 @SpringBootApplication
+@EnableDiscoveryClient
 public class TestApplication {
 
     public static void main(String[] args) {

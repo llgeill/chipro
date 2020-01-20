@@ -5,7 +5,7 @@
     <parent>
         <artifactId>chipro-core</artifactId>
         <groupId>cn.spark</groupId>
-        <version>1.0.6</version>
+        <version>latest</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
@@ -23,11 +23,17 @@
             <artifactId>spring-cloud-starter-netflix-ribbon</artifactId>
         </dependency>
 
+        <!--bus消息总线客户端支持-->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-bus-amqp</artifactId>
+        </dependency>
+
         <!--配置中心-->
-        <!--        <dependency>-->
-        <!--            <groupId>org.springframework.cloud</groupId>-->
-        <!--            <artifactId>spring-cloud-starter-config</artifactId>-->
-        <!--        </dependency>-->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-config</artifactId>
+        </dependency>
 
         <!-- 网关 -->
         <dependency>
@@ -64,6 +70,14 @@
             <artifactId>core-api</artifactId>
             <version>${parent.version}</version>
         </dependency>
+
+        <!-- API -->
+        <dependency>
+            <groupId>cn.spark</groupId>
+            <artifactId>core-exception</artifactId>
+            <version>${parent.version}</version>
+        </dependency>
+
         <!-- 路由重试 -->
         <dependency>
             <groupId>org.springframework.retry</groupId>
@@ -83,17 +97,6 @@
             <artifactId>hutool-all</artifactId>
         </dependency>
 
-        <dependency>
-            <groupId>cc.winfo.core</groupId>
-            <artifactId>core-boot-errorException</artifactId>
-            <version>${parent.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>cc.winfo.core</groupId>
-            <artifactId>core-api</artifactId>
-            <version>1.0.6</version>
-        </dependency>
 
         <dependency>
             <groupId>com.alibaba.csp</groupId>
@@ -109,12 +112,6 @@
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-mongodb-reactive</artifactId>
-        </dependency>
-
-
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <version>2.0.4.RELEASE</version>
             <scope>test</scope>
@@ -123,5 +120,40 @@
 
 
     </dependencies>
+
+    <build>
+
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <fork>true</fork><!-- 如果没有该项配置，肯呢个devtools不会起作用，即应用不会restart -->
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <configuration>
+                    <delimiters>
+                        <delimiter>@</delimiter>
+                    </delimiters>
+                    <useDefaultDelimiters>false</useDefaultDelimiters>
+                </configuration>
+            </plugin>
+            <!--docker打包-->
+            <plugin>
+                <groupId>com.spotify</groupId>
+                <artifactId>dockerfile-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
 
 </project>

@@ -1,6 +1,7 @@
 package cn.spark.chipro.core.gateway.exception;
 
-import cc.winfo.service.core.exception.CoreException;
+
+import cn.spark.chipro.core.exception.CoreException;
 
 /**
  * @author lizhichao

@@ -1,0 +1,53 @@
+server:
+  port: 4001
+
+spring:
+  application:
+    name: chipro-config
+  #admin client
+#  boot:
+#    admin:
+#      client:
+#        url: http://120.27.245.49:4006
+#        username: chipro
+#        password: chipro
+#        instance:
+#          service-url:
+  # 配置中心
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://gitee.com/eill/chipro-config.git
+          username: 13711919653
+          password: llg1997729
+          search-paths: config/
+    #消息总校bus配置
+    bus:
+      enabled: true
+      trace:
+        enabled: true
+  rabbitmq:
+    host: 120.27.245.49
+    port: 5672
+    username: admin
+    password: admin
+    virtual-host: my_vhost
+# 注册中心配置
+eureka:
+  instance:
+    prefer-ip-address: true
+    hostname: localhost
+    ip-address: 120.27.245.49
+  client:
+    service-url:
+      defaultZone:  http://chipro:chipro@www.liliguang.top:1026/eureka/
+# 暴露监控端点
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: ALWAYS

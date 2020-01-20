@@ -1,6 +1,8 @@
 package cn.spark.chipro.auth.endpoint;
 
 
+import cn.spark.chipro.auth.entity.PermissionInfo;
+import cn.spark.chipro.auth.mapper.UserMapper;
 import cn.spark.chipro.core.exception.CoreException;
 import cn.spark.chipro.core.result.Result;
 import cn.spark.chipro.core.util.StringUtil;
@@ -10,12 +12,10 @@ import org.springframework.security.oauth2.provider.OAuth2Authentication;
 import org.springframework.security.oauth2.provider.token.ConsumerTokenServices;
 import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.util.StringUtils;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestHeader;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -32,6 +32,9 @@ public class CoreTokenEndpoint {
 
     @Autowired
     private TokenStore tokenStore;
+
+    @Autowired
+    UserMapper userMapper;
 
 
     /**
@@ -105,6 +108,13 @@ public class CoreTokenEndpoint {
         }
         return Result.success("发送成功");
     }
+
+    @GetMapping("test")
+    public Result test() {
+        List<PermissionInfo> permissionInfos = userMapper.selectPermissionByUserId("1,2,3");
+        return Result.success("发送成功");
+    }
+
 
 
 }

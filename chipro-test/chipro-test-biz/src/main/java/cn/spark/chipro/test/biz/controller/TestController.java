@@ -1,6 +1,8 @@
 package cn.spark.chipro.test.biz.controller;
 
 import cn.spark.chipro.core.util.UserContext;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -13,7 +15,17 @@ import java.util.Map;
  */
 @RestController
 @RequestMapping("/test")
+@RefreshScope
 public class TestController {
+
+    @Value("${llg}")
+    private String from;
+
+    @RequestMapping("/from")
+    public String from(){
+
+        return this.from;
+    }
 
     @RequestMapping("token")
     public String testToken() {

@@ -8,11 +8,11 @@
   <parent>
     <artifactId>chipro-core</artifactId>
     <groupId>cn.spark</groupId>
-    <version>1.0.6</version>
+    <version>latest</version>
   </parent>
 
   <artifactId>core-validator</artifactId>
-  <version>1.0.6</version>
+  <version>latest</version>
 
   <dependencies>
     <dependency>

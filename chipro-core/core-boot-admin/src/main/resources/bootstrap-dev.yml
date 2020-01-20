@@ -1,0 +1,16 @@
+server:
+  port: 4006
+spring:
+  application:
+    name: chipro-admin
+  security:
+    user:
+      name: chipro
+      password: chipro
+#eureka
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    service-url:
+      defaultZone: http://chipro:chipro@www.liliguang.top:1026/eureka/

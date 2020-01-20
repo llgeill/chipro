@@ -64,8 +64,6 @@ public class GatewayConfig {
     }
 
 
-
-
     @Bean
     public WebFilter corsFilter() {
         return (ServerWebExchange ctx, WebFilterChain chain) -> {

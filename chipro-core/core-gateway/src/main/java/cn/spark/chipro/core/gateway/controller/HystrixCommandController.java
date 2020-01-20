@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- * @author lizhichao
+ * @author liliguang
  * @description
  * @date 2019/4/18
  */
@@ -14,14 +14,13 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class HystrixCommandController {
 
+    /**
+     * 用于路由熔断后的熔断方法
+     */
     @RequestMapping("/hystrixTimeout")
     public void hystrixTimeout(){
       log.error("触发断路由。。");
     }
 
-    @HystrixCommand(commandKey = "authHystrixCommand")
-    public void authHystrixCommand(){
 
-        log.error("authHystrixCommand触发断路由。。");
-    }
 }

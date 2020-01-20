@@ -1,6 +1,6 @@
 package cn.spark.chipro.core.gateway.handler;
 
-import cc.winfo.service.core.exception.CoreException;
+import cn.spark.chipro.core.exception.CoreException;
 import org.springframework.boot.autoconfigure.web.ErrorProperties;
 import org.springframework.boot.autoconfigure.web.ResourceProperties;
 import org.springframework.boot.autoconfigure.web.reactive.error.DefaultErrorWebExceptionHandler;

@@ -1,11 +1,11 @@
 package cn.spark.chipro.core.gateway.exception;
 
-import cc.winfo.service.core.exception.CoreException;
+import cn.spark.chipro.core.exception.CoreException;
 
 /**
- * @author lizhichao
+ * @author liliguang
  * @description
- * @date 2019/5/15
+ * @date 2020-01-18
  */
 public class ValidateCodeException extends CoreException {
 }

@@ -3,20 +3,25 @@ server:
 spring:
   activemq:
     #ActiveMQ通讯地址
-    broker-url: tcp://www.liliguang.top:61616
+    #broker-url: tcp://www.liliguang.top:61616
     #用户名
     user: admin
     #密码
     password: admin
     #是否启用内存模式（就是不安装MQ，项目启动时同时启动一个MQ实例）
-    in-memory: false
+    in-memory: true
     packages:
       #信任所有的包
       trust-all: true
     pool:
       #是否替换默认的连接池，使用ActiveMQ的连接池需引入的依赖
       enabled: false
-
+  rabbitmq:
+    host: 120.27.245.49
+    port: 5672
+    username: admin
+    password: admin
+    virtual-host: my_vhost
   mail:
     host: smtp.163.com #SMTP服务器地址
     username: 13711919653@163.com #登陆账号

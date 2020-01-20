@@ -10,7 +10,7 @@ import org.springframework.web.reactive.function.server.RouterFunction;
 import org.springframework.web.reactive.function.server.RouterFunctions;
 
 /**
- * webflux
+ * webflux控制器路由配置
  *
  * @author liliguang
  * @description

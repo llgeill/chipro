@@ -2,15 +2,15 @@ package cn.spark.chipro.core.gateway;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.client.SpringCloudApplication;
 import org.springframework.cloud.client.circuitbreaker.EnableCircuitBreaker;
 
 /**
- * @author lizhichao
+ * @author liliguang
  * @description
- * @date 2019/4/18
+ * @date 2020-01-19 15:04
  */
-@EnableCircuitBreaker
-@SpringBootApplication
+@SpringCloudApplication
 public class GatewayApplication {
 
     public static void main(String[] args) {

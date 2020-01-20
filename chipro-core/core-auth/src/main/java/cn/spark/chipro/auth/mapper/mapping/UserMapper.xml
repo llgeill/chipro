@@ -55,6 +55,8 @@
 
     </select>
 
+
+
     <select id="selectPermissionByUserId" resultType="permissionInfo">
         SELECT
         <include refid="Permission_Base_Column_List"/>

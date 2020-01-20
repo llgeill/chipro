@@ -4,11 +4,15 @@ import cn.spark.chipro.core.annotation.EnableDBClientDetailsService;
 import cn.spark.chipro.core.annotation.EnableRedisTokenStore;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 @SpringBootApplication
 @EnableDBClientDetailsService
 @EnableRedisTokenStore
+@EnableEurekaClient
+@EnableSwagger2
 public class ChiproAuthApplication {
 
     public static void main(String[] args) {

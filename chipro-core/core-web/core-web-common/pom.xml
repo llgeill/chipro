@@ -5,7 +5,7 @@
     <parent>
         <artifactId>core-web</artifactId>
         <groupId>cn.spark</groupId>
-        <version>1.0.6</version>
+        <version>latest</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
@@ -21,7 +21,12 @@
         <dependency>
             <groupId>cn.spark</groupId>
             <artifactId>core-auth-base</artifactId>
-            <version>1.0.6</version>
+            <version>latest</version>
+        </dependency>
+        <!--bus消息总线客户端支持-->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-bus-amqp</artifactId>
         </dependency>
         <!--configuration-->
         <dependency>
@@ -49,44 +54,48 @@
         <dependency>
             <groupId>cn.spark</groupId>
             <artifactId>core-api</artifactId>
-            <version>1.0.6</version>
+            <version>latest</version>
         </dependency>
         <!--exception-->
         <dependency>
             <groupId>cn.spark</groupId>
             <artifactId>core-exception</artifactId>
-            <version>1.0.6</version>
+            <version>latest</version>
         </dependency>
         <!--cache-->
         <dependency>
             <groupId>cn.spark</groupId>
             <artifactId>core-cache</artifactId>
-            <version>1.0.6</version>
+            <version>latest</version>
         </dependency>
         <!--dao-->
         <dependency>
             <groupId>cn.spark</groupId>
             <artifactId>core-dao-mybatis</artifactId>
-            <version>1.0.6</version>
+            <version>latest</version>
         </dependency>
 
-        <!--swagger-->
+        <!-- swagger ui -->
         <dependency>
-            <groupId>cn.spark</groupId>
-            <artifactId>core-swagger</artifactId>
-            <version>1.0.6</version>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger-ui</artifactId>
+        </dependency>
+        <!-- swagger -->
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger2</artifactId>
         </dependency>
         <!--log 需要自己实现日志吸写入实现类-->
         <dependency>
             <groupId>cn.spark</groupId>
             <artifactId>core-log</artifactId>
-            <version>1.0.6</version>
+            <version>latest</version>
         </dependency>
         <!--util-->
         <dependency>
             <groupId>cn.spark</groupId>
             <artifactId>core-util</artifactId>
-            <version>1.0.6</version>
+            <version>latest</version>
         </dependency>
 
 
