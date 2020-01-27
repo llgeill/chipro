@@ -1,13 +1,9 @@
-package
+package ${package.ServiceImpl};
 
 import org.springframework.stereotype.Service;
-
-    ${package.ServiceImpl}
-;
-    ${package.Entity}.${entity};
-    ${package.Mapper}.${table.mapperName};
-    ${superServiceImplClassPackage}
-        ;
+import ${package.Entity}.${entity};
+import ${package.Mapper}.${table.mapperName};
+import ${superServiceImplClassPackage};
 
 /**
  * <p>
@@ -23,7 +19,7 @@ open class ${table.serviceImplName} : ${superServiceImplClass}<${table.mapperNam
 
         }
 #else
-        public class ${table.serviceImplName} extends ${superServiceImplClass}<${table.mapperName}, ${entity}>{
+public class ${table.serviceImplName} extends ${superServiceImplClass}<${table.mapperName}, ${entity}> {
 
-        }
+}
 #end

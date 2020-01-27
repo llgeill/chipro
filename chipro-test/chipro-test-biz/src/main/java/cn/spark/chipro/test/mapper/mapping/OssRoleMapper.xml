@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.spark.chipro.test.mapper.OssRoleMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="cn.spark.chipro.test.entity.OssRole">
+        <id column="ROLE_ID" property="roleId" />
+        <result column="ROLE_NAME" property="roleName" />
+        <result column="CREATE_TIME" property="createTime" />
+        <result column="CREATE_PERSON" property="createPerson" />
+        <result column="UPDATE_TIME" property="updateTime" />
+        <result column="UPDATE_PERSON" property="updatePerson" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        ROLE_ID AS "roleId", ROLE_NAME AS "roleName", CREATE_TIME AS "createTime", CREATE_PERSON AS "createPerson", UPDATE_TIME AS "updateTime", UPDATE_PERSON AS "updatePerson"
+    </sql>
+
+</mapper>

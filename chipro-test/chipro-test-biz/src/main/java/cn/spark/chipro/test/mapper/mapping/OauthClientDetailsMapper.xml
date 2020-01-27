@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.spark.chipro.test.mapper.OauthClientDetailsMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="cn.spark.chipro.test.entity.OauthClientDetails">
+        <id column="CLIENT_ID" property="clientId" />
+        <result column="RESOURCE_IDS" property="resourceIds" />
+        <result column="CLIENT_SECRET" property="clientSecret" />
+        <result column="SCOPE" property="scope" />
+        <result column="AUTHORIZED_GRANT_TYPES" property="authorizedGrantTypes" />
+        <result column="WEB_SERVER_REDIRECT_URI" property="webServerRedirectUri" />
+        <result column="AUTHORITIES" property="authorities" />
+        <result column="ACCESS_TOKEN_VALIDITY" property="accessTokenValidity" />
+        <result column="REFRESH_TOKEN_VALIDITY" property="refreshTokenValidity" />
+        <result column="ADDITIONAL_INFORMATION" property="additionalInformation" />
+        <result column="AUTOAPPROVE" property="autoapprove" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        CLIENT_ID AS "clientId", RESOURCE_IDS AS "resourceIds", CLIENT_SECRET AS "clientSecret", SCOPE AS "scope", AUTHORIZED_GRANT_TYPES AS "authorizedGrantTypes", WEB_SERVER_REDIRECT_URI AS "webServerRedirectUri", AUTHORITIES AS "authorities", ACCESS_TOKEN_VALIDITY AS "accessTokenValidity", REFRESH_TOKEN_VALIDITY AS "refreshTokenValidity", ADDITIONAL_INFORMATION AS "additionalInformation", AUTOAPPROVE AS "autoapprove"
+    </sql>
+
+</mapper>

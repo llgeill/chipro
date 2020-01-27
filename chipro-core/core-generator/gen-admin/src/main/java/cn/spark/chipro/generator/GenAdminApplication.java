@@ -33,7 +33,7 @@ public class GenAdminApplication {
             databaseInfo.setCreateTime(new Date());
             databaseInfo.setDbName("本地数据源");
             databaseInfo.setJdbcDriver("com.mysql.jdbc.Driver");
-            databaseInfo.setJdbcUrl("jdbc:mysql://127.0.0.1:3306/chipro?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false&serverTimezone=CTT");
+            databaseInfo.setJdbcUrl("jdbc:mysql://106.15.72.153:3306/chipro?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false&serverTimezone=CTT");
             databaseInfo.setUserName("root");
             databaseInfo.setPassword("root");
             this.databaseInfoRepository.save(databaseInfo);

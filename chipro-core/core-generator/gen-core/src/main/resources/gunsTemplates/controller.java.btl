@@ -1,14 +1,19 @@
 package ${controllerPackage};
 
-import cn.spark.chipro.core.page.PageInfo;
 import ${package.Entity}.${entity};
 import ${package.EntitySpecParams}.${entity}Param;
+import ${package.EntitySpecResult}.${entity}Result;
 import ${package.Service}.${table.serviceName};
+import cn.spark.chipro.core.page.PageInfo;
 import cn.spark.chipro.core.result.Result;
+import cn.spark.chipro.core.controller.BaseController;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.util.List;
 
 <% var lowerEntityService = lowerEntity + 'Service'; %>
 
@@ -20,11 +25,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
  */
 @Controller
 @RequestMapping("/${lowerEntity}")
-public class ${entity}Controller {
+public class ${entity}Controller extends BaseController {
+
+    private String PREFIX = "/${lowerEntity}";
 
     @Autowired
     private ${entity}Service ${lowerEntityService};
-
 
     /**
      * 新增接口

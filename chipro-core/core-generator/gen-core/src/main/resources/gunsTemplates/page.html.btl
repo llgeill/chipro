@@ -1,35 +1,64 @@
-@layout("/common/_container.html",{js:["/assets/modular/${lowerEntity}/${lowerEntity}.js"]}){
-
-<div class="layui-body-header">
-    <span class="layui-body-header-title">${tableComment}管理</span>
-</div>
-
-<div class="layui-fluid">
-    <div class="layui-row layui-col-space15">
-        <div class="layui-col-sm12 layui-col-md12 layui-col-lg12">
-            <div class="layui-card">
-                <div class="layui-card-body">
-                    <div class="layui-form toolbar">
-                        <div class="layui-form-item">
-                            <div class="layui-inline">
-                                <input id="condition" class="layui-input" type="text" placeholder="名称"/>
+@layout("/common/_container.html",{plugins:["table","layer","sweet-alert"],js:["/assets/modular/${lowerEntity}/${lowerEntity}.js"]}){
+<div class="row" id="${lowerEntity}Page">
+    <div class="col-lg-12">
+        <div class="card card-outline-theme m-b-10">
+            <div class="card-body">
+                <div class="form-horizontal">
+                    <div class="form-body">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text">名称</div>
+                                    </div>
+                                    <input v-model="condition" type="text" class="form-control" placeholder="名称" autocomplete="off">
+                                </div>
                             </div>
-                            <div class="layui-inline">
-                                <button id="btnSearch" class="layui-btn icon-btn"><i class="layui-icon">&#xe615;</i>搜索</button>
-                                <button id="btnAdd" class="layui-btn icon-btn"><i class="layui-icon">&#xe654;</i>添加</button>
-                                <button id="btnExp" class="layui-btn icon-btn"><i class="layui-icon">&#xe67d;</i>导出</button>
+                            <div class="col-md-3">
+                                <div class="input-group condition-button">
+                                    <div class="input-group-btn condition-button">
+                                        <button type="button" id="check-minutes"
+                                                class="btn btn-info waves-effect waves-light condition-button-width" onclick="${entity}.search()">查询
+                                        </button>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <table class="layui-table" id="${lowerEntity}Table" lay-filter="${lowerEntity}Table"></table>
                 </div>
             </div>
         </div>
     </div>
 </div>
-
-<script type="text/html" id="tableBar">
-    <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="edit">修改</a>
-    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="delete">删除</a>
-</script>
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card card-outline-theme m-b-0">
+            <div class="card-body p-t-0 p-b-0">
+                <div class="form-horizontal">
+                    <div class="form-actions">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="card m-b-0 p-b-0">
+                                    <div class="hidden-xs" id="${entity}TableToolbar" role="group">
+                                        <button type="button" class="btn btn-primary waves-effect" onclick="${entity}.add()">
+                                            <i class="fa fa-plus"></i>&nbsp;添加
+                                        </button>
+                                        <button type="button" class="btn btn-primary waves-effect m-l-5" onclick="${entity}.edit()">
+                                            <i class="fa fa-pencil"></i>&nbsp;编辑
+                                        </button>
+                                        <button type="button" class="btn btn-primary waves-effect m-l-5" onclick="${entity}.delete()">
+                                            <i class="fa fa-remove"></i>&nbsp;删除
+                                        </button>
+                                    </div>
+                                    <#table id="${entity}Table"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 @}
+

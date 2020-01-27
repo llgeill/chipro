@@ -1,11 +1,11 @@
-package
+package ${package.EntitySpecResult};
 
 import lombok.Data;
-
+import java.time.LocalDateTime;
 import java.io.Serializable;
+import java.math.BigDecimal;
+import java.util.Date;
 
-${package.EntitySpecResult}
-        ;
 
 /**
  * <p>
@@ -20,14 +20,14 @@ public class ${entity}Result implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    #foreach($field in ${table.fields})
+#foreach($field in ${table.fields})
 
-        #if("$!field.comment" != "")
-            /**
-             * ${field.comment}
-             */
-        #end
-        private ${field.propertyType} ${field.propertyName};
-    #end
+#if("$!field.comment" != "")
+    /**
+     * ${field.comment}
+     */
+#end
+    private ${field.propertyType} ${field.propertyName};
+#end
 
 }

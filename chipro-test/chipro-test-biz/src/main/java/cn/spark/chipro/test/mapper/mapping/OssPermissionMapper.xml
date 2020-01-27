@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.spark.chipro.test.mapper.OssPermissionMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="cn.spark.chipro.test.entity.OssPermission">
+        <id column="PERMISSION_ID" property="permissionId" />
+        <result column="PERMISSION_NAME" property="permissionName" />
+        <result column="PERMISSION_NOTE" property="permissionNote" />
+        <result column="PERMISSION_REMARK" property="permissionRemark" />
+        <result column="PERMISSION_ICON" property="permissionIcon" />
+        <result column="PERMISSION_PATH" property="permissionPath" />
+        <result column="CREATE_TIME" property="createTime" />
+        <result column="CREATE_PERSON" property="createPerson" />
+        <result column="UPDATE_TIME" property="updateTime" />
+        <result column="UPDATE_PERSON" property="updatePerson" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        PERMISSION_ID AS "permissionId", PERMISSION_NAME AS "permissionName", PERMISSION_NOTE AS "permissionNote", PERMISSION_REMARK AS "permissionRemark", PERMISSION_ICON AS "permissionIcon", PERMISSION_PATH AS "permissionPath", CREATE_TIME AS "createTime", CREATE_PERSON AS "createPerson", UPDATE_TIME AS "updateTime", UPDATE_PERSON AS "updatePerson"
+    </sql>
+
+</mapper>

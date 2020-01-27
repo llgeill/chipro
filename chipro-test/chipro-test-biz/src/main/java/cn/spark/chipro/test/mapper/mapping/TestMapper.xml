@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.spark.chipro.test.mapper.TestMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="cn.spark.chipro.test.entity.Test">
+        <id column="TEST_ID" property="testId" />
+        <result column="TEST_NAME" property="testName" />
+        <result column="TEST_CONTENT" property="testContent" />
+        <result column="CREATE_DATE" property="createDate" />
+        <result column="CREATE_PERSON" property="createPerson" />
+        <result column="UPDATE_DATE" property="updateDate" />
+        <result column="UPDATE_PERSON" property="updatePerson" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        TEST_ID AS "testId", TEST_NAME AS "testName", TEST_CONTENT AS "testContent", CREATE_DATE AS "createDate", CREATE_PERSON AS "createPerson", UPDATE_DATE AS "updateDate", UPDATE_PERSON AS "updatePerson"
+    </sql>
+
+</mapper>

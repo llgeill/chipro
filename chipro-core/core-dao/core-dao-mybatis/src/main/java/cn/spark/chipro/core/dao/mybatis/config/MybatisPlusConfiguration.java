@@ -21,7 +21,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 //开启事务
 @EnableTransactionManagement(proxyTargetClass = true)
 //扫描mapper代理类
-@MapperScan(basePackages = {"cn.spark.chipro"})
+@MapperScan(basePackages = {"cn.spark.chipro.**.mapper"})
 public class MybatisPlusConfiguration {
 
     /**
@@ -30,7 +30,7 @@ public class MybatisPlusConfiguration {
     @Bean
     public PaginationInterceptor paginationInterceptor() {
         PaginationInterceptor paginationInterceptor = new PaginationInterceptor();
-        paginationInterceptor.setDialectType(DbType.ORACLE.getDb());
+        paginationInterceptor.setDialectType(DbType.MYSQL.getDb());
         return paginationInterceptor;
     }
 

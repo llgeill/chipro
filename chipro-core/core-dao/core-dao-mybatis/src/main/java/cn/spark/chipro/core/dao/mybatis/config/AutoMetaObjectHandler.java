@@ -1,9 +1,11 @@
 package cn.spark.chipro.core.dao.mybatis.config;
 
+import cn.spark.chipro.core.util.UserContext;
 import com.baomidou.mybatisplus.core.handlers.MetaObjectHandler;
 import org.apache.ibatis.reflection.MetaObject;
 
 import java.util.Date;
+import java.util.Objects;
 
 /**
  * <p>配置字段自动填充处理类</p>
@@ -15,11 +17,15 @@ import java.util.Date;
 public class AutoMetaObjectHandler implements MetaObjectHandler {
     @Override
     public void insertFill(MetaObject metaObject) {
-        this.setFieldValByName("createTime",new Date(),metaObject);
+        setFieldValByName("createTime",new Date(),metaObject);
+        setFieldValByName("createDate",new Date(),metaObject);
+        setFieldValByName("createPerson", Objects.requireNonNull(UserContext.getUserInfo()).get("createPerson"),metaObject);
     }
 
     @Override
     public void updateFill(MetaObject metaObject) {
-        this.setFieldValByName("updateTime",new Date(),metaObject);
+        setFieldValByName("updateTime",new Date(),metaObject);
+        setFieldValByName("updateDate",new Date(),metaObject);
+        setFieldValByName("updatePerson", Objects.requireNonNull(UserContext.getUserInfo()).get("updatePerson"),metaObject);
     }
 }

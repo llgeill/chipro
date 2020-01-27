@@ -74,7 +74,6 @@
             <artifactId>core-dao-mybatis</artifactId>
             <version>latest</version>
         </dependency>
-
         <!-- swagger ui -->
         <dependency>
             <groupId>io.springfox</groupId>
@@ -97,10 +96,6 @@
             <artifactId>core-util</artifactId>
             <version>latest</version>
         </dependency>
-
-
-
-
     </dependencies>
 
 </project>

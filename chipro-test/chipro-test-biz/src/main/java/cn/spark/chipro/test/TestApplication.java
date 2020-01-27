@@ -1,4 +1,4 @@
-package cn.spark.chipro.test.biz;
+package cn.spark.chipro.test;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

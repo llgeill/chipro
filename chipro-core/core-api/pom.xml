@@ -25,6 +25,12 @@
             <artifactId>core-util</artifactId>
             <version>latest</version>
         </dependency>
+        <!--exception-->
+        <dependency>
+            <groupId>cn.spark</groupId>
+            <artifactId>core-exception</artifactId>
+            <version>latest</version>
+        </dependency>
     </dependencies>
 
 

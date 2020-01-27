@@ -32,7 +32,7 @@ public class GunsControllerGenerator extends AbstractCustomGenerator {
     public String getGenerateFilePath() {
         String proPackage = this.contextParam.getProPackage();
         String proPath = proPackage.replaceAll("\\.", "/");
-        File file = new File(contextParam.getOutputPath() + "/" + proPath + "/controller/" + tableContext.get("entity") + "controller.java");
+        File file = new File(contextParam.getOutputPath() + "/" + proPath + "/controller/" + tableContext.get("entity") + "Controller.java");
         return file.getAbsolutePath();
     }
 }

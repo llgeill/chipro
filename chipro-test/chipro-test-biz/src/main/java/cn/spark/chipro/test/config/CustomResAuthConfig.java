@@ -1,4 +1,4 @@
-package cn.spark.chipro.test.biz.config;
+package cn.spark.chipro.test.config;
 
 import cn.spark.chipro.core.config.ResourceServerConfig;
 import org.springframework.context.annotation.Configuration;
@@ -23,8 +23,6 @@ public class CustomResAuthConfig extends ResourceServerConfig {
     public void configure(HttpSecurity http) throws Exception {
         //所有请求必须认证通过
         http.authorizeRequests().antMatchers(
-                "/test/from",
-                "/test/noToken",
                 "/v2/api-docs",
                 "/swagger-resources/configuration/ui",
                 "/swagger-resources",
