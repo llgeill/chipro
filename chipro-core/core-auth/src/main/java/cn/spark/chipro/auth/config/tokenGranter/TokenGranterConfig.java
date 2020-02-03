@@ -25,4 +25,9 @@ public class TokenGranterConfig {
     public SmsCodeTokenGranter smsCodeTokenGranter() {
         return new SmsCodeTokenGranter(tokenService, clientDetailsService, new DefaultOAuth2RequestFactory(clientDetailsService));
     }
+
+    @Bean
+    public EmailCodeTokenGranter emailCodeTokenGranter() {
+        return new EmailCodeTokenGranter(tokenService, clientDetailsService, new DefaultOAuth2RequestFactory(clientDetailsService));
+    }
 }

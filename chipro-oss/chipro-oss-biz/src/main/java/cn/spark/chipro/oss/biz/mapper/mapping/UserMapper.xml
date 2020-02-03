@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.spark.chipro.oss.biz.mapper.UserMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="cn.spark.chipro.oss.biz.entity.User">
+        <id column="USER_ID" property="userId" />
+        <result column="USER_NAME" property="userName" />
+        <result column="USER_NAME_ALIAS" property="userNameAlias" />
+        <result column="PASSWORD" property="password" />
+        <result column="MOBILE" property="mobile" />
+        <result column="EMAIL" property="email" />
+        <result column="GENDER" property="gender" />
+        <result column="BIRTHDAY" property="birthday" />
+        <result column="IS_ENABLED" property="isEnabled" />
+        <result column="FAILURE_TIME" property="failureTime" />
+        <result column="CREATE_TIME" property="createTime" />
+        <result column="CREATE_PERSON" property="createPerson" />
+        <result column="UPDATE_TIME" property="updateTime" />
+        <result column="UPDATE_PERSON" property="updatePerson" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        USER_ID AS "userId", USER_NAME AS "userName", USER_NAME_ALIAS AS "userNameAlias", PASSWORD AS "password", MOBILE AS "mobile", EMAIL AS "email", GENDER AS "gender", BIRTHDAY AS "birthday", IS_ENABLED AS "isEnabled", FAILURE_TIME AS "failureTime", CREATE_TIME AS "createTime", CREATE_PERSON AS "createPerson", UPDATE_TIME AS "updateTime", UPDATE_PERSON AS "updatePerson"
+    </sql>
+
+</mapper>

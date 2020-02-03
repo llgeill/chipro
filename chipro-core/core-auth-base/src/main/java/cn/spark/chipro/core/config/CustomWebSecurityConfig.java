@@ -77,7 +77,16 @@ public class CustomWebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     public void configure(HttpSecurity http) throws Exception {
         http
-                .authorizeRequests().antMatchers("/actuator/**", "/oauth/logout", "/user", "/sendSmsCode/*").permitAll().and() // 忽略认证
+                .authorizeRequests()
+                .antMatchers
+                        (
+                                "/actuator/**",
+                                "/oauth/logout",
+                                "/user",
+                                "/sendEmailCode/**",
+                                "/sendSmsCode/**"
+                        )
+                .permitAll().and() // 忽略认证
                 .csrf().disable()
                 .httpBasic().and()
                 .formLogin()

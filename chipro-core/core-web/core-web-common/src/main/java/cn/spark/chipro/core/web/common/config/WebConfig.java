@@ -6,8 +6,14 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class WebConfig {
+
     @Bean
     public GlobalExceptionHandler globalExceptionHandler(){
         return new GlobalExceptionHandler();
+    }
+
+    @Bean
+    public BindExceptionHanlder bindExceptionHanlder(){
+        return new BindExceptionHanlder();
     }
 }

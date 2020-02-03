@@ -57,4 +57,6 @@ public class GlobalExceptionHandler {
         log.error("运行时异常:", e);
         return Result.error(-1,"服务器未知运行时异常");
     }
+
+
 }

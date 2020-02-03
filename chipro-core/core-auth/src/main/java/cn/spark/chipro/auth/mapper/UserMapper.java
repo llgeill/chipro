@@ -21,6 +21,8 @@ public interface UserMapper extends BaseMapper<User> {
 
     UserInfo selectUserByUserName(@Param("userName") String userName);
 
+    UserInfo selectUserByEmail(@Param("email") String email);
+
     List<RoleInfo> selectRoleByUserId(@Param("userId") String userId);
 
     List<PermissionInfo> selectPermissionByUserId(@Param("userId") String userId);

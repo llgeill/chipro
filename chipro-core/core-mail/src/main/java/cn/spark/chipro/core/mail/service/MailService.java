@@ -71,7 +71,7 @@ public class MailService {
                 }
             }
             mailVo.setFrom(getMailSendFrom());//邮件发信人从配置项读取
-            String fromByte = new String(("少儿编程" + " <" + mailVo.getFrom() + ">").getBytes("UTF-8"));
+            String fromByte = new String(("Scratch线上学习平台" + " <" + mailVo.getFrom() + ">").getBytes("UTF-8"));
             messageHelper.setFrom(fromByte);//邮件发信人
             messageHelper.setTo(mailVo.getTo().split(","));//邮件收信人
             messageHelper.setSubject(mailVo.getSubject());//邮件主题

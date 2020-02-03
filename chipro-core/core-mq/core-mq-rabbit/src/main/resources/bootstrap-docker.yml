@@ -1,0 +1,20 @@
+server:
+  port: 1222
+spring:
+  application:
+    name: chipro-mq-rabbit
+  #配置中心
+  cloud:
+    config:
+      fail-fast: true
+      name: ${spring.application.name}
+      profile: docker
+      discovery:
+        enabled: true
+        service-id: chipro-config
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    service-url:
+      defaultZone: http://chipro:chipro@www.liliguang.top:1026/eureka/

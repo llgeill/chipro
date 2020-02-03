@@ -2,6 +2,7 @@ package cn.spark.chipro.core.config;
 
 import cn.spark.chipro.core.handle.AuthExceptionEntryPoint;
 import cn.spark.chipro.core.handle.CustomAccessDeniedHandler;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
@@ -20,8 +21,14 @@ import org.springframework.security.oauth2.config.annotation.web.configurers.Res
 @Configuration
 @EnableResourceServer
 @EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true)
+@Slf4j
 public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 
+    public ResourceServerConfig() {
+        log.info("------------------------自动生成配置-------------------");
+        log.info("------------------------自动生成配置-------------------");
+        log.info("------------------------自动生成配置-------------------");
+    }
 
     /**
      * 配置异常处理器端点

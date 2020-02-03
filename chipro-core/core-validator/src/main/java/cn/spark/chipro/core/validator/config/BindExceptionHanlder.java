@@ -1,6 +1,6 @@
 package cn.spark.chipro.core.validator.config;
 
-import cn.spark.chipro.core.validator.config.chipro.core.result.Result;
+import cn.spark.chipro.core.result.Result;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.converter.HttpMessageConversionException;
 import org.springframework.stereotype.Component;

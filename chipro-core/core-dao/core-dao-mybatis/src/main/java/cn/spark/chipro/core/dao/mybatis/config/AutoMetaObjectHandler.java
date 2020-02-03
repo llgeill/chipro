@@ -19,13 +19,18 @@ public class AutoMetaObjectHandler implements MetaObjectHandler {
     public void insertFill(MetaObject metaObject) {
         setFieldValByName("createTime",new Date(),metaObject);
         setFieldValByName("createDate",new Date(),metaObject);
-        setFieldValByName("createPerson", Objects.requireNonNull(UserContext.getUserInfo()).get("createPerson"),metaObject);
+        if(UserContext.getUserInfo()!=null){
+            setFieldValByName("createPerson", UserContext.getUserInfo().get("createPerson"),metaObject);
+        }
+
     }
 
     @Override
     public void updateFill(MetaObject metaObject) {
         setFieldValByName("updateTime",new Date(),metaObject);
         setFieldValByName("updateDate",new Date(),metaObject);
-        setFieldValByName("updatePerson", Objects.requireNonNull(UserContext.getUserInfo()).get("updatePerson"),metaObject);
+        if(UserContext.getUserInfo()!=null){
+            setFieldValByName("updatePerson", UserContext.getUserInfo().get("updatePerson"),metaObject);
+        }
     }
 }

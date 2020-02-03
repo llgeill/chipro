@@ -3,9 +3,11 @@ package cn.spark.chipro.auth.endpoint;
 
 import cn.spark.chipro.auth.entity.PermissionInfo;
 import cn.spark.chipro.auth.mapper.UserMapper;
+import cn.spark.chipro.auth.service.EmailService;
 import cn.spark.chipro.core.exception.CoreException;
 import cn.spark.chipro.core.result.Result;
 import cn.spark.chipro.core.util.StringUtil;
+import com.netflix.discovery.converters.Auto;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.oauth2.provider.OAuth2Authentication;
@@ -35,6 +37,9 @@ public class CoreTokenEndpoint {
 
     @Autowired
     UserMapper userMapper;
+
+    @Autowired
+    private EmailService emailService;
 
 
     /**
@@ -103,6 +108,23 @@ public class CoreTokenEndpoint {
         try {
             //发送短信服务，待完善
             //smsService.sendSmsCode(phone);
+        } catch (CoreException e) {
+            return Result.error(e.getCode(), e.getMessage());
+        }
+        return Result.success("发送成功");
+    }
+
+    /**
+     * 发送邮箱验证码
+     *
+     * @param email 邮箱地址
+     * @return
+     */
+    @GetMapping("/sendEmailCode/{email}")
+    public Result sendEmailCode(@PathVariable(value = "email") String email) {
+        try {
+            //发送短信服务，待完善
+            emailService.sendEmailCode(email);
         } catch (CoreException e) {
             return Result.error(e.getCode(), e.getMessage());
         }

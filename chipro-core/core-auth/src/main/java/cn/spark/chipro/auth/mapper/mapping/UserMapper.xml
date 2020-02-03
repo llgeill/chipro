@@ -41,6 +41,19 @@
         FROM OSS_USER
         <where>
             OSS_USER.USER_NAME = #{userName,jdbcType=VARCHAR}
+            or
+            OSS_USER.EMAIL = #{userName,jdbcType=VARCHAR}
+            or
+            OSS_USER.MOBILE = #{userName,jdbcType=VARCHAR}
+        </where>
+    </select>
+
+    <select id="selectUserByEmail" resultType="userInfo">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM OSS_USER
+        <where>
+            OSS_USER.EMAIL = #{email,jdbcType=VARCHAR}
         </where>
     </select>
 

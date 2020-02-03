@@ -50,6 +50,12 @@
             <artifactId>core-api</artifactId>
             <version>latest</version>
         </dependency>
+        <!--core-mq-rabbit-->
+        <dependency>
+            <groupId>cn.spark</groupId>
+            <artifactId>core-mq-rabbit</artifactId>
+            <version>latest</version>
+        </dependency>
         <!--auth-base-->
         <dependency>
             <groupId>cn.spark</groupId>
