@@ -2,8 +2,8 @@ package cn.spark.chipro.oss.biz.service.impl;
 
 import cn.spark.chipro.oss.biz.entity.Role;
 import cn.spark.chipro.oss.biz.mapper.RoleMapper;
-import cn.spark.chipro.oss.biz.model.params.RoleParam;
-import cn.spark.chipro.oss.biz.model.result.RoleResult;
+import cn.spark.chipro.oss.api.model.params.RoleParam;
+import cn.spark.chipro.oss.api.model.result.RoleResult;
 import  cn.spark.chipro.oss.biz.service.RoleService;
 import cn.spark.chipro.core.page.PageFactory;
 import cn.spark.chipro.core.page.PageInfo;
@@ -11,7 +11,6 @@ import cn.spark.chipro.core.util.ToolUtil;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 import java.io.Serializable;

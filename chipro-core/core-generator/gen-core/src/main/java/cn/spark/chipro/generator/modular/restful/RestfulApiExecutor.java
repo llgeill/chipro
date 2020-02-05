@@ -26,7 +26,7 @@
 //     */
 //    public static void executor(ContextParam contextParam, MpParam mpContext) {
 //
-//        //执行mp的代码生成，生成entity,dao,service,model，生成后保留数据库元数据
+//        //执行mp的代码生成，生成entity,dao,service,cn.spark.chipro.manage.api.model，生成后保留数据库元数据
 //        DefaultMpGenerator defaultMpGenerator = new DefaultMpGenerator(mpContext);
 //        defaultMpGenerator.initContext(contextParam);
 //        defaultMpGenerator.doGeneration();

@@ -1,9 +1,9 @@
 package cn.spark.chipro.oss.biz.service;
 
 import cn.spark.chipro.core.page.PageInfo;
+import cn.spark.chipro.oss.api.model.params.PermissionParam;
+import cn.spark.chipro.oss.api.model.result.PermissionResult;
 import cn.spark.chipro.oss.biz.entity.Permission;
-import cn.spark.chipro.oss.biz.model.params.PermissionParam;
-import cn.spark.chipro.oss.biz.model.result.PermissionResult;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 import java.util.List;

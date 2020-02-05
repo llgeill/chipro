@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.spark.chipro.manage.biz.mapper.ResourceMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="cn.spark.chipro.manage.biz.entity.Resource">
+        <id column="RESOURCE_ID" property="resourceId" />
+        <result column="RESOURCE_NAME" property="resourceName" />
+        <result column="RESOURCE_PATH" property="resourcePath" />
+        <result column="CREATE_USER" property="createUser" />
+        <result column="CREATE_TIME" property="createTime" />
+        <result column="REMARKS" property="remarks" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        RESOURCE_ID AS "resourceId", RESOURCE_NAME AS "resourceName", RESOURCE_PATH AS "resourcePath", CREATE_USER AS "createUser", CREATE_TIME AS "createTime", REMARKS AS "remarks"
+    </sql>
+
+</mapper>

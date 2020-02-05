@@ -129,8 +129,8 @@
 //        String SpecResultTemplatePath = "/mpTemplates/specResult.java.vm";
 //        List<FileOutConfig> focList = new ArrayList<>();
 //
-//        String paramsParentPackage = this.contextParam.getProPackage().replaceAll("\\.", "/") + "/model/params";
-//        String resultParentPackage = this.contextParam.getProPackage().replaceAll("\\.", "/") + "/model/result";
+//        String paramsParentPackage = this.contextParam.getProPackage().replaceAll("\\.", "/") + "/cn.spark.chipro.manage.api.model/params";
+//        String resultParentPackage = this.contextParam.getProPackage().replaceAll("\\.", "/") + "/cn.spark.chipro.manage.api.model/result";
 //        File paramsDir = new File(contextParam.getOutputPath() + "/" + paramsParentPackage);
 //        File resultDir = new File(contextParam.getOutputPath() + "/" + resultParentPackage);
 //        if (!paramsDir.exists()) {
@@ -157,8 +157,8 @@
 //
 //        //自定义specification里的参数
 //        HashMap<String, Object> contexMap = new HashMap<>();
-//        contexMap.put("EntitySpecParams", this.contextParam.getProPackage() + ".model.params");
-//        contexMap.put("EntitySpecResult", this.contextParam.getProPackage() + ".model.result");
+//        contexMap.put("EntitySpecParams", this.contextParam.getProPackage() + ".cn.spark.chipro.manage.api.model.params");
+//        contexMap.put("EntitySpecResult", this.contextParam.getProPackage() + ".cn.spark.chipro.manage.api.model.result");
 //        injectionConfig.setMap(contexMap);
 //    }
 //

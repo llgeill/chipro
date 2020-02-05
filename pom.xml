@@ -11,6 +11,8 @@
         <module>chipro-core</module>
         <module>chipro-test</module>
         <module>chipro-oss</module>
+        <module>chipro-manage</module>
+        <module>chipro-community</module>
     </modules>
     <packaging>pom</packaging>
     <!--设置springboot为父类-->

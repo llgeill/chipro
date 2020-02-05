@@ -8,8 +8,8 @@ import cn.spark.chipro.oss.biz.common.constant.CoreExceptionConstant;
 import cn.spark.chipro.oss.biz.common.constant.SmsCodeConstant;
 import cn.spark.chipro.oss.biz.entity.User;
 import cn.spark.chipro.oss.biz.mapper.UserMapper;
-import cn.spark.chipro.oss.biz.model.params.UserParam;
-import cn.spark.chipro.oss.biz.model.result.UserResult;
+import cn.spark.chipro.oss.api.model.params.UserParam;
+import cn.spark.chipro.oss.api.model.result.UserResult;
 import  cn.spark.chipro.oss.biz.service.UserService;
 import cn.spark.chipro.core.page.PageFactory;
 import cn.spark.chipro.core.page.PageInfo;
@@ -19,22 +19,18 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.core.toolkit.IdWorker;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.cache.annotation.Caching;
 import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.oauth2.common.exceptions.InvalidGrantException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.client.RestTemplate;
 
-import java.beans.Transient;
 import java.io.Serializable;
 import java.util.Calendar;
-import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
@@ -125,11 +121,19 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     }
 
     @Override
+    @Caching(evict = {
+            @CacheEvict(value = Cache.CHIPRO_OSS, key = "'" + CacheKey.USER_ALIAS_NAME + "'+#param.userId"),
+            @CacheEvict(value = Cache.CHIPRO_OSS, key = "'" + CacheKey.USER_REPEAT_ACCOUNT + "'+#param.userName+#param.mobile+#param.email")
+    })
     public void delete(UserParam param){
         this.removeById(getKey(param));
     }
 
     @Override
+    @Caching(evict = {
+            @CacheEvict(value = Cache.CHIPRO_OSS, key = "'" + CacheKey.USER_ALIAS_NAME + "'+#param.userId"),
+            @CacheEvict(value = Cache.CHIPRO_OSS, key = "'" + CacheKey.USER_REPEAT_ACCOUNT + "'+#param.userName+#param.mobile+#param.email")
+    })
     public void update(UserParam param){
         User oldEntity = getOldEntity(param);
         User newEntity = getEntity(param);
@@ -153,6 +157,19 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         QueryWrapper<User>objectQueryWrapper=new QueryWrapper<>();
         IPage page=this.page(pageContext,objectQueryWrapper);
         return PageFactory.createPageInfo(page);
+    }
+
+    @Override
+    @Cacheable(value = Cache.CHIPRO_OSS, key = "'" + CacheKey.USER_ALIAS_NAME + "'+#userId")
+    public String getUserNameById(String userId) {
+        QueryWrapper<User> queryWrapper = new QueryWrapper<>();
+        queryWrapper.select("USER_NAME_ALIAS").eq("USER_ID",userId);
+        User one = this.getOne(queryWrapper);
+        if(one!=null&&StringUtil.isNotEmpty(one.getUserNameAlias())){
+            return one.getUserNameAlias();
+        }else{
+            return "";
+        }
     }
 
     private Serializable getKey(UserParam param){
@@ -209,6 +226,10 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         return true;
     }
 
+    /**
+     * 获取一年后的日期
+     * @return
+     */
     private Date getDateAfterYear(){
         Calendar calendar = Calendar.getInstance();
         calendar.add(Calendar.YEAR,1);

@@ -1,23 +1,20 @@
 package cn.spark.chipro.oss.biz.controller;
 
 import cn.spark.chipro.core.log.aop.WebLog;
-import cn.spark.chipro.oss.biz.common.validated.InsertValidated;
-import cn.spark.chipro.oss.biz.common.validated.UpdateValidated;
+import cn.spark.chipro.oss.api.model.validated.*;
 import cn.spark.chipro.oss.biz.entity.User;
-import cn.spark.chipro.oss.biz.model.params.UserParam;
-import cn.spark.chipro.oss.biz.model.result.UserResult;
+import cn.spark.chipro.oss.api.model.params.UserParam;
 import cn.spark.chipro.oss.biz.service.UserService;
 import cn.spark.chipro.core.page.PageInfo;
 import cn.spark.chipro.core.result.Result;
 import cn.spark.chipro.core.controller.BaseController;
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.util.List;
+import javax.validation.constraints.NotEmpty;
 
 
 /**
@@ -27,6 +24,7 @@ import java.util.List;
  * @Date 2020-01-31 13:26:51
  */
 @Controller
+@Validated
 @RequestMapping("/user")
 public class UserController extends BaseController {
 
@@ -36,7 +34,7 @@ public class UserController extends BaseController {
     private UserService userService;
 
     /**
-     * 新增接口
+     * 用户注册
      *
      * @author 李利光
      * @Date 2020-01-31
@@ -61,6 +59,22 @@ public class UserController extends BaseController {
         this.userService.forgetPass(userParam);
         return Result.success();
     }
+
+    /**
+     * 获取用户别名
+     *
+     * @author 李利光
+     * @Date 2020-01-31
+     */
+    @RequestMapping("/getUserNameById")
+    @ResponseBody
+    @WebLog(type = "select",description = "通过id获取用户名称")
+    public Result getUserNameById(@NotEmpty String userId) {
+        this.userService.getUserNameById(userId);
+        return Result.success();
+    }
+
+
 
     /**
      * 编辑接口

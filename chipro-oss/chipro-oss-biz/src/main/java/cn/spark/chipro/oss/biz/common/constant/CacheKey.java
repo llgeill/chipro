@@ -13,5 +13,10 @@ public interface CacheKey {
      */
     String USER_REPEAT_ACCOUNT = "user_repeat_account";
 
+    /**
+     * 用户别名缓存
+     */
+    String USER_ALIAS_NAME = "user_alias_name";
+
 
 }

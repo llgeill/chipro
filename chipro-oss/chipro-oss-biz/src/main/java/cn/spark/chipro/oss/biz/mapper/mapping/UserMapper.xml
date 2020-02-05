@@ -3,7 +3,7 @@
 <mapper namespace="cn.spark.chipro.oss.biz.mapper.UserMapper">
 
     <!-- 通用查询映射结果 -->
-    <resultMap id="BaseResultMap" type="cn.spark.chipro.oss.biz.entity.User">
+    <resultMap id="BaseResultMap" type="cn.spark.chipro.oss.api.entity.User">
         <id column="USER_ID" property="userId" />
         <result column="USER_NAME" property="userName" />
         <result column="USER_NAME_ALIAS" property="userNameAlias" />

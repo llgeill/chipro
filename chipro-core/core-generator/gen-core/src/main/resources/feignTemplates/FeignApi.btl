@@ -2,7 +2,7 @@ package ${apiPackage};
 
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import cn.stylefeng.roses.kernel.model.page.PageResult;
+import cn.stylefeng.roses.kernel.cn.spark.chipro.manage.api.model.page.PageResult;
 import ${package.EntitySpecParams}.${entity}Param;
 import ${package.EntitySpecResult}.${entity}Result;
 

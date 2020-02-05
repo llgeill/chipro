@@ -1,19 +1,15 @@
 package cn.spark.chipro.oss.biz.controller;
 
 import cn.spark.chipro.oss.biz.entity.Permission;
-import cn.spark.chipro.oss.biz.model.params.PermissionParam;
-import cn.spark.chipro.oss.biz.model.result.PermissionResult;
+import cn.spark.chipro.oss.api.model.params.PermissionParam;
 import cn.spark.chipro.oss.biz.service.PermissionService;
 import cn.spark.chipro.core.page.PageInfo;
 import cn.spark.chipro.core.result.Result;
 import cn.spark.chipro.core.controller.BaseController;
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-
-import java.util.List;
 
 
 /**

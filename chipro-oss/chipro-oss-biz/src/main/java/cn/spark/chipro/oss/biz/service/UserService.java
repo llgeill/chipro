@@ -1,9 +1,9 @@
 package cn.spark.chipro.oss.biz.service;
 
 import cn.spark.chipro.core.page.PageInfo;
+import cn.spark.chipro.oss.api.model.params.UserParam;
+import cn.spark.chipro.oss.api.model.result.UserResult;
 import cn.spark.chipro.oss.biz.entity.User;
-import cn.spark.chipro.oss.biz.model.params.UserParam;
-import cn.spark.chipro.oss.biz.model.result.UserResult;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 import java.util.List;
@@ -90,6 +90,9 @@ public interface UserService extends IService<User> {
      */
     PageInfo findPageBySpec(UserParam param);
 
-
-
+    /**
+     * 通过用户id获取用户别名
+     * @param userId
+     */
+    String getUserNameById(String userId);
 }

@@ -4,7 +4,7 @@ import ${apiPackage}.${entity}Api;
 import ${package.EntitySpecParams}.${entity}Param;
 import ${package.EntitySpecResult}.${entity}Result;
 import ${package.Service}.${table.serviceName};
-import cn.stylefeng.roses.kernel.model.page.PageResult;
+import cn.stylefeng.roses.kernel.cn.spark.chipro.manage.api.model.page.PageResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;

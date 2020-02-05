@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.spark.chipro.community.biz.mapper.ProductionMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="cn.spark.chipro.community.biz.entity.Production">
+        <id column="PRODUCTION_ID" property="productionId" />
+        <result column="USER_ID" property="userId" />
+        <result column="NAME" property="name" />
+        <result column="INTRODUCE" property="introduce" />
+        <result column="INSTRUCTION" property="instruction" />
+        <result column="LABEL" property="label" />
+        <result column="MOBILE_KEYBOARD" property="mobileKeyboard" />
+        <result column="RESOURCE_ID" property="resourceId" />
+        <result column="CREATE_USER" property="createUser" />
+        <result column="CREATE_TIME" property="createTime" />
+        <result column="UPDATE_USER" property="updateUser" />
+        <result column="UPDATE_TIME" property="updateTime" />
+        <result column="REMARKS" property="remarks" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        PRODUCTION_ID AS "productionId", USER_ID AS "userId", NAME AS "name", INTRODUCE AS "introduce", INSTRUCTION AS "instruction", LABEL AS "label", MOBILE_KEYBOARD AS "mobileKeyboard", RESOURCE_ID AS "resourceId", CREATE_USER AS "createUser", CREATE_TIME AS "createTime", UPDATE_USER AS "updateUser", UPDATE_TIME AS "updateTime", REMARKS AS "remarks"
+    </sql>
+
+</mapper>

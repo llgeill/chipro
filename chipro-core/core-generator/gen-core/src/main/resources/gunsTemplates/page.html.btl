@@ -11,7 +11,7 @@
                                     <div class="input-group-prepend">
                                         <div class="input-group-text">名称</div>
                                     </div>
-                                    <input v-model="condition" type="text" class="form-control" placeholder="名称" autocomplete="off">
+                                    <input v-cn.spark.chipro.manage.api.model="condition" type="text" class="form-control" placeholder="名称" autocomplete="off">
                                 </div>
                             </div>
                             <div class="col-md-3">

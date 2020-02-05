@@ -7,7 +7,7 @@
                 <div class="form-group">
                     <h5>${fieldsNoKey[i].comment} <span class="text-danger">*</span></h5>
                     <div class="controls">
-                        <input v-model="${fieldsNoKey[i].propertyName}" type="text" class="form-control">
+                        <input v-cn.spark.chipro.manage.api.model="${fieldsNoKey[i].propertyName}" type="text" class="form-control">
                     </div>
                 </div>
                 <% } %>
@@ -17,7 +17,7 @@
                 <div class="form-group">
                     <h5>${fieldsNoKey[i].comment} <span class="text-danger">*</span></h5>
                     <div class="controls">
-                        <input v-model="${fieldsNoKey[i].propertyName}" type="text" class="form-control">
+                        <input v-cn.spark.chipro.manage.api.model="${fieldsNoKey[i].propertyName}" type="text" class="form-control">
                     </div>
                 </div>
                 <% } %>

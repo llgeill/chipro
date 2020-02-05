@@ -1,9 +1,9 @@
 package cn.spark.chipro.oss.biz.service;
 
 import cn.spark.chipro.core.page.PageInfo;
+import cn.spark.chipro.oss.api.model.params.UserRoleParam;
+import cn.spark.chipro.oss.api.model.result.UserRoleResult;
 import cn.spark.chipro.oss.biz.entity.UserRole;
-import cn.spark.chipro.oss.biz.model.params.UserRoleParam;
-import cn.spark.chipro.oss.biz.model.result.UserRoleResult;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 import java.util.List;
