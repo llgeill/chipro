@@ -1,7 +1,9 @@
 package cn.spark.chipro.manage.api.model.params;
 
+import cn.spark.chipro.manage.api.model.validated.InsertValidated;
 import lombok.Data;
 
+import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -28,6 +30,7 @@ public class ClassRoomParam implements Serializable{
     /**
      * 课室名称
      */
+    @NotEmpty(message = "课室名称不能为空",groups = InsertValidated.class)
     private String name;
 
     /**
@@ -58,6 +61,7 @@ public class ClassRoomParam implements Serializable{
     /**
      * 学校编码
      */
+    @NotEmpty(message = "学校编码不能为空",groups = InsertValidated.class)
     private String schoolId;
 
     /**

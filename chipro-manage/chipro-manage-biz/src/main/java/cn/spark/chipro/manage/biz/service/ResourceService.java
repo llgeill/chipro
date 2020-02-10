@@ -14,7 +14,7 @@ import java.util.List;
  * </p>
  *
  * @author 李利光
- * @since 2020-02-05
+ * @since 2020-02-09
  */
 public interface ResourceService extends IService<Resource> {
 
@@ -22,7 +22,7 @@ public interface ResourceService extends IService<Resource> {
      * 新增
      *
      * @author 李利光
-     * @Date 2020-02-05
+     * @Date 2020-02-09
      */
     void add(ResourceParam param);
 
@@ -30,7 +30,7 @@ public interface ResourceService extends IService<Resource> {
      * 删除
      *
      * @author 李利光
-     * @Date 2020-02-05
+     * @Date 2020-02-09
      */
     void delete(ResourceParam param);
 
@@ -38,7 +38,7 @@ public interface ResourceService extends IService<Resource> {
      * 更新
      *
      * @author 李利光
-     * @Date 2020-02-05
+     * @Date 2020-02-09
      */
     void update(ResourceParam param);
 
@@ -46,7 +46,7 @@ public interface ResourceService extends IService<Resource> {
      * 查询单条数据，Specification模式
      *
      * @author 李利光
-     * @Date 2020-02-05
+     * @Date 2020-02-09
      */
     ResourceResult findBySpec(ResourceParam param);
 
@@ -54,7 +54,7 @@ public interface ResourceService extends IService<Resource> {
      * 查询列表，Specification模式
      *
      * @author 李利光
-     * @Date 2020-02-05
+     * @Date 2020-02-09
      */
     List<ResourceResult> findListBySpec(ResourceParam param);
 
@@ -62,7 +62,7 @@ public interface ResourceService extends IService<Resource> {
      * 查询分页数据，Specification模式
      *
      * @author 李利光
-     * @Date 2020-02-05
+     * @Date 2020-02-09
      */
     PageInfo findPageBySpec(ResourceParam param);
 

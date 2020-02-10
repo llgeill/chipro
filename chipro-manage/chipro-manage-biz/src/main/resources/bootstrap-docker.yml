@@ -1,5 +1,5 @@
 server:
-  port: 1555
+  port: 1777
 spring:
   application:
     name: chipro-manage

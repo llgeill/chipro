@@ -22,6 +22,9 @@ public class AutoMetaObjectHandler implements MetaObjectHandler {
         if(UserContext.getUserInfo()!=null){
             setFieldValByName("createPerson", UserContext.getUserInfo().get("createPerson"),metaObject);
         }
+        if(UserContext.getUserInfo()!=null){
+            setFieldValByName("createUser", UserContext.getUserInfo().get("createPerson"),metaObject);
+        }
 
     }
 
@@ -31,6 +34,9 @@ public class AutoMetaObjectHandler implements MetaObjectHandler {
         setFieldValByName("updateDate",new Date(),metaObject);
         if(UserContext.getUserInfo()!=null){
             setFieldValByName("updatePerson", UserContext.getUserInfo().get("updatePerson"),metaObject);
+        }
+        if(UserContext.getUserInfo()!=null){
+            setFieldValByName("updateUser", UserContext.getUserInfo().get("updatePerson"),metaObject);
         }
     }
 }

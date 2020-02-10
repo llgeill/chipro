@@ -44,7 +44,7 @@ public class UserParam implements Serializable{
     /**
      * 密码
      */
-    @NotEmpty(message = "密码不能为空",groups = InsertValidated.class)
+    //@NotEmpty(message = "密码不能为空",groups = InsertValidated.class)
     private String password;
 
     /**
@@ -110,4 +110,15 @@ public class UserParam implements Serializable{
     public boolean check(){
         return StringUtil.isNotEmpty(userName) || StringUtil.isNotEmpty(mobile) || StringUtil.isNotEmpty(email);
     }
+
+    /**
+     * ===============================不存在字段===================================
+     */
+
+    /**
+     * role
+     */
+    private String role;
+
+
 }

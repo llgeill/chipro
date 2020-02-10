@@ -34,10 +34,11 @@
             <artifactId>lombok</artifactId>
             <optional>true</optional>
         </dependency>
-        <!--test-->
+        <!--api-->
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
+            <groupId>cn.spark</groupId>
+            <artifactId>core-api</artifactId>
+            <version>latest</version>
         </dependency>
     </dependencies>
 

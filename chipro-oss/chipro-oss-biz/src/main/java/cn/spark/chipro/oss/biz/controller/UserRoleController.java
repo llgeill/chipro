@@ -8,6 +8,7 @@ import cn.spark.chipro.core.result.Result;
 import cn.spark.chipro.core.controller.BaseController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -35,7 +36,7 @@ public class UserRoleController extends BaseController {
      */
     @RequestMapping("/addItem")
     @ResponseBody
-    public Result addItem(UserRoleParam userRoleParam) {
+    public Result addItem(@RequestBody UserRoleParam userRoleParam) {
         this.userRoleService.add(userRoleParam);
         return Result.success();
     }
@@ -48,7 +49,7 @@ public class UserRoleController extends BaseController {
      */
     @RequestMapping("/editItem")
     @ResponseBody
-    public Result editItem(UserRoleParam userRoleParam) {
+    public Result editItem(@RequestBody UserRoleParam userRoleParam) {
         this.userRoleService.update(userRoleParam);
         return Result.success();
     }
@@ -61,7 +62,7 @@ public class UserRoleController extends BaseController {
      */
     @RequestMapping("/delete")
     @ResponseBody
-    public Result delete(UserRoleParam userRoleParam) {
+    public Result delete(@RequestBody UserRoleParam userRoleParam) {
         this.userRoleService.delete(userRoleParam);
         return Result.success();
     }
@@ -74,7 +75,7 @@ public class UserRoleController extends BaseController {
      */
     @RequestMapping("/detail")
     @ResponseBody
-    public Result detail(UserRoleParam userRoleParam) {
+    public Result detail(@RequestBody UserRoleParam userRoleParam) {
         UserRole detail = this.userRoleService.getById(userRoleParam.getUserAndRoleId());
         return Result.success(detail);
     }
@@ -87,7 +88,7 @@ public class UserRoleController extends BaseController {
      */
     @ResponseBody
     @RequestMapping("/list")
-    public PageInfo list(UserRoleParam userRoleParam) {
+    public PageInfo list(@RequestBody UserRoleParam userRoleParam) {
         return this.userRoleService.findPageBySpec(userRoleParam);
     }
 

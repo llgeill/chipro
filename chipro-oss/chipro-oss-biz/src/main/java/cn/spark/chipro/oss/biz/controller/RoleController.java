@@ -8,6 +8,7 @@ import cn.spark.chipro.core.result.Result;
 import cn.spark.chipro.core.controller.BaseController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -35,7 +36,7 @@ public class RoleController extends BaseController {
      */
     @RequestMapping("/addItem")
     @ResponseBody
-    public Result addItem(RoleParam roleParam) {
+    public Result addItem(@RequestBody RoleParam roleParam) {
         this.roleService.add(roleParam);
         return Result.success();
     }
@@ -48,7 +49,7 @@ public class RoleController extends BaseController {
      */
     @RequestMapping("/editItem")
     @ResponseBody
-    public Result editItem(RoleParam roleParam) {
+    public Result editItem(@RequestBody RoleParam roleParam) {
         this.roleService.update(roleParam);
         return Result.success();
     }
@@ -61,7 +62,7 @@ public class RoleController extends BaseController {
      */
     @RequestMapping("/delete")
     @ResponseBody
-    public Result delete(RoleParam roleParam) {
+    public Result delete(@RequestBody RoleParam roleParam) {
         this.roleService.delete(roleParam);
         return Result.success();
     }
@@ -74,7 +75,7 @@ public class RoleController extends BaseController {
      */
     @RequestMapping("/detail")
     @ResponseBody
-    public Result detail(RoleParam roleParam) {
+    public Result detail(@RequestBody RoleParam roleParam) {
         Role detail = this.roleService.getById(roleParam.getRoleId());
         return Result.success(detail);
     }
@@ -87,7 +88,7 @@ public class RoleController extends BaseController {
      */
     @ResponseBody
     @RequestMapping("/list")
-    public PageInfo list(RoleParam roleParam) {
+    public PageInfo list(@RequestBody RoleParam roleParam) {
         return this.roleService.findPageBySpec(roleParam);
     }
 

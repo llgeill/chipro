@@ -1,8 +1,10 @@
 package cn.spark.chipro.oss.biz;
 
 
+import cn.spark.chipro.oss.api.feign.UserFeignService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
@@ -15,6 +17,8 @@ import java.util.GregorianCalendar;
 @SpringBootTest
 @RunWith(SpringRunner.class)
 public class TestApplication {
+    @Autowired
+    UserFeignService userFeignService;
 
     @Test
     public void date(){

@@ -24,7 +24,7 @@ public class RolePermission implements Serializable {
     /**
      * 主键id
      */
-    @TableId(value = "ROLE_AND_PERMISSION_ID", type = IdType.ID_WORKER)
+    @TableId(value = "ROLE_AND_PERMISSION_ID", type = IdType.ID_WORKER_STR)
     private String roleAndPermissionId;
 
     /**

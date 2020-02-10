@@ -1,7 +1,9 @@
 package cn.spark.chipro.manage.api.model.params;
 
+import cn.spark.chipro.manage.api.model.validated.InsertValidated;
 import lombok.Data;
 
+import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -33,6 +35,7 @@ public class SchoolParam implements Serializable{
     /**
      * 学校名称
      */
+    @NotEmpty(message = "没有填写学校名称",groups = InsertValidated.class)
     private String name;
 
     /**
@@ -43,21 +46,25 @@ public class SchoolParam implements Serializable{
     /**
      * 学校邮箱
      */
+    @NotEmpty(message = "没有填写学校邮箱",groups = InsertValidated.class)
     private String email;
 
     /**
      * 学校校长
      */
+    @NotEmpty(message = "没有填写学校校长名称",groups = InsertValidated.class)
     private String principal;
 
     /**
      * 学校地址
      */
+    @NotEmpty(message = "没有填写学校地址",groups = InsertValidated.class)
     private String address;
 
     /**
      * 学校电话
      */
+    @NotEmpty(message = "没有填写学校联系电话",groups = InsertValidated.class)
     private String mobile;
 
     /**
@@ -84,4 +91,11 @@ public class SchoolParam implements Serializable{
      * 备注
      */
     private String remarks;
+
+
+    /**
+     * 邮箱验证码
+     */
+    @NotEmpty(message = "没有填写邮箱验证码",groups = InsertValidated.class)
+    private String emailCode;
 }

@@ -17,6 +17,6 @@ public class PermissionInfo extends Permission implements GrantedAuthority {
 
     @Override
     public String getAuthority() {
-        return super.getPermissionId();
+        return super.getPermissionPath();
     }
 }

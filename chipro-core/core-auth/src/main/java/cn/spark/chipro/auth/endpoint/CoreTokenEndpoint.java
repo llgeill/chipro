@@ -11,6 +11,7 @@ import com.netflix.discovery.converters.Auto;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.oauth2.provider.OAuth2Authentication;
+import org.springframework.security.oauth2.provider.endpoint.CheckTokenEndpoint;
 import org.springframework.security.oauth2.provider.token.ConsumerTokenServices;
 import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.util.StringUtils;
@@ -77,7 +78,6 @@ public class CoreTokenEndpoint {
      */
     @GetMapping("/user")
     public Map principal(@RequestHeader String authorization) {
-
         Map<String, Object> map = new HashMap<>();
         OAuth2Authentication authen = null;
         try {

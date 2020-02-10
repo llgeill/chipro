@@ -1,15 +1,20 @@
 package cn.spark.chipro.oss.biz.service.impl;
 
 import cn.spark.chipro.core.exception.CoreException;
+import cn.spark.chipro.core.util.ExcelUtil;
 import cn.spark.chipro.core.util.StringUtil;
+import cn.spark.chipro.manage.api.feign.ManageFeignService;
+import cn.spark.chipro.manage.api.model.params.ClassUserParam;
 import cn.spark.chipro.oss.biz.common.constant.Cache;
 import cn.spark.chipro.oss.biz.common.constant.CacheKey;
 import cn.spark.chipro.oss.biz.common.constant.CoreExceptionConstant;
 import cn.spark.chipro.oss.biz.common.constant.SmsCodeConstant;
 import cn.spark.chipro.oss.biz.entity.User;
+import cn.spark.chipro.oss.biz.entity.UserRole;
 import cn.spark.chipro.oss.biz.mapper.UserMapper;
 import cn.spark.chipro.oss.api.model.params.UserParam;
 import cn.spark.chipro.oss.api.model.result.UserResult;
+import cn.spark.chipro.oss.biz.service.UserRoleService;
 import  cn.spark.chipro.oss.biz.service.UserService;
 import cn.spark.chipro.core.page.PageFactory;
 import cn.spark.chipro.core.page.PageInfo;
@@ -21,6 +26,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.cache.annotation.Caching;
@@ -28,11 +34,10 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.io.Serializable;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 /**
  * <p>
@@ -51,6 +56,18 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
 
     @Autowired
     private PasswordEncoder passwordEncoder;
+
+    @Autowired
+    private UserRoleService userRoleService;
+
+    @Autowired
+    private ManageFeignService manageFeignService;
+
+    @Value("${oss.user.default.password}")
+    private String defaultPassword;
+
+    @Value("${oss.user.default.role}")
+    private String defaultRole;
 
 
     private boolean isDebug = log.isDebugEnabled();
@@ -71,13 +88,32 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
             //参数校验以及邮箱验证码校验
             if(param.check()&&checkEmailCode(param)){
                 User entity = getEntity(param);
-                //添加随机生成的账号
-                String userName = String.valueOf(IdWorker.getId());
-                entity.setUserName(userName);
+                //随机生成账号
+                if(StringUtil.isEmpty(param.getUserName())){
+                    entity.setUserName(userAccount());
+                }
+                //设置密码
+                if(StringUtil.isEmpty(param.getPassword())){
+                    entity.setPassword(passwordEncoder.encode(defaultPassword));
+                }else{
+                    entity.setPassword(passwordEncoder.encode(entity.getPassword()));
+                }
                 entity.setFailureTime(getDateAfterYear());
-                entity.setPassword(passwordEncoder.encode(entity.getPassword()));
                 entity.setCreatePerson("1");
+                //保存
                 this.save(entity);
+                UserRole userRole = new UserRole();
+                //添加用户角色
+                if(StringUtil.isEmpty(param.getRole())){
+                    userRole.setRoleId(defaultRole);
+                }else{
+                    userRole.setRoleId(param.getRole());
+                }
+                userRole.setUserId(entity.getUserId());
+                userRole.setCreatePerson(entity.getUserId());
+                userRole.setCreateTime(new Date());
+                this.userRoleService.save(userRole);
+                //返回账号信息
                 return entity;
             }else{
                 //参数校验异常
@@ -86,6 +122,43 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         }else{
             //账号重复异常
             throw new CoreException(-1,CoreExceptionConstant.ACCOUNT_REPEAT);
+        }
+    }
+
+    @Override
+    @Transactional
+    public List<User> batchRegisterStuAccount(MultipartFile multipartFile,String classRoomId){
+        List<User> userList = ExcelUtil.importExcel(multipartFile, 7, 1, User.class);
+        List<UserRole> userRoleList = new ArrayList<>();
+        List<ClassUserParam> classUserParamList = new ArrayList<>();
+        if(userList!=null&&userList.size()>0){
+            userList.forEach(entity -> {
+                entity.setUserName(userAccount());
+                entity.setPassword(passwordEncoder.encode(defaultPassword));
+                entity.setFailureTime(getDateAfterYear());
+            });
+            //批量添加账号获取账号id
+            this.saveBatch(userList);
+            //批量赋予学生角色
+            userList.forEach(entity->{
+                //添加学生角色
+                UserRole userRole = new UserRole();
+                //添加用户角色
+                userRole.setRoleId("5");
+                userRole.setUserId(entity.getUserId());
+                userRoleList.add(userRole);
+                //添加课室学生关系
+                ClassUserParam classUserParam = new ClassUserParam();
+                classUserParam.setUserId(entity.getUserId());
+                classUserParam.setClassRoomId(classRoomId);
+                classUserParamList.add(classUserParam);
+            });
+            userRoleService.saveBatch(userRoleList);
+            //添加学生关系
+            manageFeignService.batchAdd(classUserParamList);
+            return userList;
+        }else{
+            throw new CoreException(-1,"学生数据为空！");
         }
     }
 
@@ -138,7 +211,22 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         User oldEntity = getOldEntity(param);
         User newEntity = getEntity(param);
         ToolUtil.copyProperties(newEntity, oldEntity);
+        if(StringUtil.isNotEmpty(newEntity.getPassword())){
+            newEntity.setPassword(passwordEncoder.encode(newEntity.getPassword()));
+        }
         this.updateById(newEntity);
+    }
+
+    @Override
+    public void resetPass(UserParam param){
+        if(StringUtil.isEmpty(param.getPassword())){
+            throw new CoreException(-1,"密码不能为空");
+        }else{
+            User user = new User();
+            user.setUserId(param.getUserId());
+            user.setPassword(passwordEncoder.encode(param.getPassword()));
+            this.updateById(user);
+        }
     }
 
     @Override
@@ -235,6 +323,27 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         calendar.add(Calendar.YEAR,1);
         Date time = calendar.getTime();
         return time;
+    }
+
+    /**
+     * 生成不重复的随机账号
+     * @return
+     */
+    private String userAccount(){
+        int count = this.count();
+        return randomCode()+randomCode()+ count;
+    }
+
+    /**
+     * 生成随机码
+     * @return 随机码
+     */
+    private static String randomCode(){
+        int flag = new Random().nextInt(999);
+        if (flag < 100){
+            flag += 100;
+        }
+        return Integer.toString(flag);
     }
 
 }

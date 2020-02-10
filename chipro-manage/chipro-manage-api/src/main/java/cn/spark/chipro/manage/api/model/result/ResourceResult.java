@@ -1,8 +1,9 @@
 package cn.spark.chipro.manage.api.model.result;
 
 import lombok.Data;
-
+import java.time.LocalDateTime;
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.Date;
 
 
@@ -12,7 +13,7 @@ import java.util.Date;
  * </p>
  *
  * @author 李利光
- * @since 2020-02-05
+ * @since 2020-02-09
  */
 @Data
 public class ResourceResult implements Serializable {

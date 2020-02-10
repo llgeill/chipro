@@ -24,7 +24,7 @@ public interface ClassRoomService extends IService<ClassRoom> {
      * @author 李利光
      * @Date 2020-02-05
      */
-    void add(ClassRoomParam param);
+    ClassRoom add(ClassRoomParam param);
 
     /**
      * 删除

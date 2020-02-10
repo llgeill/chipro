@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
 
@@ -27,7 +28,6 @@ import java.util.List;
 @RequestMapping("/${lowerEntity}")
 public class ${entity}Controller extends BaseController {
 
-    private String PREFIX = "/${lowerEntity}";
 
     @Autowired
     private ${entity}Service ${lowerEntityService};
@@ -40,7 +40,7 @@ public class ${entity}Controller extends BaseController {
      */
     @RequestMapping("/addItem")
     @ResponseBody
-    public Result addItem(${entity}Param ${lowerEntity}Param) {
+    public Result addItem(@RequestBody ${entity}Param ${lowerEntity}Param) {
         this.${lowerEntity}Service.add(${lowerEntity}Param);
         return Result.success();
     }
@@ -53,7 +53,7 @@ public class ${entity}Controller extends BaseController {
      */
     @RequestMapping("/editItem")
     @ResponseBody
-    public Result editItem(${entity}Param ${lowerEntity}Param) {
+    public Result editItem(@RequestBody ${entity}Param ${lowerEntity}Param) {
         this.${lowerEntity}Service.update(${lowerEntity}Param);
         return Result.success();
     }
@@ -66,7 +66,7 @@ public class ${entity}Controller extends BaseController {
      */
     @RequestMapping("/delete")
     @ResponseBody
-    public Result delete(${entity}Param ${lowerEntity}Param) {
+    public Result delete(@RequestBody ${entity}Param ${lowerEntity}Param) {
         this.${lowerEntity}Service.delete(${lowerEntity}Param);
         return Result.success();
     }
@@ -79,7 +79,7 @@ public class ${entity}Controller extends BaseController {
      */
     @RequestMapping("/detail")
     @ResponseBody
-    public Result detail(${entity}Param ${lowerEntity}Param) {
+    public Result detail(@RequestBody ${entity}Param ${lowerEntity}Param) {
         ${entity} detail = this.${lowerEntity}Service.getById(${lowerEntity}Param.get${bigKeyPropertyName}());
         return Result.success(detail);
     }
@@ -92,7 +92,7 @@ public class ${entity}Controller extends BaseController {
      */
     @ResponseBody
     @RequestMapping("/list")
-    public PageInfo list(${entity}Param ${lowerEntity}Param) {
+    public PageInfo list(@RequestBody ${entity}Param ${lowerEntity}Param) {
         return this.${lowerEntity}Service.findPageBySpec(${lowerEntity}Param);
     }
 

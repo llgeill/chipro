@@ -26,8 +26,8 @@ public class CustomResAuthConfig extends ResourceServerConfig {
     public void configure(HttpSecurity http) throws Exception {
         //所有请求必须认证通过
         http.authorizeRequests().antMatchers(
+                "/school/addItem",
                 "/v2/api-docs",
-                "/user/addItem",
                 "/swagger-resources/configuration/ui",
                 "/swagger-resources",
                 "/swagger-resources/configuration/security",

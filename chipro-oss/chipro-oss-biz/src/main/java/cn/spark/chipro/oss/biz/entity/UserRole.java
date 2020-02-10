@@ -24,7 +24,7 @@ public class UserRole implements Serializable {
     /**
      * 主键ID
      */
-    @TableId(value = "USER_AND_ROLE_ID", type = IdType.ID_WORKER)
+    @TableId(value = "USER_AND_ROLE_ID", type = IdType.ID_WORKER_STR)
     private String userAndRoleId;
 
     /**
@@ -48,7 +48,7 @@ public class UserRole implements Serializable {
     /**
      * 创建人
      */
-    @TableField("CREATE_PERSON")
+    @TableField(value = "CREATE_PERSON", fill = FieldFill.INSERT)
     private String createPerson;
 
 

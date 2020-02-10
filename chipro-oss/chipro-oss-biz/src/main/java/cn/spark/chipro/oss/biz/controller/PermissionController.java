@@ -8,6 +8,7 @@ import cn.spark.chipro.core.result.Result;
 import cn.spark.chipro.core.controller.BaseController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -35,7 +36,7 @@ public class PermissionController extends BaseController {
      */
     @RequestMapping("/addItem")
     @ResponseBody
-    public Result addItem(PermissionParam permissionParam) {
+    public Result addItem(@RequestBody PermissionParam permissionParam) {
         this.permissionService.add(permissionParam);
         return Result.success();
     }
@@ -48,7 +49,7 @@ public class PermissionController extends BaseController {
      */
     @RequestMapping("/editItem")
     @ResponseBody
-    public Result editItem(PermissionParam permissionParam) {
+    public Result editItem(@RequestBody PermissionParam permissionParam) {
         this.permissionService.update(permissionParam);
         return Result.success();
     }
@@ -61,7 +62,7 @@ public class PermissionController extends BaseController {
      */
     @RequestMapping("/delete")
     @ResponseBody
-    public Result delete(PermissionParam permissionParam) {
+    public Result delete(@RequestBody PermissionParam permissionParam) {
         this.permissionService.delete(permissionParam);
         return Result.success();
     }
@@ -74,7 +75,7 @@ public class PermissionController extends BaseController {
      */
     @RequestMapping("/detail")
     @ResponseBody
-    public Result detail(PermissionParam permissionParam) {
+    public Result detail(@RequestBody PermissionParam permissionParam) {
         Permission detail = this.permissionService.getById(permissionParam.getPermissionId());
         return Result.success(detail);
     }
@@ -87,7 +88,7 @@ public class PermissionController extends BaseController {
      */
     @ResponseBody
     @RequestMapping("/list")
-    public PageInfo list(PermissionParam permissionParam) {
+    public PageInfo list(@RequestBody PermissionParam permissionParam) {
         return this.permissionService.findPageBySpec(permissionParam);
     }
 

@@ -24,7 +24,7 @@ public class Review implements Serializable {
     /**
      * 点评编码
      */
-    @TableId(value = "REVIEW_ID", type = IdType.ID_WORKER)
+    @TableId(value = "REVIEW_ID", type = IdType.ID_WORKER_STR)
     private String reviewId;
 
     /**

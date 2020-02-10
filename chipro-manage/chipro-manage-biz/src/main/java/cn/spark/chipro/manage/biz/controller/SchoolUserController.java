@@ -1,8 +1,8 @@
 package cn.spark.chipro.manage.biz.controller;
 
-import cn.spark.chipro.manage.biz.entity.Task;
-import cn.spark.chipro.manage.api.model.params.TaskParam;
-import cn.spark.chipro.manage.biz.service.TaskService;
+import cn.spark.chipro.manage.biz.entity.SchoolUser;
+import cn.spark.chipro.manage.api.model.params.SchoolUserParam;
+import cn.spark.chipro.manage.biz.service.SchoolUserService;
 import cn.spark.chipro.core.page.PageInfo;
 import cn.spark.chipro.core.result.Result;
 import cn.spark.chipro.core.controller.BaseController;
@@ -10,33 +10,33 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RequestBody;
 
 
 /**
- * 任务控制器
+ * 学校校长控制器
  *
  * @author 李利光
- * @Date 2020-02-05 22:13:28
+ * @Date 2020-02-07 18:17:59
  */
 @Controller
-@RequestMapping("/task")
-public class TaskController extends BaseController {
+@RequestMapping("/schoolUser")
+public class SchoolUserController extends BaseController {
 
-    private String PREFIX = "/task";
 
     @Autowired
-    private TaskService taskService;
+    private SchoolUserService schoolUserService;
 
     /**
      * 新增接口
      *
      * @author 李利光
-     * @Date 2020-02-05
+     * @Date 2020-02-07
      */
     @RequestMapping("/addItem")
     @ResponseBody
-    public Result addItem(TaskParam taskParam) {
-        this.taskService.add(taskParam);
+    public Result addItem(@RequestBody SchoolUserParam schoolUserParam) {
+        this.schoolUserService.add(schoolUserParam);
         return Result.success();
     }
 
@@ -44,12 +44,12 @@ public class TaskController extends BaseController {
      * 编辑接口
      *
      * @author 李利光
-     * @Date 2020-02-05
+     * @Date 2020-02-07
      */
     @RequestMapping("/editItem")
     @ResponseBody
-    public Result editItem(TaskParam taskParam) {
-        this.taskService.update(taskParam);
+    public Result editItem(@RequestBody SchoolUserParam schoolUserParam) {
+        this.schoolUserService.update(schoolUserParam);
         return Result.success();
     }
 
@@ -57,12 +57,12 @@ public class TaskController extends BaseController {
      * 删除接口
      *
      * @author 李利光
-     * @Date 2020-02-05
+     * @Date 2020-02-07
      */
     @RequestMapping("/delete")
     @ResponseBody
-    public Result delete(TaskParam taskParam) {
-        this.taskService.delete(taskParam);
+    public Result delete(@RequestBody SchoolUserParam schoolUserParam) {
+        this.schoolUserService.delete(schoolUserParam);
         return Result.success();
     }
 
@@ -70,12 +70,12 @@ public class TaskController extends BaseController {
      * 查看详情接口
      *
      * @author 李利光
-     * @Date 2020-02-05
+     * @Date 2020-02-07
      */
     @RequestMapping("/detail")
     @ResponseBody
-    public Result detail(TaskParam taskParam) {
-        Task detail = this.taskService.getById(taskParam.getTaskId());
+    public Result detail(@RequestBody SchoolUserParam schoolUserParam) {
+        SchoolUser detail = this.schoolUserService.getById(schoolUserParam.getSchoolUserId());
         return Result.success(detail);
     }
 
@@ -83,12 +83,12 @@ public class TaskController extends BaseController {
      * 查询列表
      *
      * @author 李利光
-     * @Date 2020-02-05
+     * @Date 2020-02-07
      */
     @ResponseBody
     @RequestMapping("/list")
-    public PageInfo list(TaskParam taskParam) {
-        return this.taskService.findPageBySpec(taskParam);
+    public PageInfo list(@RequestBody SchoolUserParam schoolUserParam) {
+        return this.schoolUserService.findPageBySpec(schoolUserParam);
     }
 
 }

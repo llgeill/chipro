@@ -24,7 +24,7 @@ public class School implements Serializable {
     /**
      * 学校编码
      */
-    @TableId(value = "SCHOOL_ID", type = IdType.ID_WORKER)
+    @TableId(value = "SCHOOL_ID", type = IdType.ID_WORKER_STR)
     private String schoolId;
 
     /**

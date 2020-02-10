@@ -116,6 +116,7 @@
             <artifactId>core-util</artifactId>
             <version>latest</version>
         </dependency>
+
     </dependencies>
 
 </project>

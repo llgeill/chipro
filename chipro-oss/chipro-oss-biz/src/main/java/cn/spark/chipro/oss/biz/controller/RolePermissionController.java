@@ -8,6 +8,7 @@ import cn.spark.chipro.core.result.Result;
 import cn.spark.chipro.core.controller.BaseController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -35,7 +36,7 @@ public class RolePermissionController extends BaseController {
      */
     @RequestMapping("/addItem")
     @ResponseBody
-    public Result addItem(RolePermissionParam rolePermissionParam) {
+    public Result addItem(@RequestBody RolePermissionParam rolePermissionParam) {
         this.rolePermissionService.add(rolePermissionParam);
         return Result.success();
     }
@@ -48,7 +49,7 @@ public class RolePermissionController extends BaseController {
      */
     @RequestMapping("/editItem")
     @ResponseBody
-    public Result editItem(RolePermissionParam rolePermissionParam) {
+    public Result editItem(@RequestBody RolePermissionParam rolePermissionParam) {
         this.rolePermissionService.update(rolePermissionParam);
         return Result.success();
     }
@@ -61,7 +62,7 @@ public class RolePermissionController extends BaseController {
      */
     @RequestMapping("/delete")
     @ResponseBody
-    public Result delete(RolePermissionParam rolePermissionParam) {
+    public Result delete(@RequestBody RolePermissionParam rolePermissionParam) {
         this.rolePermissionService.delete(rolePermissionParam);
         return Result.success();
     }
@@ -74,7 +75,7 @@ public class RolePermissionController extends BaseController {
      */
     @RequestMapping("/detail")
     @ResponseBody
-    public Result detail(RolePermissionParam rolePermissionParam) {
+    public Result detail(@RequestBody RolePermissionParam rolePermissionParam) {
         RolePermission detail = this.rolePermissionService.getById(rolePermissionParam.getRoleAndPermissionId());
         return Result.success(detail);
     }
@@ -87,7 +88,7 @@ public class RolePermissionController extends BaseController {
      */
     @ResponseBody
     @RequestMapping("/list")
-    public PageInfo list(RolePermissionParam rolePermissionParam) {
+    public PageInfo list(@RequestBody RolePermissionParam rolePermissionParam) {
         return this.rolePermissionService.findPageBySpec(rolePermissionParam);
     }
 

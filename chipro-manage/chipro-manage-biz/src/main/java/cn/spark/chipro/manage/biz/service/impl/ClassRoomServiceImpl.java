@@ -1,6 +1,10 @@
 package cn.spark.chipro.manage.biz.service.impl;
 
+import cn.spark.chipro.core.exception.CoreException;
+import cn.spark.chipro.core.util.UserContext;
+import cn.spark.chipro.manage.biz.common.util.ManageUtil;
 import cn.spark.chipro.manage.biz.entity.ClassRoom;
+import cn.spark.chipro.manage.biz.entity.ClassUser;
 import cn.spark.chipro.manage.biz.mapper.ClassRoomMapper;
 import cn.spark.chipro.manage.api.model.params.ClassRoomParam;
 import cn.spark.chipro.manage.api.model.result.ClassRoomResult;
@@ -8,11 +12,17 @@ import  cn.spark.chipro.manage.biz.service.ClassRoomService;
 import cn.spark.chipro.core.page.PageFactory;
 import cn.spark.chipro.core.page.PageInfo;
 import cn.spark.chipro.core.util.ToolUtil;
+import cn.spark.chipro.manage.biz.service.ClassUserService;
+import cn.spark.chipro.oss.api.feign.UserFeignService;
+import cn.spark.chipro.oss.api.model.params.UserParam;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 import java.io.Serializable;
 import java.util.List;
 
@@ -27,10 +37,29 @@ import java.util.List;
 @Service
 public class ClassRoomServiceImpl extends ServiceImpl<ClassRoomMapper, ClassRoom> implements ClassRoomService {
 
+    @Autowired
+    private ClassUserService classUserService;
+
     @Override
-    public void add(ClassRoomParam param){
+    @Transactional
+    public ClassRoom add(ClassRoomParam param){
+        //查询是否有重复学校+课室
+        QueryWrapper<ClassRoom> classRoomQueryWrapper = new QueryWrapper<>();
+        classRoomQueryWrapper.eq("SCHOOL_ID",param.getSchoolId()).eq("NAME",param.getName());
+        ClassRoom classRoom = this.getOne(classRoomQueryWrapper);
+        if(classRoom!=null){
+            throw new CoreException(0,"重复的课室名称！");
+        }
+        //添加课室
         ClassRoom entity = getEntity(param);
+        entity.setCode(ManageUtil.unRepeatSixCode());
         this.save(entity);
+        //添加老师课室关系
+        ClassUser classUser = new ClassUser();
+        classUser.setClassRoomId(entity.getClassId());
+        classUser.setUserId((String)UserContext.getUserInfo().get("userId"));
+        this.classUserService.save(classUser);
+        return entity;
     }
 
     @Override

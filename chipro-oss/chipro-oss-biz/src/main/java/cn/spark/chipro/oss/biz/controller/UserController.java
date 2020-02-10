@@ -11,10 +11,11 @@ import cn.spark.chipro.core.controller.BaseController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.constraints.NotEmpty;
+import java.util.List;
 
 
 /**
@@ -42,7 +43,7 @@ public class UserController extends BaseController {
     @RequestMapping("/addItem")
     @ResponseBody
     @WebLog(type = "insert",description = "用户注册")
-    public Result addItem(@Validated(InsertValidated.class) UserParam userParam) {
+    public Result addItem(@Validated(InsertValidated.class) @RequestBody UserParam userParam) {
         return Result.success(this.userService.register(userParam));
     }
 
@@ -55,9 +56,23 @@ public class UserController extends BaseController {
     @RequestMapping("/forgetPass")
     @ResponseBody
     @WebLog(type = "update",description = "忘记密码")
-    public Result forgetPass(@Validated(UpdateValidated.class) UserParam userParam) {
+    public Result forgetPass(@Validated(UpdateValidated.class) @RequestBody UserParam userParam) {
         this.userService.forgetPass(userParam);
         return Result.success();
+    }
+
+    /**
+     * 批量注册学生账号
+     *
+     * @author 李利光
+     * @Date 2020-02-08
+     */
+    @RequestMapping("/batchRegisterStuAccount")
+    @ResponseBody
+    @WebLog(type = "insert",description = "批量注册学生账号")
+    public Result forgetPass(@RequestParam("file")  MultipartFile multipartFile,String classRoomId) {
+        List<User> users = this.userService.batchRegisterStuAccount(multipartFile,classRoomId);
+        return Result.success(users);
     }
 
     /**
@@ -69,7 +84,7 @@ public class UserController extends BaseController {
     @RequestMapping("/getUserNameById")
     @ResponseBody
     @WebLog(type = "select",description = "通过id获取用户名称")
-    public Result getUserNameById(@NotEmpty String userId) {
+    public Result getUserNameById(@NotEmpty @RequestBody String userId) {
         this.userService.getUserNameById(userId);
         return Result.success();
     }
@@ -84,10 +99,11 @@ public class UserController extends BaseController {
      */
     @RequestMapping("/editItem")
     @ResponseBody
-    public Result editItem(UserParam userParam) {
+    public Result editItem(@RequestBody UserParam userParam) {
         this.userService.update(userParam);
         return Result.success();
     }
+
 
     /**
      * 删除接口
@@ -97,7 +113,7 @@ public class UserController extends BaseController {
      */
     @RequestMapping("/delete")
     @ResponseBody
-    public Result delete(UserParam userParam) {
+    public Result delete(@RequestBody UserParam userParam) {
         this.userService.delete(userParam);
         return Result.success();
     }
@@ -123,7 +139,7 @@ public class UserController extends BaseController {
      */
     @ResponseBody
     @RequestMapping("/list")
-    public PageInfo list(UserParam userParam) {
+    public PageInfo list(@RequestBody UserParam userParam) {
         return this.userService.findPageBySpec(userParam);
     }
 

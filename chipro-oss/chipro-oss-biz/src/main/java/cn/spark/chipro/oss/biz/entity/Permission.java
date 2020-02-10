@@ -24,7 +24,7 @@ public class Permission implements Serializable {
     /**
      * 权限id
      */
-    @TableId(value = "PERMISSION_ID", type = IdType.ID_WORKER)
+    @TableId(value = "PERMISSION_ID", type = IdType.ID_WORKER_STR)
     private String permissionId;
 
     /**

@@ -1,5 +1,6 @@
 package cn.spark.chipro.manage.biz.controller;
 
+import cn.spark.chipro.manage.api.model.validated.InsertValidated;
 import cn.spark.chipro.manage.biz.entity.ClassRoom;
 import cn.spark.chipro.manage.api.model.params.ClassRoomParam;
 import cn.spark.chipro.manage.biz.service.ClassRoomService;
@@ -7,7 +8,11 @@ import cn.spark.chipro.core.page.PageInfo;
 import cn.spark.chipro.core.result.Result;
 import cn.spark.chipro.core.controller.BaseController;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -35,9 +40,9 @@ public class ClassRoomController extends BaseController {
      */
     @RequestMapping("/addItem")
     @ResponseBody
-    public Result addItem(ClassRoomParam classRoomParam) {
-        this.classRoomService.add(classRoomParam);
-        return Result.success();
+    public Result addItem(@RequestBody @Validated(InsertValidated.class) ClassRoomParam classRoomParam) {
+        ClassRoom classRoom = this.classRoomService.add(classRoomParam);
+        return Result.success(classRoom);
     }
 
     /**
@@ -48,7 +53,7 @@ public class ClassRoomController extends BaseController {
      */
     @RequestMapping("/editItem")
     @ResponseBody
-    public Result editItem(ClassRoomParam classRoomParam) {
+    public Result editItem(@RequestBody ClassRoomParam classRoomParam) {
         this.classRoomService.update(classRoomParam);
         return Result.success();
     }
@@ -61,7 +66,7 @@ public class ClassRoomController extends BaseController {
      */
     @RequestMapping("/delete")
     @ResponseBody
-    public Result delete(ClassRoomParam classRoomParam) {
+    public Result delete(@RequestBody ClassRoomParam classRoomParam) {
         this.classRoomService.delete(classRoomParam);
         return Result.success();
     }
@@ -74,7 +79,7 @@ public class ClassRoomController extends BaseController {
      */
     @RequestMapping("/detail")
     @ResponseBody
-    public Result detail(ClassRoomParam classRoomParam) {
+    public Result detail(@RequestBody ClassRoomParam classRoomParam) {
         ClassRoom detail = this.classRoomService.getById(classRoomParam.getClassId());
         return Result.success(detail);
     }
@@ -87,7 +92,7 @@ public class ClassRoomController extends BaseController {
      */
     @ResponseBody
     @RequestMapping("/list")
-    public PageInfo list(ClassRoomParam classRoomParam) {
+    public PageInfo list(@RequestBody ClassRoomParam classRoomParam) {
         return this.classRoomService.findPageBySpec(classRoomParam);
     }
 

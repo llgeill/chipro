@@ -12,6 +12,6 @@ public class RoleInfo extends Role implements GrantedAuthority {
     @Override
     public String getAuthority() {
 
-        return "ROLE_" + this.getRoleId();
+        return "ROLE_" + this.getRoleName();
     }
 }

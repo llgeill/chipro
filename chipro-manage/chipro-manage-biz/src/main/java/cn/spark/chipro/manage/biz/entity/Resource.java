@@ -14,7 +14,7 @@ import java.io.Serializable;
  * </p>
  *
  * @author 李利光
- * @since 2020-02-05
+ * @since 2020-02-09
  */
 @TableName("MANAGE_RESOURCE")
 public class Resource implements Serializable {
@@ -24,7 +24,7 @@ public class Resource implements Serializable {
     /**
      * 资源编码
      */
-    @TableId(value = "RESOURCE_ID", type = IdType.ID_WORKER)
+    @TableId(value = "RESOURCE_ID", type = IdType.ID_WORKER_STR)
     private String resourceId;
 
     /**

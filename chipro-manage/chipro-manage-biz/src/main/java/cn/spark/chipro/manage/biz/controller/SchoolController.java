@@ -1,13 +1,20 @@
 package cn.spark.chipro.manage.biz.controller;
 
+import cn.spark.chipro.core.log.aop.WebLog;
+import cn.spark.chipro.manage.api.model.validated.InsertValidated;
 import cn.spark.chipro.manage.biz.entity.School;
 import cn.spark.chipro.manage.api.model.params.SchoolParam;
 import cn.spark.chipro.manage.biz.service.SchoolService;
 import cn.spark.chipro.core.page.PageInfo;
 import cn.spark.chipro.core.result.Result;
 import cn.spark.chipro.core.controller.BaseController;
+import cn.spark.chipro.oss.api.feign.UserFeignService;
+import cn.spark.chipro.oss.api.model.params.UserParam;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.oauth2.provider.token.RemoteTokenServices;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -35,9 +42,10 @@ public class SchoolController extends BaseController {
      */
     @RequestMapping("/addItem")
     @ResponseBody
-    public Result addItem(SchoolParam schoolParam) {
-        this.schoolService.add(schoolParam);
-        return Result.success();
+    @WebLog(type = "insert",description = "学校信息申请并返回学校管理账号")
+    public Result addItem(@RequestBody @Validated(InsertValidated.class) SchoolParam schoolParam) {
+        UserParam userParam = this.schoolService.add(schoolParam);
+        return Result.success(userParam);
     }
 
     /**
@@ -48,7 +56,7 @@ public class SchoolController extends BaseController {
      */
     @RequestMapping("/editItem")
     @ResponseBody
-    public Result editItem(SchoolParam schoolParam) {
+    public Result editItem(@RequestBody SchoolParam schoolParam) {
         this.schoolService.update(schoolParam);
         return Result.success();
     }
@@ -61,7 +69,7 @@ public class SchoolController extends BaseController {
      */
     @RequestMapping("/delete")
     @ResponseBody
-    public Result delete(SchoolParam schoolParam) {
+    public Result delete(@RequestBody SchoolParam schoolParam) {
         this.schoolService.delete(schoolParam);
         return Result.success();
     }
@@ -74,7 +82,7 @@ public class SchoolController extends BaseController {
      */
     @RequestMapping("/detail")
     @ResponseBody
-    public Result detail(SchoolParam schoolParam) {
+    public Result detail(@RequestBody SchoolParam schoolParam) {
         School detail = this.schoolService.getById(schoolParam.getSchoolId());
         return Result.success(detail);
     }
@@ -87,7 +95,7 @@ public class SchoolController extends BaseController {
      */
     @ResponseBody
     @RequestMapping("/list")
-    public PageInfo list(SchoolParam schoolParam) {
+    public PageInfo list(@RequestBody SchoolParam schoolParam) {
         return this.schoolService.findPageBySpec(schoolParam);
     }
 

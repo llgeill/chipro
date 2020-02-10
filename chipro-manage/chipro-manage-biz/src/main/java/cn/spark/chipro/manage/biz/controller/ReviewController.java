@@ -8,6 +8,7 @@ import cn.spark.chipro.core.result.Result;
 import cn.spark.chipro.core.controller.BaseController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -35,7 +36,7 @@ public class ReviewController extends BaseController {
      */
     @RequestMapping("/addItem")
     @ResponseBody
-    public Result addItem(ReviewParam reviewParam) {
+    public Result addItem(@RequestBody ReviewParam reviewParam) {
         this.reviewService.add(reviewParam);
         return Result.success();
     }
@@ -48,7 +49,7 @@ public class ReviewController extends BaseController {
      */
     @RequestMapping("/editItem")
     @ResponseBody
-    public Result editItem(ReviewParam reviewParam) {
+    public Result editItem(@RequestBody ReviewParam reviewParam) {
         this.reviewService.update(reviewParam);
         return Result.success();
     }
@@ -61,7 +62,7 @@ public class ReviewController extends BaseController {
      */
     @RequestMapping("/delete")
     @ResponseBody
-    public Result delete(ReviewParam reviewParam) {
+    public Result delete(@RequestBody ReviewParam reviewParam) {
         this.reviewService.delete(reviewParam);
         return Result.success();
     }
@@ -74,7 +75,7 @@ public class ReviewController extends BaseController {
      */
     @RequestMapping("/detail")
     @ResponseBody
-    public Result detail(ReviewParam reviewParam) {
+    public Result detail(@RequestBody ReviewParam reviewParam) {
         Review detail = this.reviewService.getById(reviewParam.getReviewId());
         return Result.success(detail);
     }
@@ -87,7 +88,7 @@ public class ReviewController extends BaseController {
      */
     @ResponseBody
     @RequestMapping("/list")
-    public PageInfo list(ReviewParam reviewParam) {
+    public PageInfo list(@RequestBody ReviewParam reviewParam) {
         return this.reviewService.findPageBySpec(reviewParam);
     }
 

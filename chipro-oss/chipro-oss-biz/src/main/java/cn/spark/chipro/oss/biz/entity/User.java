@@ -1,5 +1,6 @@
 package cn.spark.chipro.oss.biz.entity;
 
+import cn.afterturn.easypoi.excel.annotation.Excel;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.annotation.IdType;
 import java.util.Date;
@@ -24,7 +25,7 @@ public class User implements Serializable {
     /**
      * 用户id
      */
-    @TableId(value = "USER_ID", type = IdType.AUTO)
+    @TableId(value = "USER_ID", type = IdType.ID_WORKER_STR)
     private String userId;
 
     /**
@@ -37,6 +38,7 @@ public class User implements Serializable {
      * 用户名称
      */
     @TableField("USER_NAME_ALIAS")
+    @Excel(name = "* 学生姓名", orderNum = "0")
     private String userNameAlias;
 
     /**

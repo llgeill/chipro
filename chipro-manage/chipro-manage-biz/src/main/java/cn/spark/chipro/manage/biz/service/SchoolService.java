@@ -4,6 +4,7 @@ import cn.spark.chipro.core.page.PageInfo;
 import cn.spark.chipro.manage.biz.entity.School;
 import cn.spark.chipro.manage.api.model.params.SchoolParam;
 import cn.spark.chipro.manage.api.model.result.SchoolResult;
+import cn.spark.chipro.oss.api.model.params.UserParam;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 import java.util.List;
@@ -24,7 +25,7 @@ public interface SchoolService extends IService<School> {
      * @author 李利光
      * @Date 2020-02-05
      */
-    void add(SchoolParam param);
+    UserParam add(SchoolParam param);
 
     /**
      * 删除

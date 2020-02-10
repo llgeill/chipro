@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.spark.chipro.manage.biz.mapper.ClassUserMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="cn.spark.chipro.manage.biz.entity.ClassUser">
+        <id column="CLASS_USER_ID" property="classUserId" />
+        <result column="USER_ID" property="userId" />
+        <result column="CLASS_ROOM_ID" property="classRoomId" />
+        <result column="TYPE" property="type" />
+        <result column="CREATE_USER" property="createUser" />
+        <result column="CREATE_TIME" property="createTime" />
+        <result column="UPDATE_USER" property="updateUser" />
+        <result column="UPDATE_TIME" property="updateTime" />
+        <result column="REMARKS" property="remarks" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        CLASS_USER_ID AS "classUserId", USER_ID AS "userId", CLASS_ROOM_ID AS "classRoomId", TYPE AS "type", CREATE_USER AS "createUser", CREATE_TIME AS "createTime", UPDATE_USER AS "updateUser", UPDATE_TIME AS "updateTime", REMARKS AS "remarks"
+    </sql>
+
+</mapper>

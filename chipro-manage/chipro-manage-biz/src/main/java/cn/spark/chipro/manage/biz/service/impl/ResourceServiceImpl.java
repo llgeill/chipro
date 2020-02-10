@@ -4,13 +4,14 @@ import cn.spark.chipro.manage.biz.entity.Resource;
 import cn.spark.chipro.manage.biz.mapper.ResourceMapper;
 import cn.spark.chipro.manage.api.model.params.ResourceParam;
 import cn.spark.chipro.manage.api.model.result.ResourceResult;
-import  cn.spark.chipro.manage.biz.service.ResourceService;
+import cn.spark.chipro.manage.biz.service.ResourceService;
 import cn.spark.chipro.core.page.PageFactory;
 import cn.spark.chipro.core.page.PageInfo;
 import cn.spark.chipro.core.util.ToolUtil;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 import java.io.Serializable;
@@ -22,7 +23,7 @@ import java.util.List;
  * </p>
  *
  * @author 李利光
- * @since 2020-02-05
+ * @since 2020-02-09
  */
 @Service
 public class ResourceServiceImpl extends ServiceImpl<ResourceMapper, Resource> implements ResourceService {

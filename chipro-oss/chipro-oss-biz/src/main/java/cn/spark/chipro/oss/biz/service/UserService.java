@@ -5,6 +5,7 @@ import cn.spark.chipro.oss.api.model.params.UserParam;
 import cn.spark.chipro.oss.api.model.result.UserResult;
 import cn.spark.chipro.oss.biz.entity.User;
 import com.baomidou.mybatisplus.extension.service.IService;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -33,6 +34,13 @@ public interface UserService extends IService<User> {
      * @Date 2020-01-31
      */
     User register(UserParam param);
+
+    /**
+     * 批量注册学生账号
+      * @param multipartFile
+     * @return
+     */
+    List<User> batchRegisterStuAccount(MultipartFile multipartFile,String classRoomId);
 
     /**
      * 忘记密码
@@ -65,6 +73,14 @@ public interface UserService extends IService<User> {
      * @Date 2020-01-31
      */
     void update(UserParam param);
+
+    /**
+     * 重置密码
+     *
+     * @author 李利光
+     * @Date 2020-01-31
+     */
+    void resetPass(UserParam param);
 
     /**
      * 查询单条数据，Specification模式

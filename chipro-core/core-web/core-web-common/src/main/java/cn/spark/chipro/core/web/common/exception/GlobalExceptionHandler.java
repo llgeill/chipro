@@ -20,6 +20,7 @@ import cn.spark.chipro.core.result.Result;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.annotation.Order;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -29,8 +30,8 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 /**
  * 全局的的异常拦截器（拦截所有的控制器）（带有@RequestMapping注解的方法上都会拦截）
  *
- * @author fengshuonan
- * @date 2016年11月12日 下午3:19:56
+ * @author liliguang
+ * @date 2020-02-07 15:50
  */
 @ControllerAdvice
 @Order(200)
@@ -41,17 +42,29 @@ public class GlobalExceptionHandler {
      * 自定义异常处理
      */
     @ExceptionHandler(CoreException.class)
-    @ResponseStatus(HttpStatus.UNAUTHORIZED)
+    @ResponseStatus(HttpStatus.OK)
     @ResponseBody
     public Result coreException(CoreException e) {
         return Result.error(e.getCode(),e.getMessage());
+    }
+
+
+
+    /**
+     * 权限异常处理
+     */
+    @ExceptionHandler(AccessDeniedException.class)
+    @ResponseStatus(HttpStatus.OK)
+    @ResponseBody
+    public Result accessDeniedException(AccessDeniedException e) {
+        return Result.error(10019,"权限不足");
     }
 
     /**
      * 拦截未知的运行时异常
      */
     @ExceptionHandler(RuntimeException.class)
-    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    @ResponseStatus(HttpStatus.OK)
     @ResponseBody
     public Result notFount(RuntimeException e) {
         log.error("运行时异常:", e);

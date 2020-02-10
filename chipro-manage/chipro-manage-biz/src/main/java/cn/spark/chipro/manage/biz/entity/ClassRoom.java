@@ -24,7 +24,7 @@ public class ClassRoom implements Serializable {
     /**
      * 课室编码
      */
-    @TableId(value = "CLASS_ID", type = IdType.ID_WORKER)
+    @TableId(value = "CLASS_ID", type = IdType.ID_WORKER_STR)
     private String classId;
 
     /**

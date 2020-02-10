@@ -8,6 +8,8 @@ import cn.spark.chipro.auth.mapper.UserMapper;
 import cn.spark.chipro.core.exception.BootOAuth2Exception;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.PermissionEvaluator;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -45,7 +47,6 @@ public class CustomUserDetailsService implements UserDetailsService {
      */
     @Override
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
-
         //取出身份，如果身份为空说明没有认证
 //        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 //        String clientId = null;
