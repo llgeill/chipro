@@ -13,6 +13,7 @@
         <module>chipro-oss</module>
         <module>chipro-manage</module>
         <module>chipro-community</module>
+        <module>chipro-websocket</module>
     </modules>
     <packaging>pom</packaging>
     <!--设置springboot为父类-->

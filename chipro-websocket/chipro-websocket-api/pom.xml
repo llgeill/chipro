@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>chipro-websocket</artifactId>
+        <groupId>cn.spark</groupId>
+        <version>latest</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>chipro-websocket-api</artifactId>
+
+    <dependencies>
+        <!--json-->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+        </dependency>
+        <!--lombok-->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <optional>true</optional>
+        </dependency>
+        <!-- web依赖 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <!-- feign依赖 -->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-openfeign</artifactId>
+        </dependency>
+        <!--util-->
+        <dependency>
+            <groupId>cn.spark</groupId>
+            <artifactId>core-util</artifactId>
+            <version>latest</version>
+        </dependency>
+        <!--api-->
+        <dependency>
+            <groupId>cn.spark</groupId>
+            <artifactId>core-api</artifactId>
+            <version>latest</version>
+        </dependency>
+        <!-- swagger -->
+        <dependency>
+            <groupId>cn.spark</groupId>
+            <artifactId>core-swagger</artifactId>
+            <version>latest</version>
+        </dependency>
+
+    </dependencies>
+
+</project>
