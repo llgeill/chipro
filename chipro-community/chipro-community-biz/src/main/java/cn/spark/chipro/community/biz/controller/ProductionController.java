@@ -1,5 +1,6 @@
 package cn.spark.chipro.community.biz.controller;
 
+import cn.spark.chipro.community.api.model.validated.InsertValidated;
 import cn.spark.chipro.community.biz.entity.Production;
 import cn.spark.chipro.community.api.model.params.ProductionParam;
 import cn.spark.chipro.community.biz.service.ProductionService;
@@ -8,6 +9,7 @@ import cn.spark.chipro.core.result.Result;
 import cn.spark.chipro.core.controller.BaseController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -36,7 +38,7 @@ public class ProductionController extends BaseController {
      */
     @RequestMapping("/addItem")
     @ResponseBody
-    public Result addItem(@RequestBody ProductionParam productionParam) {
+    public Result addItem(@RequestBody @Validated(InsertValidated.class) ProductionParam productionParam) {
         this.productionService.add(productionParam);
         return Result.success();
     }

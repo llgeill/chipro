@@ -9,5 +9,5 @@ import cn.spark.chipro.core.mail.vo.MailVo;
  */
 public interface SendMailService {
 
-    void sendMail(MailVo mailVo);
+    void sendMail(MailVo mailVo) throws Exception;
 }

@@ -57,8 +57,7 @@ public class EmailCodeTokenGranter extends AbstractTokenGranter implements Custo
     }
 
     @Override
-    protected OAuth2Authentication getOAuth2Authentication(ClientDetails client,
-                                                           TokenRequest tokenRequest) {
+    protected OAuth2Authentication getOAuth2Authentication(ClientDetails client, TokenRequest tokenRequest) {
 
         //获取请求参数
         Map<String, String> parameters = new LinkedHashMap<>(tokenRequest.getRequestParameters());

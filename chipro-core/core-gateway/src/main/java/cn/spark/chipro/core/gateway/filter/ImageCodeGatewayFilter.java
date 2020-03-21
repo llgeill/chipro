@@ -17,7 +17,7 @@ import java.io.IOException;
 
 /**
  *  验证码过滤器
- *  @author lizhichao
+ *  @author liliguang
  * @description
  * @date 2019/5/15
  */

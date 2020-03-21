@@ -25,12 +25,15 @@
         <module>core-web</module>
         <module>core-swagger</module>
         <module>core-log</module>
-        <module>core-mail</module>
         <module>core-mq</module>
+        <module>core-cloud-config</module>
+        <module>core-mail</module>
+        <module>core-websocket</module>
         <module>core-validator</module>
         <module>core-gateway</module>
         <module>core-boot-admin</module>
-        <module>core-cloud-config</module>
         <module>core-cloud-eureka</module>
+
     </modules>
+
 </project>

@@ -24,6 +24,7 @@
 
     <!--设置统一版本-->
     <properties>
+        <dockerfile.path>${project.basedir}</dockerfile.path>
         <!-- 文件拷贝时的编码 -->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>

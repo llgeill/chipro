@@ -1,7 +1,9 @@
 package cn.spark.chipro.community.api.model.params;
 
+import cn.spark.chipro.community.api.model.validated.InsertValidated;
 import lombok.Data;
 
+import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -28,6 +30,7 @@ public class ProductionParam implements Serializable{
     /**
      * 用户编码
      */
+    @NotEmpty(message = "用户编码不能为空",groups = InsertValidated.class)
     private String userId;
 
     /**
@@ -58,6 +61,7 @@ public class ProductionParam implements Serializable{
     /**
      * 资源编码
      */
+    @NotEmpty(message = "资源编码不能为空",groups = InsertValidated.class)
     private String resourceId;
 
     /**
@@ -84,4 +88,11 @@ public class ProductionParam implements Serializable{
      * 备注
      */
     private String remarks;
+
+    /**
+     * 发布状态 0：未发布 1：已发布
+     */
+    @NotEmpty(message = "发布状态不能为空",groups = InsertValidated.class)
+    private String status;
+
 }

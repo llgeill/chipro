@@ -3,7 +3,7 @@ package cn.spark.chipro.auth.constant;
 /**
  * 短信验证常量
  *
- * @author lizhichao
+ * @author liliguang
  * @description
  * @date 2019/6/27 11:32
  */

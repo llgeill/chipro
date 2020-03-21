@@ -24,7 +24,7 @@ public class Production implements Serializable {
     /**
      * 作品编码
      */
-    @TableId(value = "PRODUCTION_ID", type = IdType.ID_WORKER)
+    @TableId(value = "PRODUCTION_ID", type = IdType.ID_WORKER_STR)
     private String productionId;
 
     /**
@@ -68,6 +68,12 @@ public class Production implements Serializable {
      */
     @TableField("RESOURCE_ID")
     private String resourceId;
+
+    /**
+     * 发布状态 0：未发布 1：已发布
+     */
+    @TableField("STATUS")
+    private String status;
 
     /**
      * 创建人
@@ -202,6 +208,14 @@ public class Production implements Serializable {
 
     public void setRemarks(String remarks) {
         this.remarks = remarks;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     @Override

@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 /**
  * 用户对外服务
  */
-@FeignClient(name = ServiceNameConstant.USER_SERVICE,url = "http://localhost:1333")
+@FeignClient(name = ServiceNameConstant.USER_SERVICE)
 @Component
 public interface UserFeignService {
 

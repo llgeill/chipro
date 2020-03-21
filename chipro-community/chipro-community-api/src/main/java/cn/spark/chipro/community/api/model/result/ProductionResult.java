@@ -85,4 +85,9 @@ public class ProductionResult implements Serializable {
      */
     private String remarks;
 
+    /**
+     * 发布状态 0：未发布 1：已发布
+     */
+    private String status;
+
 }

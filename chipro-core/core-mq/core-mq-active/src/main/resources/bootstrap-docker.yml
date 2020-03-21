@@ -1,4 +1,4 @@
-server:
+1server:
   port: 1212
 spring:
   application:

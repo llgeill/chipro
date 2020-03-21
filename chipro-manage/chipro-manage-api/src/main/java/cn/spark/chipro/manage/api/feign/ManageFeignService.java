@@ -14,7 +14,7 @@ import java.util.List;
 /**
  * 用户对外服务
  */
-@FeignClient(name = ServiceNameConstant.MANAGE_SERVICE,url = "http://localhost:1777")
+@FeignClient(name = ServiceNameConstant.MANAGE_SERVICE)
 @Component
 public interface ManageFeignService {
 

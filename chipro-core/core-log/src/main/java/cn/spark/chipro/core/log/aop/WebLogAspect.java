@@ -25,7 +25,7 @@ import java.util.Map;
 
 /**
  * 切面解析WebLog注解
- * @author lizhichao
+ * @author liliguang
  * @description
  * @date 2019/4/13
  */
@@ -142,7 +142,7 @@ public class WebLogAspect {
      * 功能描述:
      *         保存日志数据,由业务组件实现
      * @param logEntity: 日志实体
-     * @auther: lizhichao
+     * @auther: liliguang
      * @date: 2019/4/13 15:39
      */
     private void writeLog(LogEntity logEntity) {
@@ -153,7 +153,7 @@ public class WebLogAspect {
      * 功能描述:
      *          打印响应日志
      * @param logEntity:
-     * @auther: lizhichao
+     * @auther: liliguang
      * @date: 2019/4/13 15:37
      */
     private void writeResponseLog(LogEntity logEntity){

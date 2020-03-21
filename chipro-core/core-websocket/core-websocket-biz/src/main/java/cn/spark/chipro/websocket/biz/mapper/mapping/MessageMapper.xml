@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.spark.chipro.websocket.biz.mapper.MessageMapper">
+
+    <insert id="insertMessage">
+        <selectKey order="BEFORE" keyProperty="messageId" resultType="string">
+            select sys_guid() from dual
+        </selectKey>
+        insert into TOOL_MESSAGE (MESSAGE_ID,TEXT,MESSAGE_TIME,MESSAGE_TYPE,BUSINESS_ID ) VALUES
+        (#{messageId},#{text},sysdate,#{messageType},#{businessId})
+    </insert>
+    <insert id="insertMessageUser">
+        <selectKey order="BEFORE" keyProperty="messageUserId" resultType="string">
+            select sys_guid() from dual
+        </selectKey>
+        insert into TOOL_MESSAGE_USER (MESSAGE_USER_ID,MESSAGE_ID,USER_ID,IS_Read,IS_SEND ) VALUES
+        (#{messageUserId},#{messageId},#{userId},0,0)
+
+    </insert>
+    <update id="updateMessageUser">
+        update TOOL_MESSAGE_USER set IS_SEND =1 where MESSAGE_USER_ID = #{messageUserId}
+    </update>
+
+    <update id="updateMessageUserByread">
+        update TOOL_MESSAGE_USER set IS_READ =1 where MESSAGE_ID = #{messageId} and USER_ID = #{userId}
+    </update>
+
+    <select id="selectMessageByUserId" resultType="cn.spark.chipro.websocket.api.model.dto.MessageDTO">
+        select m.MESSAGE_ID,m.TEXT,m.MESSAGE_TIME,m.MESSAGE_TYPE,m.BUSINESS_ID,mu.MESSAGE_USER_ID,mu.USER_ID from
+        TOOL_MESSAGE m left join TOOL_MESSAGE_USER mu on m.MESSAGE_ID = mu.MESSAGE_ID
+        where mu.IS_SEND = 0 and mu.USER_ID = #{userId}
+    </select>
+    <select id="selectNotReadPage" resultType="cn.spark.chipro.websocket.biz.entity.po.MessagePO">
+
+        select t1.MESSAGE_ID,t1.TEXT,t1.MESSAGE_TIME,t1.MESSAGE_TYPE,t1.BUSINESS_ID from TOOL_MESSAGE t1
+        left join TOOL_MESSAGE_USER t2
+        on t1.message_id = t2.message_id
+        where t2.IS_READ = 0
+        <if test="messageType != null and messageType != ''">
+            and t1.MESSAGE_TYPE = #{messageType}
+        </if>
+        <if test="userId != null and userId != ''">
+            and t2.USER_ID = #{userId}
+        </if>
+
+    </select>
+</mapper>

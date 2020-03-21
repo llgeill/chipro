@@ -1,10 +1,11 @@
 FROM openjdk:8-jre-stretch
 ARG JAR_FILE
 COPY  ${JAR_FILE} app.jar
-EXPOSE 1000
+EXPOSE 1666
+#ENTRYPOINT ["java", "-jar","-Xms512m","-Xmx512m","-Xss512K","-XX:MetaspaceSize=256m","-XX:MaxMetaspaceSize=256m","app.jar"]
 
-ENTRYPOINT ["java", "-jar","-Xms1024m","-Xmx1024m","-Xss1024K","-XX:MetaspaceSize=512m","-XX:MaxMetaspaceSize=512m","app.jar"]
-CMD ["--spring.profiles.active=k8s"]
+ENTRYPOINT ["java", "-jar","app.jar"]
+CMD ["--spring.profiles.active=docker"]
 
 
 ##需要编译源码时候用到

@@ -22,7 +22,7 @@ public class SendMailServiceImpl implements SendMailService {
      */
     @Override
     @JmsListener(destination = ActiveMQConstant.CHIPRO_SEND_MAIL_QUEUE)
-    public void sendMail(MailVo mailVo) {
+    public void sendMail(MailVo mailVo) throws Exception {
         mailService.sendMail(mailVo);
     }
 }
