@@ -1,5 +1,6 @@
 package cn.spark.chipro.test.controller;
 
+
 import cn.spark.chipro.test.entity.Test;
 import cn.spark.chipro.test.model.params.TestParam;
 import cn.spark.chipro.test.model.result.TestResult;
@@ -7,12 +8,16 @@ import cn.spark.chipro.test.service.TestService;
 import cn.spark.chipro.core.page.PageInfo;
 import cn.spark.chipro.core.result.Result;
 import cn.spark.chipro.core.controller.BaseController;
+import cn.spark.chipro.websocket.api.feign.WebSocketFeignService;
+import cn.spark.chipro.websocket.api.model.vo.MessageVO;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 
@@ -30,6 +35,21 @@ public class TestController extends BaseController {
 
     @Autowired
     private TestService testService;
+
+
+
+    /**
+     * 测试分布式事务
+     *
+     * @author 李利光
+     * @Date 2020-01-27
+     */
+    @RequestMapping("/dt")
+    @ResponseBody
+    public Result dt() {
+        testService.dt();
+        return Result.success();
+    }
 
     /**
      * 新增接口

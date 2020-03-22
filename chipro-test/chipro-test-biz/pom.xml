@@ -18,6 +18,16 @@
             <artifactId>core-web-common</artifactId>
             <version>latest</version>
         </dependency>
+        <dependency>
+            <groupId>cn.spark</groupId>
+            <artifactId>chipro-websocket-api</artifactId>
+            <version>latest</version>
+        </dependency>
+        <dependency>
+            <groupId>cn.spark</groupId>
+            <artifactId>distributed-transactios-2pc-seata</artifactId>
+            <version>1.0.6</version>
+        </dependency>
     </dependencies>
 
     <build>

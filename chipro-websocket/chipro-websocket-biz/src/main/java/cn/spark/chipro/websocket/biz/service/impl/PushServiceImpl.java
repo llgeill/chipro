@@ -43,6 +43,7 @@ public class PushServiceImpl implements PushService {
     private AmqpTemplate amqpTemplate;
 
     @Override
+    @Transactional
     public void push(MessageVO message) {
 
         List<MessageDTO> messages = saveMessageAndMessageUser(message);

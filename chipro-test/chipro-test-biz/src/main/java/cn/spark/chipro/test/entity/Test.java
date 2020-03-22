@@ -23,7 +23,7 @@ public class Test implements Serializable {
     /**
      * 主键
      */
-    @TableId(value = "TEST_ID", type = IdType.ID_WORKER)
+    @TableId(value = "TEST_ID", type = IdType.ID_WORKER_STR)
     private String testId;
 
     /**

@@ -6,14 +6,14 @@
 
     <insert id="insertMessage">
         <selectKey order="BEFORE" keyProperty="messageId" resultType="string">
-            select sys_guid() from dual
+            select replace(uuid(),"-","") as uuid
         </selectKey>
         insert into TOOL_MESSAGE (MESSAGE_ID,TEXT,MESSAGE_TIME,MESSAGE_TYPE,BUSINESS_ID ) VALUES
-        (#{messageId},#{text},sysdate,#{messageType},#{businessId})
+        (#{messageId},#{text},#{messageTime},#{messageType},#{businessId})
     </insert>
     <insert id="insertMessageUser">
         <selectKey order="BEFORE" keyProperty="messageUserId" resultType="string">
-            select sys_guid() from dual
+            select replace(uuid(),"-","") as uuid
         </selectKey>
         insert into TOOL_MESSAGE_USER (MESSAGE_USER_ID,MESSAGE_ID,USER_ID,IS_Read,IS_SEND ) VALUES
         (#{messageUserId},#{messageId},#{userId},0,0)

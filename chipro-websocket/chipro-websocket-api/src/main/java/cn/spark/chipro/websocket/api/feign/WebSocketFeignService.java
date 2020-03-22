@@ -25,7 +25,7 @@ public interface WebSocketFeignService {
      * @param message
      * @return
      */
-    @PostMapping("/push")
+    @PostMapping("/message/push")
     public Result push(@RequestBody MessageVO message);
 
 }

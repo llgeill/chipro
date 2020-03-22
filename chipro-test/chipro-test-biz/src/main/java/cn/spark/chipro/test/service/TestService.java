@@ -19,6 +19,15 @@ import java.util.List;
 public interface TestService extends IService<Test> {
 
     /**
+     * 测试分布式事务
+     *
+     * @author 李利光
+     * @Date 2020-01-27
+     */
+    void dt();
+
+
+    /**
      * 新增
      *
      * @author 李利光

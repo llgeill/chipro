@@ -8,6 +8,7 @@ import cn.spark.chipro.websocket.biz.service.PushService;
 import cn.spark.chipro.core.log.aop.WebLog;
 import cn.spark.chipro.core.page.PageInfo;
 import cn.spark.chipro.core.result.Result;
+import io.seata.core.rpc.netty.RmMessageListener;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,6 +40,7 @@ public class PushController {
     @PostMapping("/push")
     public Result push(@RequestBody MessageVO message) {
         try {
+
             pushService.push(message);
             return Result.success();
         } catch (Exception e) {

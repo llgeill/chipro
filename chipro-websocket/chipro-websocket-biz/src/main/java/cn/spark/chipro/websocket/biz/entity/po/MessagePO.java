@@ -12,7 +12,7 @@ import java.util.Date;
  * @date 2019/5/21
  */
 @Data
-public class MessagePO implements Serializable {
+public class MessagePO {
 
     /**
      * 消息主鍵

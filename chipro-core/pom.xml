@@ -33,6 +33,7 @@
         <module>core-gateway</module>
         <module>core-boot-admin</module>
         <module>core-cloud-eureka</module>
+        <module>core-distributed-transactions</module>
 
     </modules>
 

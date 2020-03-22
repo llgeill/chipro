@@ -5,6 +5,7 @@ import lombok.Data;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
@@ -14,7 +15,7 @@ import java.util.List;
  * @date 2019/8/20 16:45
  */
 @Data
-public class MessageVO {
+public class MessageVO implements Serializable {
 
     /**
      * 用户id

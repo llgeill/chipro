@@ -15,8 +15,6 @@ spring:
 eureka:
   instance:
     prefer-ip-address: true
-    hostname: localhost
-    ip-address: 106.13.7.224
   client:
     service-url:
       defaultZone: http://chipro:chipro@www.liliguang.top:1026/eureka/

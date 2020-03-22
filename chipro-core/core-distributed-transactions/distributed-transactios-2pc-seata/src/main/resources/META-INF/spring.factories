@@ -1,0 +1,2 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+cn.spark.chipro.dt.seata.config.DatabaseConfiguration

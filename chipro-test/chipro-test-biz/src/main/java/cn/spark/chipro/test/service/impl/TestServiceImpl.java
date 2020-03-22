@@ -1,5 +1,7 @@
 package cn.spark.chipro.test.service.impl;
 
+import cn.spark.chipro.core.exception.CoreException;
+import cn.spark.chipro.core.result.Result;
 import cn.spark.chipro.test.entity.Test;
 import cn.spark.chipro.test.mapper.TestMapper;
 import cn.spark.chipro.test.model.params.TestParam;
@@ -8,13 +10,21 @@ import  cn.spark.chipro.test.service.TestService;
 import cn.spark.chipro.core.page.PageFactory;
 import cn.spark.chipro.core.page.PageInfo;
 import cn.spark.chipro.core.util.ToolUtil;
+import cn.spark.chipro.websocket.api.feign.WebSocketFeignService;
+import cn.spark.chipro.websocket.api.model.vo.MessageVO;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import io.seata.spring.annotation.GlobalTransactional;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -27,6 +37,27 @@ import java.util.List;
  */
 @Service
 public class TestServiceImpl extends ServiceImpl<TestMapper, Test> implements TestService {
+
+    @Autowired
+    private WebSocketFeignService webSocketFeignService;
+
+    @Transactional
+    @GlobalTransactional
+    @Override
+    public void dt() {
+        TestParam testParam1 = new TestParam();
+        testParam1.setTestContent("11111");
+        testParam1.setTestName("22222");
+        this.add(testParam1);
+        MessageVO messageVO = new MessageVO();
+        List<String> ids = new ArrayList<>();
+        ids.add("1");
+        messageVO.setUserIds(ids);
+        messageVO.setMessageTime(new Date());
+        messageVO.setText("测试分布式事务");
+        Result push = webSocketFeignService.push(messageVO);
+        throw new CoreException();
+    }
 
     @Override
     public void add(TestParam param){
