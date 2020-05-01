@@ -46,10 +46,10 @@ public class EmailServiceImpl implements EmailService {
          //缓存Key
         String cacheKey = SmsCodeConstant.EMAIL_CODE_CACHE_PREFIX + email;
 
-        //防止频繁获取验证码
-        //if (redisTemplate.hasKey(cacheKey)){
-        //    throw new CoreException("验证码还在有效期内，请勿重复获取！");
-        //}
+//        //防止频繁获取验证码
+//        if (redisTemplate.hasKey(cacheKey)){
+//            throw new CoreException("验证码还在有效期内，请勿重复获取！");
+//        }
         //随机码
         String cacheSmsCode = EmailServiceImpl.randomCode();
 

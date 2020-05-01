@@ -37,7 +37,7 @@ public class ClassUser implements Serializable {
     private String classRoomId;
 
     /**
-     * 关系类型
+     * 关系类型 1:学生 2:老师
      */
     @TableField("TYPE")
     private String type;

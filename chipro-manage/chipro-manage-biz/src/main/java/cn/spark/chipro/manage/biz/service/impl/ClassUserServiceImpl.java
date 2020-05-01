@@ -12,6 +12,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -40,6 +41,7 @@ public class ClassUserServiceImpl extends ServiceImpl<ClassUserMapper, ClassUser
             classUserParamList.forEach(classUserParam->{
                 ClassUser classUser = new ClassUser();
                 classUser.setUserId(classUserParam.getUserId());
+                classUser.setType("1");
                 classUser.setClassRoomId(classUserParam.getClassRoomId());
                 classUserList.add(classUser);
             });
@@ -69,6 +71,14 @@ public class ClassUserServiceImpl extends ServiceImpl<ClassUserMapper, ClassUser
     @Override
     public List<ClassUserResult> findListBySpec(ClassUserParam param){
         return null;
+    }
+
+    @Override
+    public List<ClassUser> findStudentByCLassID(String  classRoomId){
+        QueryWrapper<ClassUser> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("CLASS_ROOM_ID",classRoomId)
+                .eq("TYPE",1);
+        return this.list(queryWrapper);
     }
 
     @Override

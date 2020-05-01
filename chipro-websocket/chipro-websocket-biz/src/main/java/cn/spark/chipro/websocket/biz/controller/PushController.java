@@ -8,7 +8,6 @@ import cn.spark.chipro.websocket.biz.service.PushService;
 import cn.spark.chipro.core.log.aop.WebLog;
 import cn.spark.chipro.core.page.PageInfo;
 import cn.spark.chipro.core.result.Result;
-import io.seata.core.rpc.netty.RmMessageListener;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +28,9 @@ public class PushController {
     @Autowired
     private PushService pushService;
 
+    //@Autowired
+    //private TccHmilyTestServiceImpl tccHmilyTestService;
+
     /**
      * 推送
      *
@@ -40,8 +42,10 @@ public class PushController {
     @PostMapping("/push")
     public Result push(@RequestBody MessageVO message) {
         try {
-
+            //普通推送
             pushService.push(message);
+            //Tcc改造后的推送服务
+            //tccHmilyTestService.tryMethod(message);
             return Result.success();
         } catch (Exception e) {
             e.printStackTrace();

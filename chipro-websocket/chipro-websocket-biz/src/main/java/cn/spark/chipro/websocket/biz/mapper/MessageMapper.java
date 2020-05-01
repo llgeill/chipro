@@ -8,7 +8,8 @@ import cn.spark.chipro.websocket.biz.entity.po.MessageUserPO;
 import cn.spark.chipro.websocket.api.model.vo.NotReadPageVO;
 import cn.spark.chipro.websocket.api.model.vo.ReadMessageVO;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import org.springframework.data.repository.query.Param;
+import org.apache.ibatis.annotations.Param;
+
 
 import java.util.List;
 
@@ -30,7 +31,7 @@ public interface MessageMapper extends BaseMapper<MessagePO> {
     public void updateMessageUser(String messageUserId);
 
 
-    Page<MessagePO> selectNotReadPage(@Param("page") Page page, NotReadPageVO read);
+    Page<MessagePO> selectNotReadPage(@Param("page") Page page, @Param("notReadPageVO")NotReadPageVO notReadPageVO);
 
 
     int updateMessageUserByread(ReadMessageVO readMessage);

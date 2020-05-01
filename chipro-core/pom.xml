@@ -5,7 +5,7 @@
     <parent>
         <artifactId>chipro</artifactId>
         <groupId>cn.spark</groupId>
-        <version>1.0.6</version>
+        <version>latest</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <description>核心包</description>
@@ -28,13 +28,11 @@
         <module>core-mq</module>
         <module>core-cloud-config</module>
         <module>core-mail</module>
-        <module>core-websocket</module>
         <module>core-validator</module>
         <module>core-gateway</module>
         <module>core-boot-admin</module>
         <module>core-cloud-eureka</module>
         <module>core-distributed-transactions</module>
-
     </modules>
 
 </project>

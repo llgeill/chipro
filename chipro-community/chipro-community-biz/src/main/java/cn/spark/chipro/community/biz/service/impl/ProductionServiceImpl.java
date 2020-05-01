@@ -1,5 +1,6 @@
 package cn.spark.chipro.community.biz.service.impl;
 
+import cn.spark.chipro.community.api.model.params.ProductUser;
 import cn.spark.chipro.community.biz.entity.Production;
 import cn.spark.chipro.community.biz.mapper.ProductionMapper;
 import cn.spark.chipro.community.api.model.params.ProductionParam;
@@ -12,6 +13,8 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 import java.io.Serializable;
 import java.util.List;
@@ -26,6 +29,9 @@ import java.util.List;
  */
 @Service
 public class ProductionServiceImpl extends ServiceImpl<ProductionMapper, Production> implements ProductionService {
+
+    @Autowired
+    private RedisTemplate redisTemplate;
 
     @Override
     public void add(ProductionParam param){
@@ -57,11 +63,74 @@ public class ProductionServiceImpl extends ServiceImpl<ProductionMapper, Product
     }
 
     @Override
+    public List<Production> findListByStudentId(String studentId){
+        QueryWrapper<Production> queryWrapper = new QueryWrapper<>();
+        queryWrapper.in("USER_ID",studentId.split(","));
+        return this.list(queryWrapper);
+    }
+
+    @Override
     public PageInfo findPageBySpec(ProductionParam param){
         Page pageContext=getPageContext();
         QueryWrapper<Production>objectQueryWrapper=new QueryWrapper<>();
         IPage page=this.page(pageContext,objectQueryWrapper);
         return PageFactory.createPageInfo(page);
+    }
+
+    /**
+     * key 为作品Id，value为评论内容以及用户id
+     * @param productUser
+     */
+    @Override
+    public void comment(ProductUser productUser){
+        //评论存入list集合中
+        redisTemplate.opsForList().leftPush("comment_"+productUser.getProductId(),productUser);
+    }
+
+    /**
+     * key 为作品Id，value为用户集
+     * 1.用户对某个博客进行点赞
+     * 2.先进行判断，该用户是否点赞过改博客
+     * 3.如果没有，则将该用户添加到redis set中的用户集
+     * 4.如果有，则删除用户集中的用户
+     * @param productUser
+     */
+    @Override
+    public void giveLike(ProductUser productUser) {
+        Object o = redisTemplate.opsForValue().get("fabulous_count_" + productUser.getProductId());
+        boolean flag = this.fabulousProduct(productUser);
+        if(flag){
+            //点赞数增加
+            redisTemplate.opsForValue().increment("fabulous_count_"+productUser.getProductId(),1);
+        }else{
+            //点赞数减少
+            redisTemplate.opsForValue().increment("fabulous_count_"+productUser.getProductId(),-1);
+        }
+
+
+    }
+
+    //用户点赞作品
+    @Override
+    public boolean fabulousProduct(ProductUser productUser)
+    {
+        boolean bl;
+        boolean flag = redisTemplate.opsForSet().isMember("fabulous_"+productUser.getProductId(),"user_"+productUser.getUserId());
+        if (flag)
+        {
+            redisTemplate.opsForSet().remove("fabulous_"+productUser.getProductId(),"user_"+productUser.getUserId());
+            bl = false;
+        }else {
+            redisTemplate.opsForSet().add("fabulous_"+productUser.getProductId(),"user_"+productUser.getUserId());
+            bl = true;
+        }
+        return bl;
+    }
+
+
+    @Override
+    public void comment(ProductionParam param) {
+
     }
 
     private Serializable getKey(ProductionParam param){

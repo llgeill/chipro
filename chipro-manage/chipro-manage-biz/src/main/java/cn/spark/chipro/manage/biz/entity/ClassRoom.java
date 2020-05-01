@@ -75,6 +75,14 @@ public class ClassRoom implements Serializable {
     @TableField("REMARKS")
     private String remarks;
 
+    /**
+     * 实体表不存在字段 分数 班级人数
+     */
+    @TableField(exist = false)
+    private String score;
+    @TableField(exist = false)
+    private String personCount;
+
 
     public String getClassId() {
         return classId;
@@ -146,6 +154,22 @@ public class ClassRoom implements Serializable {
 
     public void setRemarks(String remarks) {
         this.remarks = remarks;
+    }
+
+    public String getScore() {
+        return score;
+    }
+
+    public void setScore(String score) {
+        this.score = score;
+    }
+
+    public String getPersonCount() {
+        return personCount;
+    }
+
+    public void setPersonCount(String personCount) {
+        this.personCount = personCount;
     }
 
     @Override

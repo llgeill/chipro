@@ -46,7 +46,7 @@ public class ImageCodeHandler implements HandlerFunction {
         String text = this.producer.createText();
         BufferedImage image = this.producer.createImage(text);
         String randomStr = serverRequest.queryParam("randomStr").get();
-        this.redisTemplate.opsForValue().set("DEFAULT_CODE_KEY" + randomStr, text, 60L, TimeUnit.SECONDS);
+        this.redisTemplate.opsForValue().set("DEFAULT_CODE_ KEY" + randomStr, text, 60L, TimeUnit.SECONDS);
         FastByteArrayOutputStream os = new FastByteArrayOutputStream();
 
         try {

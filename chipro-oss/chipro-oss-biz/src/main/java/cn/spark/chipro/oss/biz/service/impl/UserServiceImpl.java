@@ -125,6 +125,14 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         }
     }
 
+
+    /**
+     * 通过excel表的学生信息批量添加学生账号
+     *
+     * @param multipartFile excel文件表
+     * @param classRoomId 课室id
+     * @return
+     */
     @Override
     @Transactional
     public List<User> batchRegisterStuAccount(MultipartFile multipartFile,String classRoomId){

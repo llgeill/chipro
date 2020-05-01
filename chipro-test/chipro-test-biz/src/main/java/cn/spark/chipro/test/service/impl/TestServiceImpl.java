@@ -17,7 +17,9 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import io.seata.core.context.RootContext;
 import io.seata.spring.annotation.GlobalTransactional;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -36,19 +38,20 @@ import java.util.List;
  * @since 2020-01-27
  */
 @Service
+@Slf4j
 public class TestServiceImpl extends ServiceImpl<TestMapper, Test> implements TestService {
 
     @Autowired
     private WebSocketFeignService webSocketFeignService;
 
-    @Transactional
-    @GlobalTransactional
+
+
     @Override
+    @GlobalTransactional
+    @Transactional
     public void dt() {
-        TestParam testParam1 = new TestParam();
-        testParam1.setTestContent("11111");
-        testParam1.setTestName("22222");
-        this.add(testParam1);
+        log.info("******** Test Service Begin ... xid: {}" , RootContext.getXID());
+
         MessageVO messageVO = new MessageVO();
         List<String> ids = new ArrayList<>();
         ids.add("1");
@@ -56,7 +59,14 @@ public class TestServiceImpl extends ServiceImpl<TestMapper, Test> implements Te
         messageVO.setMessageTime(new Date());
         messageVO.setText("测试分布式事务");
         Result push = webSocketFeignService.push(messageVO);
-        throw new CoreException();
+
+
+        TestParam testParam1 = new TestParam();
+        testParam1.setTestContent("11111");
+        testParam1.setTestName("22222");
+        this.add(testParam1);
+        throw new CoreException("测试分布式事务");
+
     }
 
     @Override
@@ -72,10 +82,11 @@ public class TestServiceImpl extends ServiceImpl<TestMapper, Test> implements Te
 
     @Override
     public void update(TestParam param){
-        Test oldEntity = getOldEntity(param);
-        Test newEntity = getEntity(param);
-        ToolUtil.copyProperties(newEntity, oldEntity);
-        this.updateById(newEntity);
+//        Test oldEntity = getOldEntity(param);
+//        Test newEntity = getEntity(param);
+//        ToolUtil.copyProperties(newEntity, oldEntity);
+//        this.updateById(newEntity);
+          this.baseMapper.updateAll();
     }
 
     @Override

@@ -34,11 +34,18 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-amqp</artifactId>
         </dependency>
-        <dependency>
-            <groupId>cn.spark</groupId>
-            <artifactId>distributed-transactios-2pc-seata</artifactId>
-            <version>1.0.6</version>
-        </dependency>
+<!--        &lt;!&ndash;seata分布式事务解决方案&ndash;&gt;-->
+<!--        <dependency>-->
+<!--            <groupId>cn.spark</groupId>-->
+<!--            <artifactId>distributed-transactios-2pc-seata</artifactId>-->
+<!--            <version>1.0.6</version>-->
+<!--        </dependency>-->
+<!--        &lt;!&ndash;tcc-hmily分布式事务解决方案&ndash;&gt;-->
+<!--        <dependency>-->
+<!--            <groupId>cn.spark</groupId>-->
+<!--            <artifactId>distributed-transactions-tcc-hmily</artifactId>-->
+<!--            <version>1.0.6</version>-->
+<!--        </dependency>-->
 
     </dependencies>
 

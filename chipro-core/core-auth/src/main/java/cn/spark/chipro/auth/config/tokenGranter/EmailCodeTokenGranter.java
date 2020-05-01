@@ -70,7 +70,7 @@ public class EmailCodeTokenGranter extends AbstractTokenGranter implements Custo
         }
         //做具体的业务操作
         UserInfo userInfo = userMapper.selectUserByEmail(email);
-        if (userInfo==null) {
+        if (userInfo == null) {
             if (isDebug) {
                 log.debug("email_code_没有绑定账号:[{}]", email);
             }

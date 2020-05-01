@@ -32,17 +32,18 @@
         TOOL_MESSAGE m left join TOOL_MESSAGE_USER mu on m.MESSAGE_ID = mu.MESSAGE_ID
         where mu.IS_SEND = 0 and mu.USER_ID = #{userId}
     </select>
+
     <select id="selectNotReadPage" resultType="cn.spark.chipro.websocket.biz.entity.po.MessagePO">
 
         select t1.MESSAGE_ID,t1.TEXT,t1.MESSAGE_TIME,t1.MESSAGE_TYPE,t1.BUSINESS_ID from TOOL_MESSAGE t1
         left join TOOL_MESSAGE_USER t2
         on t1.message_id = t2.message_id
         where t2.IS_READ = 0
-        <if test="messageType != null and messageType != ''">
-            and t1.MESSAGE_TYPE = #{messageType}
+        <if test="notReadPageVO.messageType != null and notReadPageVO.messageType != ''">
+            and t1.MESSAGE_TYPE = #{notReadPageVO.messageType}
         </if>
-        <if test="userId != null and userId != ''">
-            and t2.USER_ID = #{userId}
+        <if test="notReadPageVO.userId != null and notReadPageVO.userId != ''">
+            and t2.USER_ID = #{notReadPageVO.userId}
         </if>
 
     </select>

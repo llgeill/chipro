@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.List;
+
 
 /**
  * 作品控制器
@@ -92,6 +94,18 @@ public class ProductionController extends BaseController {
     @RequestMapping("/list")
     public PageInfo list(@RequestBody ProductionParam productionParam) {
         return this.productionService.findPageBySpec(productionParam);
+    }
+
+    /**
+     * 查询列表
+     *
+     * @author 李利光
+     * @Date 2020-02-05
+     */
+    @ResponseBody
+    @RequestMapping("/productions")
+    public List<Production> productions(@RequestBody String userIds) {
+        return this.productionService.findListByStudentId(userIds);
     }
 
 }

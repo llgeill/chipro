@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.spark.chipro.manage.biz.mapper.LearnReportMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="cn.spark.chipro.manage.biz.entity.LearnReport">
+        <id column="LEARN_REPORT_ID" property="learnReportId" />
+        <result column="NAME" property="name" />
+        <result column="DETAIL_REVIEW" property="detailReview" />
+        <result column="VIDEO" property="video" />
+        <result column="PHOTO" property="photo" />
+        <result column="TASK" property="task" />
+        <result column="USER_ID" property="userId" />
+        <result column="CREATE_USER" property="createUser" />
+        <result column="CREATE_TIME" property="createTime" />
+        <result column="UPDATE_USER" property="updateUser" />
+        <result column="UPDATE_TIME" property="updateTime" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        LEARN_REPORT_ID AS "learnReportId", NAME AS "name", DETAIL_REVIEW AS "detailReview", VIDEO AS "video", PHOTO AS "photo", TASK AS "task", USER_ID AS "userId", CREATE_USER AS "createUser", CREATE_TIME AS "createTime", UPDATE_USER AS "updateUser", UPDATE_TIME AS "updateTime"
+    </sql>
+
+</mapper>

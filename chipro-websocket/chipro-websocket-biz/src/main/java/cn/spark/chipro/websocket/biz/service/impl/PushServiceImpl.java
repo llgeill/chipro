@@ -1,6 +1,7 @@
 package cn.spark.chipro.websocket.biz.service.impl;
 
 
+import cn.spark.chipro.core.exception.CoreException;
 import cn.spark.chipro.websocket.biz.config.RabbitMqConfig;
 import cn.spark.chipro.websocket.api.model.dto.MessageDTO;
 import cn.spark.chipro.websocket.biz.entity.po.MessagePO;
@@ -45,20 +46,27 @@ public class PushServiceImpl implements PushService {
     @Override
     @Transactional
     public void push(MessageVO message) {
-
+        //log.info("******** websocket Service Begin ... xid: {}" , RootContext.getXID());
         List<MessageDTO> messages = saveMessageAndMessageUser(message);
-
         if (messages != null && messages.size() > 0) {
             messages.forEach(e -> {
                 pushMessage(e);
             });
         }
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+
     }
 
 
     @Override
     public PageInfo notReadList(NotReadPageVO vo) {
         Page page = PageFactory.defaultPage();
+
         Page<MessagePO> messagePOS = messageMapper.selectNotReadPage(page, vo);
         return PageFactory.createPageInfo(page);
     }

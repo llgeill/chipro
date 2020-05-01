@@ -24,12 +24,16 @@ public class PageFactory {
      */
     public static Page defaultPage() {
         HttpServletRequest request = HttpContext.getRequest();
-
-        //每页多少条数据
-        int limit = Integer.valueOf(request.getParameter("limit"));
-
-        //第几页
-        int page = Integer.valueOf(request.getParameter("page"));
+        int limit;
+        int page;
+        try{
+            //每页多少条数据
+            limit = Integer.parseInt(request.getParameter("limit"));
+            //第几页
+            page = Integer.parseInt(request.getParameter("page"));
+        }catch (NumberFormatException nb){
+            return new Page();
+        }
 
         return new Page(page, limit);
     }

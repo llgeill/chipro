@@ -23,11 +23,20 @@
             <artifactId>chipro-websocket-api</artifactId>
             <version>latest</version>
         </dependency>
+        <!--seata分布式事务解决方案-->
         <dependency>
             <groupId>cn.spark</groupId>
-            <artifactId>distributed-transactios-2pc-seata</artifactId>
-            <version>1.0.6</version>
+            <artifactId>distributed-transactions-2pc-seata</artifactId>
+            <version>latest</version>
         </dependency>
+
+        <!--tcc-hmily分布式事务解决方案-->
+        <dependency>
+            <groupId>cn.spark</groupId>
+            <artifactId>distributed-transactions-tcc-hmily</artifactId>
+            <version>latest</version>
+        </dependency>
+
     </dependencies>
 
     <build>

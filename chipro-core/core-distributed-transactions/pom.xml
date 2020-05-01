@@ -5,14 +5,15 @@
     <parent>
         <artifactId>chipro-core</artifactId>
         <groupId>cn.spark</groupId>
-        <version>1.0.6</version>
+        <version>latest</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>core-distributed-transactions</artifactId>
     <packaging>pom</packaging>
     <modules>
-        <module>distributed-transactios-2pc-seata</module>
+        <module>distributed-transactions-2pc-seata</module>
+        <module>distributed-transactions-tcc-hmily</module>
     </modules>
 
 

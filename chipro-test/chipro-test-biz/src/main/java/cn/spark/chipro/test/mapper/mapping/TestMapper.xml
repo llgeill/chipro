@@ -18,4 +18,8 @@
         TEST_ID AS "testId", TEST_NAME AS "testName", TEST_CONTENT AS "testContent", CREATE_DATE AS "createDate", CREATE_PERSON AS "createPerson", UPDATE_DATE AS "updateDate", UPDATE_PERSON AS "updatePerson"
     </sql>
 
+    <update id="updateAll">
+         UPDATE TEST SET TEST_CONTENT = '脏数据进来了';
+    </update>
+
 </mapper>
