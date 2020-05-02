@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.spark.chipro.manage.biz.mapper.CurriculumMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="cn.spark.chipro.manage.biz.entity.Curriculum">
+        <id column="id" property="id" />
+        <result column="name" property="name" />
+        <result column="img" property="img" />
+        <result column="type" property="type" />
+        <result column="hits" property="hits" />
+        <result column="likenum" property="likenum" />
+        <result column="create_time" property="createTime" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id AS "id", name AS "name", img AS "img", type AS "type", hits AS "hits", likenum AS "likenum", create_time AS "createTime"
+    </sql>
+
+</mapper>

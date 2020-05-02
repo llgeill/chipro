@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.spark.chipro.manage.biz.mapper.QuestionMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="cn.spark.chipro.manage.biz.entity.Question">
+        <id column="id" property="id" />
+        <result column="classify" property="classify" />
+        <result column="type" property="type" />
+        <result column="content" property="content" />
+        <result column="pub_type" property="pubType" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id AS "id", classify AS "classify", type AS "type", content AS "content", pub_type AS "pubType"
+    </sql>
+
+</mapper>
