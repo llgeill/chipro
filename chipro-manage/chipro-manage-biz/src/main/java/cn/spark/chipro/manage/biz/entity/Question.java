@@ -11,8 +11,8 @@ import java.io.Serializable;
  * 
  * </p>
  *
- * @author LCF
- * @since 2020-04-11
+ * @author 廖超凡
+ * @since 2020-05-02
  */
 @TableName("question")
 public class Question implements Serializable {
@@ -35,10 +35,16 @@ public class Question implements Serializable {
     private String type;
 
     /**
-     * 问题和答案(json格式保存)
+     * 问题
      */
     @TableField("content")
     private String content;
+
+    /**
+     * 题目答案
+     */
+    @TableField("answer")
+    private String answer;
 
     /**
      * 发布类型（默认0）：0-注册用户使用，1-非注册用户使用
@@ -79,6 +85,14 @@ public class Question implements Serializable {
         this.content = content;
     }
 
+    public String getAnswer() {
+        return answer;
+    }
+
+    public void setAnswer(String answer) {
+        this.answer = answer;
+    }
+
     public Integer getPubType() {
         return pubType;
     }
@@ -94,6 +108,7 @@ public class Question implements Serializable {
         ", classify=" + classify +
         ", type=" + type +
         ", content=" + content +
+        ", answer=" + answer +
         ", pubType=" + pubType +
         "}";
     }

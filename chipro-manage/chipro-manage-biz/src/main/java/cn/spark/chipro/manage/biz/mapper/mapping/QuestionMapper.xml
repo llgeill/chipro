@@ -8,12 +8,13 @@
         <result column="classify" property="classify" />
         <result column="type" property="type" />
         <result column="content" property="content" />
+        <result column="answer" property="answer" />
         <result column="pub_type" property="pubType" />
     </resultMap>
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        id AS "id", classify AS "classify", type AS "type", content AS "content", pub_type AS "pubType"
+        id AS "id", classify AS "classify", type AS "type", content AS "content", answer AS "answer", pub_type AS "pubType"
     </sql>
 
 </mapper>

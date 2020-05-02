@@ -8,8 +8,8 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  *  Mapper 接口
  * </p>
  *
- * @author LCF
- * @since 2020-04-11
+ * @author 廖超凡
+ * @since 2020-05-02
  */
 public interface QuestionMapper extends BaseMapper<Question> {
 

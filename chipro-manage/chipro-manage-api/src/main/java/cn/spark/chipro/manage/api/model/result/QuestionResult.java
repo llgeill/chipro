@@ -12,8 +12,8 @@ import java.util.Date;
  * 
  * </p>
  *
- * @author LCF
- * @since 2020-04-11
+ * @author 廖超凡
+ * @since 2020-05-02
  */
 @Data
 public class QuestionResult implements Serializable {
@@ -37,6 +37,11 @@ public class QuestionResult implements Serializable {
      * 问题和答案(json格式保存)
      */
     private String content;
+
+    /**
+     * 题目答案
+     */
+    private String answer;
 
     /**
      * 发布类型（默认0）：0-注册用户使用，1-非注册用户使用
