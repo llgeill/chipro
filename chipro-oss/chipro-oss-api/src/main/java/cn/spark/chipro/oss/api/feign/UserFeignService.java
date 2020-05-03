@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public interface UserFeignService {
 
     @RequestMapping(value = "/user/getUserNameById", method = RequestMethod.POST)
-    String getUserNameById();
+    String getUserNameById(@RequestBody String userId);
 
     @RequestMapping(value = "/user/addItem", method = RequestMethod.POST)
     Result<UserParam> register(@RequestBody UserParam userParam);

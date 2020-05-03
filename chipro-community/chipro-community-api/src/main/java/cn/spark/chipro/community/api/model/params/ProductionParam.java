@@ -95,4 +95,22 @@ public class ProductionParam implements Serializable{
     @NotEmpty(message = "发布状态不能为空",groups = InsertValidated.class)
     private String status;
 
+
+    /**
+     * 图片地址
+     */
+    private String image;
+
+
+
+    /**
+     * 点赞数量
+     */
+    private String glike;
+
+    /**
+     * 点击
+     */
+    private String click;
+
 }

@@ -58,7 +58,10 @@ public class SchoolUserParam implements Serializable{
     private Date updateTime;
 
     /**
-     * 备注
+     * 0 未审核  1 审核
      */
     private String remarks;
+
+
+    private String school;
 }

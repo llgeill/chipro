@@ -65,4 +65,7 @@ public class ClassUserParam implements Serializable{
      * 备注
      */
     private String remarks;
+
+
+    private String schoolId;
 }

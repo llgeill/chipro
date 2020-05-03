@@ -110,6 +110,22 @@ public class ClassUserController extends BaseController {
         return this.classUserService.findPageBySpec(classUserParam);
     }
 
+
+    /**
+     * 获取学校下所有学生或课室下所有学生
+     *
+     * @author 李利光
+     * @Date 2020-02-07
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping("/findStudent")
+    public Result findStudent(@RequestBody ClassUserParam classUserParam) {
+        return Result.success(this.classUserService.findStudentByCLassID(classUserParam));
+    }
+
+
+
 }
 
 
