@@ -171,15 +171,24 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
 
     @Override
     @Transactional
-    public void forgetPass(UserParam param){
+    public User forgetPass(UserParam param){
         //检查邮箱验证码
         if(checkEmailCode((param))){
-            if(StringUtil.isEmpty(param.getPassword())||StringUtil.isEmpty(param.getUserId())){
+            if(StringUtil.isEmpty(param.getPassword())||(StringUtil.isEmpty(param.getUserName())&&StringUtil.isEmpty(param.getEmail()))){
                 throw new CoreException(-1,"缺少关键参数!");
             }
+            QueryWrapper<User> queryWrapper = new QueryWrapper<>();
+            if(StringUtil.isNotEmpty(param.getEmail())){
+                queryWrapper
+                        .eq("EMAIL",param.getEmail());
+            }
+            User one = this.getOne(queryWrapper);
+            one.setPassword(passwordEncoder.encode(param.getPassword()));
             //更新密码
-            this.update(param);
+            this.updateById(one);
+            return one;
         }
+        return null;
     }
 
     @Override
