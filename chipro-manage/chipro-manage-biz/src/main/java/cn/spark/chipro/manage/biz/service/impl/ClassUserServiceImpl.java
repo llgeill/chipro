@@ -1,13 +1,17 @@
 package cn.spark.chipro.manage.biz.service.impl;
 
+import cn.spark.chipro.core.util.StringUtil;
+import cn.spark.chipro.manage.biz.entity.ClassRoom;
 import cn.spark.chipro.manage.biz.entity.ClassUser;
 import cn.spark.chipro.manage.biz.mapper.ClassUserMapper;
 import cn.spark.chipro.manage.api.model.params.ClassUserParam;
 import cn.spark.chipro.manage.api.model.result.ClassUserResult;
+import cn.spark.chipro.manage.biz.service.ClassRoomService;
 import  cn.spark.chipro.manage.biz.service.ClassUserService;
 import cn.spark.chipro.core.page.PageFactory;
 import cn.spark.chipro.core.page.PageInfo;
 import cn.spark.chipro.core.util.ToolUtil;
+import cn.spark.chipro.oss.api.feign.UserFeignService;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
@@ -17,6 +21,7 @@ import org.springframework.stereotype.Service;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * <p>
@@ -28,6 +33,11 @@ import java.util.List;
  */
 @Service
 public class ClassUserServiceImpl extends ServiceImpl<ClassUserMapper, ClassUser> implements ClassUserService {
+
+    @Autowired
+    private ClassRoomService classRoomService;
+    @Autowired
+    private UserFeignService userFeignService;
 
     @Override
     public void add(ClassUserParam param){
@@ -74,11 +84,27 @@ public class ClassUserServiceImpl extends ServiceImpl<ClassUserMapper, ClassUser
     }
 
     @Override
-    public List<ClassUser> findStudentByCLassID(String  classRoomId){
+    public List<ClassUser> findStudentByCLassID(ClassUserParam  param){
         QueryWrapper<ClassUser> queryWrapper = new QueryWrapper<>();
-        queryWrapper.eq("CLASS_ROOM_ID",classRoomId)
-                .eq("TYPE",1);
-        return this.list(queryWrapper);
+        if(param!=null){
+            if(StringUtil.isNotEmpty(param.getClassRoomId())){
+                queryWrapper.eq("CLASS_ROOM_ID",param.getClassRoomId());
+            }else if(StringUtil.isNotEmpty(param.getSchoolId())){
+                QueryWrapper<ClassRoom> classRoomQueryWrapper = new QueryWrapper<>();
+                classRoomQueryWrapper.in("SCHOOL_ID",param.getSchoolId());
+                List<ClassRoom> classRooms = classRoomService.list(classRoomQueryWrapper);
+                List<String> collect = classRooms.stream().map(ClassRoom::getClassId).collect(Collectors.toList());
+                if(collect!=null&&collect.size()>0){
+                    queryWrapper.in("CLASS_ROOM_ID",collect);
+                }
+            }
+        }
+        queryWrapper.eq("TYPE",1);
+        List<ClassUser> list = this.list(queryWrapper);
+        list.forEach(s->{
+            s.setUserName(userFeignService.getUserNameById(s.getUserId()));
+        });
+        return list;
     }
 
     @Override

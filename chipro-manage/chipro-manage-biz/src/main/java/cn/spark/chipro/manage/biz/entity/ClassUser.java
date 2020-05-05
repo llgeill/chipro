@@ -72,6 +72,16 @@ public class ClassUser implements Serializable {
     @TableField("REMARKS")
     private String remarks;
 
+    @TableField(exist = false)
+    private String userName;
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
 
     public String getClassUserId() {
         return classUserId;

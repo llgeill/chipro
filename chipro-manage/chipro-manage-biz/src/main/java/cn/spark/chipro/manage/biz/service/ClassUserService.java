@@ -70,7 +70,7 @@ public interface ClassUserService extends IService<ClassUser> {
      * @author 李利光
      * @Date 2020-02-07
      */
-    List<ClassUser> findStudentByCLassID(String classRoomId);
+    List<ClassUser> findStudentByCLassID(ClassUserParam classUserParam);
 
     /**
      * 查询分页数据，Specification模式

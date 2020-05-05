@@ -1,5 +1,6 @@
 package cn.spark.chipro.community.biz.service.impl;
 
+import cn.hutool.core.date.DateUtil;
 import cn.spark.chipro.community.api.model.params.ProductUser;
 import cn.spark.chipro.community.biz.entity.Production;
 import cn.spark.chipro.community.biz.mapper.ProductionMapper;
@@ -8,7 +9,9 @@ import cn.spark.chipro.community.api.model.result.ProductionResult;
 import  cn.spark.chipro.community.biz.service.ProductionService;
 import cn.spark.chipro.core.page.PageFactory;
 import cn.spark.chipro.core.page.PageInfo;
+import cn.spark.chipro.core.util.StringUtil;
 import cn.spark.chipro.core.util.ToolUtil;
+import cn.spark.chipro.core.util.UserContext;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
@@ -17,7 +20,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 /**
  * <p>
@@ -73,6 +78,15 @@ public class ProductionServiceImpl extends ServiceImpl<ProductionMapper, Product
     public PageInfo findPageBySpec(ProductionParam param){
         Page pageContext=getPageContext();
         QueryWrapper<Production>objectQueryWrapper=new QueryWrapper<>();
+        if(param!=null){
+            if(StringUtil.isNotEmpty(param.getUserId())){
+                objectQueryWrapper.eq("USER_ID",param.getUserId());
+            }
+            if(StringUtil.isNotEmpty(param.getName())){
+                objectQueryWrapper.like("NAME",param.getName());
+            }
+            objectQueryWrapper.orderByDesc("GLIKE","CLICK");
+        }
         IPage page=this.page(pageContext,objectQueryWrapper);
         return PageFactory.createPageInfo(page);
     }
@@ -84,7 +98,26 @@ public class ProductionServiceImpl extends ServiceImpl<ProductionMapper, Product
     @Override
     public void comment(ProductUser productUser){
         //评论存入list集合中
-        redisTemplate.opsForList().leftPush("comment_"+productUser.getProductId(),productUser);
+        productUser.setProductionId(productUser.getProductionId());
+        Map userInfo = UserContext.getUserInfo();
+        if(userInfo!=null){
+            if(userInfo.get("userName")!=null){
+                productUser.setUserName(userInfo.get("userName").toString());
+            }
+            if(userInfo.get("userNameAlias")!=null){
+                productUser.setUserName(userInfo.get("userNameAlias").toString());
+            }
+
+        }
+        productUser.setDate(DateUtil.format(new Date(),"yyyy-MM-dd HH:mm:ss"));
+        redisTemplate.opsForList().leftPush("comment_"+productUser.getProductionId(),productUser);
+    }
+
+    @Override
+    public List getComment(ProductUser param) {
+        Long size = redisTemplate.opsForList().size("comment_" + param.getProductionId());
+        List range = redisTemplate.opsForList().range("comment_" + param.getProductionId(), 0, size);
+        return range;
     }
 
     /**
@@ -97,14 +130,14 @@ public class ProductionServiceImpl extends ServiceImpl<ProductionMapper, Product
      */
     @Override
     public void giveLike(ProductUser productUser) {
-        Object o = redisTemplate.opsForValue().get("fabulous_count_" + productUser.getProductId());
+        Object o = redisTemplate.opsForValue().get("fabulous_count_" + productUser.getProductionId());
         boolean flag = this.fabulousProduct(productUser);
         if(flag){
             //点赞数增加
-            redisTemplate.opsForValue().increment("fabulous_count_"+productUser.getProductId(),1);
+            redisTemplate.opsForValue().increment("fabulous_count_"+productUser.getProductionId(),1);
         }else{
             //点赞数减少
-            redisTemplate.opsForValue().increment("fabulous_count_"+productUser.getProductId(),-1);
+            redisTemplate.opsForValue().increment("fabulous_count_"+productUser.getProductionId(),-1);
         }
 
 
@@ -115,23 +148,20 @@ public class ProductionServiceImpl extends ServiceImpl<ProductionMapper, Product
     public boolean fabulousProduct(ProductUser productUser)
     {
         boolean bl;
-        boolean flag = redisTemplate.opsForSet().isMember("fabulous_"+productUser.getProductId(),"user_"+productUser.getUserId());
+        boolean flag = redisTemplate.opsForSet().isMember("fabulous_"+productUser.getProductionId(),"user_"+productUser.getUserId());
         if (flag)
         {
-            redisTemplate.opsForSet().remove("fabulous_"+productUser.getProductId(),"user_"+productUser.getUserId());
+            redisTemplate.opsForSet().remove("fabulous_"+productUser.getProductionId(),"user_"+productUser.getUserId());
             bl = false;
         }else {
-            redisTemplate.opsForSet().add("fabulous_"+productUser.getProductId(),"user_"+productUser.getUserId());
+            redisTemplate.opsForSet().add("fabulous_"+productUser.getProductionId(),"user_"+productUser.getUserId());
             bl = true;
         }
         return bl;
     }
 
 
-    @Override
-    public void comment(ProductionParam param) {
 
-    }
 
     private Serializable getKey(ProductionParam param){
         return param.getProductionId();

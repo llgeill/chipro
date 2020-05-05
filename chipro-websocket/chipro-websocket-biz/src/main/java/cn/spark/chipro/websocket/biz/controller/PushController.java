@@ -14,6 +14,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
+
 /**
  * @author liliguang
  * @description 消息推送
@@ -43,6 +45,7 @@ public class PushController {
     public Result push(@RequestBody MessageVO message) {
         try {
             //普通推送
+            message.setMessageTime(new Date());
             pushService.push(message);
             //Tcc改造后的推送服务
             //tccHmilyTestService.tryMethod(message);

@@ -90,4 +90,19 @@ public class ProductionResult implements Serializable {
      */
     private String status;
 
+    /**
+     * 图片地址
+     */
+    private String image;
+
+    /**
+     * 点赞数量
+     */
+    private String glike;
+
+    /**
+     * 点击
+     */
+    private String click;
+
 }

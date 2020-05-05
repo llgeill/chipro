@@ -66,4 +66,7 @@ public interface SchoolUserService extends IService<SchoolUser> {
      */
     PageInfo findPageBySpec(SchoolUserParam param);
 
+
+
+
 }

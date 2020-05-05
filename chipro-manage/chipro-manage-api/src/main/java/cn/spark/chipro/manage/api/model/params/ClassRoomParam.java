@@ -61,7 +61,6 @@ public class ClassRoomParam implements Serializable{
     /**
      * 学校编码
      */
-    @NotEmpty(message = "学校编码不能为空",groups = InsertValidated.class)
     private String schoolId;
 
     /**

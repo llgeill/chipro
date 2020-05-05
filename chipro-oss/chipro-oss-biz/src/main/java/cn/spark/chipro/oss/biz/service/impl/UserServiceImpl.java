@@ -134,7 +134,6 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
      * @return
      */
     @Override
-    @Transactional
     public List<User> batchRegisterStuAccount(MultipartFile multipartFile,String classRoomId){
         List<User> userList = ExcelUtil.importExcel(multipartFile, 7, 1, User.class);
         List<UserRole> userRoleList = new ArrayList<>();

@@ -82,6 +82,12 @@ public interface ProductionService extends IService<Production> {
     public void comment(ProductUser productUser);
 
     /**
+     * 获取作品评论
+     * @param param
+     */
+    List getComment(ProductUser param);
+
+    /**
      * 作品点赞
      * @param productUser
      */
@@ -89,10 +95,6 @@ public interface ProductionService extends IService<Production> {
 
     boolean fabulousProduct(ProductUser productUser);
 
-    /**
-     * 作品评论
-     * @param param
-     */
-    void comment(ProductionParam param);
+
 
 }

@@ -105,6 +105,24 @@ public class Production implements Serializable {
     @TableField("REMARKS")
     private String remarks;
 
+    /**
+     * 图片地址
+     */
+    @TableField("IMAEG")
+    private String image;
+
+    /**
+     * 点赞数量
+     */
+    @TableField("GLIKE")
+    private String glike;
+
+    /**
+     * 点击
+     */
+    @TableField("CLICK")
+    private String click;
+
 
     public String getProductionId() {
         return productionId;
@@ -218,22 +236,27 @@ public class Production implements Serializable {
         this.status = status;
     }
 
-    @Override
-    public String toString() {
-        return "Production{" +
-        "productionId=" + productionId +
-        ", userId=" + userId +
-        ", name=" + name +
-        ", introduce=" + introduce +
-        ", instruction=" + instruction +
-        ", label=" + label +
-        ", mobileKeyboard=" + mobileKeyboard +
-        ", resourceId=" + resourceId +
-        ", createUser=" + createUser +
-        ", createTime=" + createTime +
-        ", updateUser=" + updateUser +
-        ", updateTime=" + updateTime +
-        ", remarks=" + remarks +
-        "}";
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public String getLike() {
+        return glike;
+    }
+
+    public void setLike(String glike) {
+        this.glike = glike;
+    }
+
+    public String getClick() {
+        return click;
+    }
+
+    public void setClick(String click) {
+        this.click = click;
     }
 }

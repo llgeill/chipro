@@ -1,5 +1,6 @@
 package cn.spark.chipro.community.biz.controller;
 
+import cn.spark.chipro.community.api.model.params.ProductUser;
 import cn.spark.chipro.community.api.model.validated.InsertValidated;
 import cn.spark.chipro.community.biz.entity.Production;
 import cn.spark.chipro.community.api.model.params.ProductionParam;
@@ -107,6 +108,49 @@ public class ProductionController extends BaseController {
     public List<Production> productions(@RequestBody String userIds) {
         return this.productionService.findListByStudentId(userIds);
     }
+
+    /**
+     * 作品点赞
+     *
+     * @author 李利光
+     * @Date 2020-02-05
+     */
+    @ResponseBody
+    @RequestMapping("/giveLike")
+    public Result giveLike(@RequestBody ProductUser productUser) {
+        this.productionService.giveLike(productUser);
+        return Result.success();
+    }
+
+
+    /**
+     * 作品评论
+     *
+     * @author 李利光
+     * @Date 2020-02-05
+     */
+    @ResponseBody
+    @RequestMapping("/comment")
+    public Result fabulousProduct(@RequestBody ProductUser productUser) {
+        this.productionService.comment(productUser);
+        return Result.success();
+    }
+
+    /**
+     * 获取评论
+     *
+     * @author 李利光
+     * @Date 2020-02-05
+     */
+    @ResponseBody
+    @RequestMapping("/getComment")
+    public Result getComment(@RequestBody ProductUser productUser) {
+        List comment = this.productionService.getComment(productUser);
+        return Result.success(comment);
+    }
+
+
+
 
 }
 

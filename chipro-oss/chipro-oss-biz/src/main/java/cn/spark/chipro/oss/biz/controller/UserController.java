@@ -84,9 +84,8 @@ public class UserController extends BaseController {
     @RequestMapping("/getUserNameById")
     @ResponseBody
     @WebLog(type = "select",description = "通过id获取用户名称")
-    public Result getUserNameById(@NotEmpty @RequestBody String userId) {
-        this.userService.getUserNameById(userId);
-        return Result.success();
+    public String getUserNameById(@NotEmpty @RequestBody String userId) {
+        return this.userService.getUserNameById(userId);
     }
 
 
