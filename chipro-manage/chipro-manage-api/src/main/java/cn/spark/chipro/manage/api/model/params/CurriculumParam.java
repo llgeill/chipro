@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
 
 
 /**
@@ -49,4 +50,6 @@ public class CurriculumParam implements Serializable{
     private Integer likenum;
 
     private Date createTime;
+
+    private List<CurriculumItemParam> curriculumItems;
 }

@@ -39,6 +39,7 @@
             <groupId>cn.spark</groupId>
             <artifactId>core-api</artifactId>
             <version>latest</version>
+            <scope>compile</scope>
         </dependency>
     </dependencies>
 

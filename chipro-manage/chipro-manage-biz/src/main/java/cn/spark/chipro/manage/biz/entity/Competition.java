@@ -31,7 +31,7 @@ public class Competition implements Serializable {
     /**
      * 大赛名称
      */
-    @TableField("name")
+    @TableField("`name`")
     private String name;
 
     /**

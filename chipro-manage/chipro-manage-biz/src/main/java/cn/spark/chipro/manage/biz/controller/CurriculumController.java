@@ -3,6 +3,8 @@ package cn.spark.chipro.manage.biz.controller;
 import cn.spark.chipro.manage.biz.entity.Curriculum;
 import cn.spark.chipro.manage.api.model.params.CurriculumParam;
 import cn.spark.chipro.manage.api.model.result.CurriculumResult;
+import cn.spark.chipro.manage.biz.entity.CurriculumItem;
+import cn.spark.chipro.manage.biz.service.CurriculumItemService;
 import cn.spark.chipro.manage.biz.service.CurriculumService;
 import cn.spark.chipro.core.page.PageInfo;
 import cn.spark.chipro.core.result.Result;
@@ -30,6 +32,9 @@ public class CurriculumController extends BaseController {
 
     @Autowired
     private CurriculumService curriculumService;
+
+    @Autowired
+    private CurriculumItemService curriculumItemService;
 
     /**
      * 新增接口
@@ -80,6 +85,8 @@ public class CurriculumController extends BaseController {
     @ResponseBody
     public Result detail(@RequestBody CurriculumParam curriculumParam) {
         Curriculum detail = this.curriculumService.getById(curriculumParam.getId());
+        detail.setCurriculumItems(curriculumItemService.list(new QueryWrapper<CurriculumItem>()
+                .eq("curriculum_id",detail.getId())));
         return Result.success(detail);
     }
 

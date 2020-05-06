@@ -24,7 +24,7 @@ public class CurriculumItem implements Serializable {
     /**
      * 子课程Id
      */
-    @TableId(value = "id", type = IdType.ID_WORKER)
+    @TableId(value = "id", type = IdType.ID_WORKER_STR)
     private String id;
 
     /**

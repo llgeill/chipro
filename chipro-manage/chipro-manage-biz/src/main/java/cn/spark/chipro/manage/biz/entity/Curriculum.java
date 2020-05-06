@@ -7,6 +7,7 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.FieldFill;
 import com.baomidou.mybatisplus.annotation.TableField;
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * <p>
@@ -21,7 +22,7 @@ public class Curriculum implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    @TableId(value = "id", type = IdType.ID_WORKER)
+    @TableId(value = "id", type = IdType.ID_WORKER_STR)
     private String id;
 
     /**
@@ -57,6 +58,17 @@ public class Curriculum implements Serializable {
     @TableField(value = "create_time", fill = FieldFill.INSERT)
     private Date createTime;
 
+    @TableField(exist = false)
+    private List<CurriculumItem> curriculumItems;
+
+
+    public List<CurriculumItem> getCurriculumItems() {
+        return curriculumItems;
+    }
+
+    public void setCurriculumItems(List<CurriculumItem> curriculumItems) {
+        this.curriculumItems = curriculumItems;
+    }
 
     public String getId() {
         return id;

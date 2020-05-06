@@ -1,6 +1,9 @@
 package cn.spark.chipro.manage.biz.service.impl;
 
+import cn.spark.chipro.manage.api.model.params.CurriculumItemParam;
 import cn.spark.chipro.manage.biz.entity.Curriculum;
+import cn.spark.chipro.manage.biz.entity.CurriculumItem;
+import cn.spark.chipro.manage.biz.mapper.CurriculumItemMapper;
 import cn.spark.chipro.manage.biz.mapper.CurriculumMapper;
 import cn.spark.chipro.manage.api.model.params.CurriculumParam;
 import cn.spark.chipro.manage.api.model.result.CurriculumResult;
@@ -13,9 +16,12 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.io.Serializable;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * <p>
@@ -28,14 +34,29 @@ import java.util.List;
 @Service
 public class CurriculumServiceImpl extends ServiceImpl<CurriculumMapper, Curriculum> implements CurriculumService {
 
+    @Autowired
+    private CurriculumItemMapper curriculumItemMapper;
+
     @Override
     public void add(CurriculumParam param){
         Curriculum entity = getEntity(param);
         this.save(entity);
+        if (param.getCurriculumItems().size()>0){
+            List<CurriculumItemParam> curriculumItems = param.getCurriculumItems();
+            curriculumItems.forEach(curriculumItemParam -> {
+                CurriculumItem curriculumItem = new CurriculumItem();
+                ToolUtil.copyProperties(curriculumItemParam,curriculumItem);
+                curriculumItemMapper.insert(curriculumItem);
+            });
+
+        }
     }
 
     @Override
     public void delete(CurriculumParam param){
+        Map<String,Object> map = new HashMap<>();
+        map.put("curriculum_id",param.getId());
+        curriculumItemMapper.deleteByMap(map);
         this.removeById(getKey(param));
     }
 
@@ -62,6 +83,11 @@ public class CurriculumServiceImpl extends ServiceImpl<CurriculumMapper, Curricu
         Page pageContext=getPageContext();
         QueryWrapper<Curriculum>objectQueryWrapper=new QueryWrapper<>();
         IPage page=this.page(pageContext,objectQueryWrapper);
+        List<Curriculum>curriculumList = page.getRecords();
+        curriculumList.forEach(curriculum ->{
+            curriculum.setCurriculumItems(curriculumItemMapper.selectList(new QueryWrapper<CurriculumItem>()
+                    .eq("curriculum_id",curriculum.getId())));
+        });
         return PageFactory.createPageInfo(page);
     }
 
