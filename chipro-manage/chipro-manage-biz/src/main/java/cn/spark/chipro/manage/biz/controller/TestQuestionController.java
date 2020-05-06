@@ -76,7 +76,7 @@ public class TestQuestionController extends BaseController {
      * @author LCF
      * @Date 2020-04-11
      */
-    @RequestMapping("/delete")
+    @RequestMapping("/delByquestionId")
     @ResponseBody
     public Result deleteByQuestion(@RequestBody TestQuestionParam testQuestionParam) {
         this.testQuestionService.deleteByQuestionId(testQuestionParam);
