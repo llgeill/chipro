@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
 
 
 /**
@@ -57,4 +58,6 @@ public class TestParam implements Serializable{
      * 创建时间
      */
     private Date createTime;
+
+    private List<QuestionParam> questions;
 }

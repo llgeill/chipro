@@ -71,6 +71,19 @@ public class TestQuestionController extends BaseController {
     }
 
     /**
+     * 删除接口
+     *
+     * @author LCF
+     * @Date 2020-04-11
+     */
+    @RequestMapping("/delete")
+    @ResponseBody
+    public Result deleteByQuestion(@RequestBody TestQuestionParam testQuestionParam) {
+        this.testQuestionService.deleteByQuestionId(testQuestionParam);
+        return Result.success();
+    }
+
+    /**
      * 查看详情接口
      *
      * @author LCF

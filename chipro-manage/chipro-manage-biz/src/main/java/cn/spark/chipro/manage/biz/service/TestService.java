@@ -1,9 +1,11 @@
 package cn.spark.chipro.manage.biz.service;
 
 import cn.spark.chipro.core.page.PageInfo;
+import cn.spark.chipro.core.result.Result;
 import cn.spark.chipro.manage.biz.entity.Test;
 import cn.spark.chipro.manage.api.model.params.TestParam;
 import cn.spark.chipro.manage.api.model.result.TestResult;
+import cn.spark.chipro.manage.biz.vo.TestVO;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 import java.util.List;
@@ -24,7 +26,7 @@ public interface TestService extends IService<Test> {
      * @author LCF
      * @Date 2020-04-11
      */
-    void add(TestParam param);
+    Result add(TestParam param);
 
     /**
      * 删除
@@ -65,5 +67,8 @@ public interface TestService extends IService<Test> {
      * @Date 2020-04-11
      */
     PageInfo findPageBySpec(TestParam param);
+
+
+    public TestVO createRandomTest(String classify, Integer questionQuantity);
 
 }

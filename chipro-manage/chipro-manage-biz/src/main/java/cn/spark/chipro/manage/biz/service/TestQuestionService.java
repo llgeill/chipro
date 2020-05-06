@@ -34,6 +34,8 @@ public interface TestQuestionService extends IService<TestQuestion> {
      */
     void delete(TestQuestionParam param);
 
+    public void deleteByQuestionId(TestQuestionParam param);
+
     /**
      * 更新
      *

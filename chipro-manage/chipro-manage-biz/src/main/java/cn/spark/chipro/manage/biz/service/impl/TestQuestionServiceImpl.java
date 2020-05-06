@@ -15,7 +15,9 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 import java.io.Serializable;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * <p>
@@ -37,6 +39,13 @@ public class TestQuestionServiceImpl extends ServiceImpl<TestQuestionMapper, Tes
     @Override
     public void delete(TestQuestionParam param){
         this.removeById(getKey(param));
+    }
+
+    public void deleteByQuestionId(TestQuestionParam param){
+        Map<String,Object> map = new HashMap<>();
+        map.put("test_id",param.getTestId());
+        map.put("question_id",param.getQuestionId());
+        this.removeByMap(map);
     }
 
     @Override

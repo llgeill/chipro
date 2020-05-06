@@ -1,10 +1,12 @@
 package cn.spark.chipro.manage.api.model.result;
 
+import cn.spark.chipro.manage.api.model.params.QuestionParam;
 import lombok.Data;
 import java.time.LocalDateTime;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
 
 
 /**
@@ -57,5 +59,7 @@ public class TestResult implements Serializable {
      * 创建时间
      */
     private Date createTime;
+
+    private List<QuestionResult> questions;
 
 }

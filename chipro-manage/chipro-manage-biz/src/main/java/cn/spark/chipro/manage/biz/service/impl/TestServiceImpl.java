@@ -1,5 +1,7 @@
 package cn.spark.chipro.manage.biz.service.impl;
 
+import cn.spark.chipro.core.result.Result;
+import cn.spark.chipro.manage.api.model.params.QuestionParam;
 import cn.spark.chipro.manage.biz.entity.Question;
 import cn.spark.chipro.manage.biz.entity.Test;
 import cn.spark.chipro.manage.biz.entity.TestQuestion;
@@ -17,13 +19,12 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.xml.ws.Action;
 import java.io.Serializable;
 import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * <p>
@@ -46,13 +47,36 @@ public class TestServiceImpl extends ServiceImpl<TestMapper, Test> implements Te
     private TestMapper testMapper;
 
     @Override
-    public void add(TestParam param){
+    public Result add(TestParam param){
         Test entity = getEntity(param);
-        this.save(entity);
+        List<QuestionParam> questionParamList = param.getQuestions();
+        this.saveOrUpdate(entity);
+        if (questionParamList.size()>0){
+            for (QuestionParam item :questionParamList){
+                Question question = new Question();
+                ToolUtil.copyProperties(item,question);
+                if (question.getId() != null && questionMapper.selectById(question.getId())!=null){
+                    questionMapper.updateById(question);
+                }else {
+                    questionMapper.insert(question);
+                }
+                TestQuestion testQuestion = new TestQuestion();
+                testQuestion.setQuestionId(question.getId());
+                testQuestion.setTestId(entity.getId());
+                testQuestionMapper.insert(testQuestion);
+
+            }
+
+            return Result.success();
+        }
+        return Result.error("题目为空");
     }
 
     @Override
     public void delete(TestParam param){
+        Map<String,Object> map = new HashMap<>();
+        map.put("test_id",param.getId());
+        testMapper.deleteByMap(map);
         this.removeById(getKey(param));
     }
 
@@ -71,7 +95,13 @@ public class TestServiceImpl extends ServiceImpl<TestMapper, Test> implements Te
 
     @Override
     public List<TestResult> findListBySpec(TestParam param){
-        return null;
+        List<TestResult> testResultList = new ArrayList<>();
+        testMapper.selectList(new QueryWrapper<Test>().eq("submit_num",1)).forEach(test -> {
+            TestResult testResult = new TestResult();
+            ToolUtil.copyProperties(test,test);
+            testResultList.add(testResult);
+        });
+        return testResultList;
     }
 
     @Override
@@ -79,6 +109,14 @@ public class TestServiceImpl extends ServiceImpl<TestMapper, Test> implements Te
         Page pageContext=getPageContext();
         QueryWrapper<Test>objectQueryWrapper=new QueryWrapper<>();
         IPage page=this.page(pageContext,objectQueryWrapper);
+        List<Test> testList = page.getRecords();
+        testList.forEach(test -> {
+            List<TestQuestion> testQuestionList = testQuestionMapper.selectList(new QueryWrapper<TestQuestion>()
+                    .select("question_id").eq("test_id",test.getId()));
+            List<String>questionsId = testQuestionList.stream().map(testQuestion -> testQuestion.getQuestionId()).collect(Collectors.toList());
+            List<Question> questionList = questionMapper.selectBatchIds(questionsId);
+            test.setQuestions(questionList);
+        });
         return PageFactory.createPageInfo(page);
     }
 
@@ -91,7 +129,7 @@ public class TestServiceImpl extends ServiceImpl<TestMapper, Test> implements Te
     public TestVO createRandomTest(String classify,Integer questionQuantity){
         TestVO result = new TestVO();
         Test test = new Test();
-        test.setId(UUID.randomUUID().toString().replace("-",""));
+//        test.setId(UUID.randomUUID().toString().replace("-",""));
         test.setName("智能组题试卷");
         test.setSubmitNum(1);
         test.setResultsAnswer("1");
@@ -100,6 +138,7 @@ public class TestServiceImpl extends ServiceImpl<TestMapper, Test> implements Te
         result.setName(test.getName());
         result.setResultsAnswer(test.getResultsAnswer());
         result.setSubmitNum(test.getSubmitNum());
+        testMapper.insert(test);
         List<Question> questionList = questionMapper.selectList(new QueryWrapper<Question>().eq("classify",classify));
         List<Question> selectedQuestions = new ArrayList<>();
         if (questionList.size() < questionQuantity){
@@ -111,13 +150,13 @@ public class TestServiceImpl extends ServiceImpl<TestMapper, Test> implements Te
                 Question question = questionList.remove(num);
                 selectedQuestions.add(question);
                 TestQuestion testQuestion = new TestQuestion();
-                testQuestion.setId(UUID.randomUUID().toString().replace("-",""));
+//                testQuestion.setId(UUID.randomUUID().toString().replace("-",""));
                 testQuestion.setQuestionId(question.getId());
                 testQuestion.setTestId(test.getId());
                 testQuestionMapper.insert(testQuestion);
             }
         }
-        testMapper.insert(test);
+
         result.setQuestionList(selectedQuestions);
         return result;
     }

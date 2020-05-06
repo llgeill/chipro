@@ -41,8 +41,8 @@ public class TestController extends BaseController {
     @RequestMapping("/addItem")
     @ResponseBody
     public Result addItem(@RequestBody TestParam testParam) {
-        this.testService.add(testParam);
-        return Result.success();
+
+        return this.testService.add(testParam);
     }
 
     /**
@@ -53,7 +53,7 @@ public class TestController extends BaseController {
      */
     @RequestMapping("/editItem")
     @ResponseBody
-    public Result editItem(@RequestBody TestParam testParam) {
+    public Result editItem(@RequestBody(required = false) TestParam testParam) {
         this.testService.update(testParam);
         return Result.success();
     }

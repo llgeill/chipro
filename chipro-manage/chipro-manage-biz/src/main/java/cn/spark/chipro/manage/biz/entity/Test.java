@@ -7,6 +7,7 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.FieldFill;
 import com.baomidou.mybatisplus.annotation.TableField;
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * <p>
@@ -21,19 +22,19 @@ public class Test implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    @TableId(value = "id", type = IdType.ID_WORKER)
+    @TableId(value = "id", type = IdType.ID_WORKER_STR)
     private String id;
 
     /**
      * 测验名称
      */
-    @TableField("name")
+    @TableField("`name`")
     private String name;
 
     /**
      * 测验说明(选填)
      */
-    @TableField("explain")
+    @TableField("`explain`")
     private String explain;
 
     /**
@@ -66,6 +67,17 @@ public class Test implements Serializable {
     @TableField(value = "create_time", fill = FieldFill.INSERT)
     private Date createTime;
 
+    @TableField(exist = false)
+    private List<Question> questions;
+
+
+    public List<Question> getQuestions() {
+        return questions;
+    }
+
+    public void setQuestions(List<Question> questions) {
+        this.questions = questions;
+    }
 
     public String getId() {
         return id;

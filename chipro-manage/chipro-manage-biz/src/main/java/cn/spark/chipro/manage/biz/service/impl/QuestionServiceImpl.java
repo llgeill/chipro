@@ -1,9 +1,11 @@
 package cn.spark.chipro.manage.biz.service.impl;
 
 import cn.spark.chipro.manage.biz.entity.Question;
+import cn.spark.chipro.manage.biz.entity.TestQuestion;
 import cn.spark.chipro.manage.biz.mapper.QuestionMapper;
 import cn.spark.chipro.manage.api.model.params.QuestionParam;
 import cn.spark.chipro.manage.api.model.result.QuestionResult;
+import cn.spark.chipro.manage.biz.mapper.TestQuestionMapper;
 import  cn.spark.chipro.manage.biz.service.QuestionService;
 import cn.spark.chipro.core.page.PageFactory;
 import cn.spark.chipro.core.page.PageInfo;
@@ -13,6 +15,7 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.io.Serializable;
 import java.util.List;
@@ -28,6 +31,9 @@ import java.util.List;
 @Service
 public class QuestionServiceImpl extends ServiceImpl<QuestionMapper, Question> implements QuestionService {
 
+    @Autowired
+    private TestQuestionMapper testQuestionMapper;
+
     @Override
     public void add(QuestionParam param){
         Question entity = getEntity(param);
@@ -36,6 +42,8 @@ public class QuestionServiceImpl extends ServiceImpl<QuestionMapper, Question> i
 
     @Override
     public void delete(QuestionParam param){
+        //to do 是否成功删除校验
+        testQuestionMapper.delete(new QueryWrapper<TestQuestion>().eq("question_id",param.getId()));
         this.removeById(getKey(param));
     }
 

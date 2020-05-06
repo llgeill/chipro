@@ -410,49 +410,49 @@
     <build>
         <pluginManagement>
             <plugins>
-                <plugin>
-                    <groupId>com.spotify</groupId>
-                    <artifactId>dockerfile-maven-plugin</artifactId>
-                    <version>1.4.10</version>
-                    <executions>
-                        <!--通过mvn package 将会执行docker构建，推送功能-->
-                        <execution>
-                            <id>tag-package</id>
-                            <phase>package</phase>
-                            <goals>
-                                <goal>build</goal>
-                                <goal>tag</goal>
-                                <goal>push</goal>
-                            </goals>
-                            <configuration>
-                                <tag>${project.version}</tag>
-                            </configuration>
-                        </execution>
+                <!--<plugin>-->
+                    <!--<groupId>com.spotify</groupId>-->
+                    <!--<artifactId>dockerfile-maven-plugin</artifactId>-->
+                    <!--<version>1.4.10</version>-->
+                    <!--<executions>-->
+                        <!--&lt;!&ndash;通过mvn package 将会执行docker构建，推送功能&ndash;&gt;-->
                         <!--<execution>-->
-                        <!--<id>default</id>-->
-                        <!--<goals>-->
-                        <!--<goal>build</goal>-->
-                        <!--<goal>push</goal>-->
-                        <!--</goals>-->
+                            <!--<id>tag-package</id>-->
+                            <!--<phase>package</phase>-->
+                            <!--<goals>-->
+                                <!--<goal>build</goal>-->
+                                <!--<goal>tag</goal>-->
+                                <!--<goal>push</goal>-->
+                            <!--</goals>-->
+                            <!--<configuration>-->
+                                <!--<tag>${project.version}</tag>-->
+                            <!--</configuration>-->
                         <!--</execution>-->
-                    </executions>
-                    <configuration>
-                        <!--使用maven的setting.xml方式配置授权-->
-                        <useMavenSettingsForAuth>true</useMavenSettingsForAuth>
-                        <googleContainerRegistryEnabled>false</googleContainerRegistryEnabled>
-                        <!--授权的账号密码，经测试不起作用-->
-                        <!--<username>13711919653</username>-->
-                        <!--<password>llg1997729</password>-->
-                        <!--仓库地址-->
-                        <repository>${docker.image.host}/${docker.image.prefix}/${project.artifactId}</repository>
-                        <dockerfile>Dockerfile</dockerfile>
-                        <contextDirectory>${project.basedir}</contextDirectory>
-                        <tag>${project.version}</tag>
-                        <buildArgs>
-                            <JAR_FILE>target/${project.build.finalName}.jar</JAR_FILE>
-                        </buildArgs>
-                    </configuration>
-                </plugin>
+                        <!--&lt;!&ndash;<execution>&ndash;&gt;-->
+                        <!--&lt;!&ndash;<id>default</id>&ndash;&gt;-->
+                        <!--&lt;!&ndash;<goals>&ndash;&gt;-->
+                        <!--&lt;!&ndash;<goal>build</goal>&ndash;&gt;-->
+                        <!--&lt;!&ndash;<goal>push</goal>&ndash;&gt;-->
+                        <!--&lt;!&ndash;</goals>&ndash;&gt;-->
+                        <!--&lt;!&ndash;</execution>&ndash;&gt;-->
+                    <!--</executions>-->
+                    <!--<configuration>-->
+                        <!--&lt;!&ndash;使用maven的setting.xml方式配置授权&ndash;&gt;-->
+                        <!--<useMavenSettingsForAuth>true</useMavenSettingsForAuth>-->
+                        <!--<googleContainerRegistryEnabled>false</googleContainerRegistryEnabled>-->
+                        <!--&lt;!&ndash;授权的账号密码，经测试不起作用&ndash;&gt;-->
+                        <!--&lt;!&ndash;<username>13711919653</username>&ndash;&gt;-->
+                        <!--&lt;!&ndash;<password>llg1997729</password>&ndash;&gt;-->
+                        <!--&lt;!&ndash;仓库地址&ndash;&gt;-->
+                        <!--<repository>${docker.image.host}/${docker.image.prefix}/${project.artifactId}</repository>-->
+                        <!--<dockerfile>Dockerfile</dockerfile>-->
+                        <!--<contextDirectory>${project.basedir}</contextDirectory>-->
+                        <!--<tag>${project.version}</tag>-->
+                        <!--<buildArgs>-->
+                            <!--<JAR_FILE>target/${project.build.finalName}.jar</JAR_FILE>-->
+                        <!--</buildArgs>-->
+                    <!--</configuration>-->
+                <!--</plugin>-->
             </plugins>
         </pluginManagement>
         <plugins>

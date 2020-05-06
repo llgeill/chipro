@@ -16,7 +16,7 @@
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        id AS "id", name AS "name", explain AS "explain", deadline AS "deadline", submit_num AS "submitNum", results_reveal_status AS "resultsRevealStatus", results_answer AS "resultsAnswer", create_time AS "createTime"
+        id AS "id", `name` AS `name`, `explain` AS `explain`, deadline AS "deadline", submit_num AS "submitNum", results_reveal_status AS "resultsRevealStatus", results_answer AS "resultsAnswer", create_time AS "createTime"
     </sql>
 
 </mapper>
