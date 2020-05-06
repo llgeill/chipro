@@ -51,6 +51,9 @@ public class TestServiceImpl extends ServiceImpl<TestMapper, Test> implements Te
         Test entity = getEntity(param);
         List<QuestionParam> questionParamList = param.getQuestions();
         this.saveOrUpdate(entity);
+        if(questionParamList == null){
+            return Result.success();
+        }
         if (questionParamList.size()>0){
             for (QuestionParam item :questionParamList){
                 Question question = new Question();
@@ -113,9 +116,12 @@ public class TestServiceImpl extends ServiceImpl<TestMapper, Test> implements Te
         testList.forEach(test -> {
             List<TestQuestion> testQuestionList = testQuestionMapper.selectList(new QueryWrapper<TestQuestion>()
                     .select("question_id").eq("test_id",test.getId()));
-            List<String>questionsId = testQuestionList.stream().map(testQuestion -> testQuestion.getQuestionId()).collect(Collectors.toList());
-            List<Question> questionList = questionMapper.selectBatchIds(questionsId);
-            test.setQuestions(questionList);
+            if(testQuestionList!=null && testQuestionList.size()>0){
+                List<String>questionsId = testQuestionList.stream().map(testQuestion -> testQuestion.getQuestionId()).collect(Collectors.toList());
+                List<Question> questionList = questionMapper.selectBatchIds(questionsId);
+                test.setQuestions(questionList);
+            }
+
         });
         return PageFactory.createPageInfo(page);
     }
