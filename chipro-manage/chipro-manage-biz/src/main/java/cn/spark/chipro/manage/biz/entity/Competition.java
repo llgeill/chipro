@@ -37,7 +37,7 @@ public class Competition implements Serializable {
     /**
      * 大赛详情
      */
-    @TableField("desc")
+    @TableField("`desc`")
     private String desc;
 
     /**
