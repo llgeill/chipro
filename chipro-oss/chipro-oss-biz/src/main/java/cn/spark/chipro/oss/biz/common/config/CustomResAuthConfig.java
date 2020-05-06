@@ -28,6 +28,7 @@ public class CustomResAuthConfig extends ResourceServerConfig {
         http.authorizeRequests().antMatchers(
                 "/v2/api-docs",
                 "/user/addItem",
+                "/user/forgetPass",
                 "/swagger-resources/configuration/ui",
                 "/swagger-resources",
                 "/swagger-resources/configuration/security",

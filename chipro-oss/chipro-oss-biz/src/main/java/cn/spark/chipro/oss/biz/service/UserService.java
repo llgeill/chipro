@@ -48,7 +48,7 @@ public interface UserService extends IService<User> {
      * @author 李利光
      * @Date 2020-01-31
      */
-    void forgetPass(UserParam param);
+    User forgetPass(UserParam param);
 
         /**
          * 判断账号是否重复

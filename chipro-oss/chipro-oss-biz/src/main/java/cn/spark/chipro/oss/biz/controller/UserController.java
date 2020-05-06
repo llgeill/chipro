@@ -56,9 +56,8 @@ public class UserController extends BaseController {
     @RequestMapping("/forgetPass")
     @ResponseBody
     @WebLog(type = "update",description = "忘记密码")
-    public Result forgetPass(@Validated(UpdateValidated.class) @RequestBody UserParam userParam) {
-        this.userService.forgetPass(userParam);
-        return Result.success();
+    public Result forgetPass(@RequestBody UserParam userParam) {
+        return Result.success(this.userService.forgetPass(userParam));
     }
 
     /**

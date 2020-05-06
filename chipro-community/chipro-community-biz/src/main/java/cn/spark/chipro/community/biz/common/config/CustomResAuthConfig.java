@@ -27,6 +27,7 @@ public class CustomResAuthConfig extends ResourceServerConfig {
         //所有请求必须认证通过
         //http.authorizeRequests().anyRequest().permitAll();
         http.authorizeRequests().antMatchers(
+                "/production/list",
                 "/v2/api-docs",
                 "/swagger-resources/configuration/ui",
                 "/swagger-resources",
