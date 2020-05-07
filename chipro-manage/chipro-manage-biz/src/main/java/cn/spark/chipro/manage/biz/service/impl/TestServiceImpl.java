@@ -79,7 +79,7 @@ public class TestServiceImpl extends ServiceImpl<TestMapper, Test> implements Te
     public void delete(TestParam param){
         Map<String,Object> map = new HashMap<>();
         map.put("test_id",param.getId());
-        testMapper.deleteByMap(map);
+        testQuestionMapper.deleteByMap(map);
         this.removeById(getKey(param));
     }
 
