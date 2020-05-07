@@ -1,9 +1,13 @@
 package cn.spark.chipro.manage.biz.controller;
 
 import cn.spark.chipro.manage.api.model.params.TestParam;
+import cn.spark.chipro.manage.biz.entity.Question;
 import cn.spark.chipro.manage.biz.entity.Test;
 import cn.spark.chipro.manage.api.model.params.TestParam;
 import cn.spark.chipro.manage.api.model.result.TestResult;
+import cn.spark.chipro.manage.biz.entity.TestQuestion;
+import cn.spark.chipro.manage.biz.service.QuestionService;
+import cn.spark.chipro.manage.biz.service.TestQuestionService;
 import cn.spark.chipro.manage.biz.service.TestService;
 import cn.spark.chipro.core.page.PageInfo;
 import cn.spark.chipro.core.result.Result;
@@ -15,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -31,6 +36,12 @@ public class TestController extends BaseController {
 
     @Autowired
     private TestService testService;
+
+    @Autowired
+    private TestQuestionService testQuestionService;
+
+    @Autowired
+    private QuestionService questionService;
 
     /**
      * 新增接口
@@ -81,6 +92,16 @@ public class TestController extends BaseController {
     @ResponseBody
     public Result detail(@RequestBody TestParam testParam) {
         Test detail = this.testService.getById(testParam.getId());
+        List<TestQuestion> testQuestionList = testQuestionService.list(new QueryWrapper<TestQuestion>()
+                .eq("test_id",testParam.getId()));
+        List<Question> questions = new ArrayList<>();
+        if (testQuestionList!= null && testQuestionList.size()>0){
+
+            testQuestionList.forEach(testQuestion -> {
+                questions.add(questionService.getById(testQuestion.getQuestionId()));
+            });
+        }
+        detail.setQuestions(questions);
         return Result.success(detail);
     }
 
