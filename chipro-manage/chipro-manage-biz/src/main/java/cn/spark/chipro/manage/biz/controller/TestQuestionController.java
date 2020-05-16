@@ -2,12 +2,10 @@ package cn.spark.chipro.manage.biz.controller;
 
 import cn.spark.chipro.manage.biz.entity.TestQuestion;
 import cn.spark.chipro.manage.api.model.params.TestQuestionParam;
-import cn.spark.chipro.manage.api.model.result.TestQuestionResult;
 import cn.spark.chipro.manage.biz.service.TestQuestionService;
 import cn.spark.chipro.core.page.PageInfo;
 import cn.spark.chipro.core.result.Result;
 import cn.spark.chipro.core.controller.BaseController;
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;

@@ -9,6 +9,7 @@ import cn.spark.chipro.websocket.api.model.vo.NotReadPageVO;
 import cn.spark.chipro.websocket.api.model.vo.ReadMessageVO;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
 
 
 import java.util.List;
@@ -23,7 +24,9 @@ public interface MessageMapper extends BaseMapper<MessagePO> {
     public void insertMessage(MessagePO message);
 
 
-    public List<MessageDTO> selectMessageByUserId(String userId);
+    List<MessageDTO> selectMessageByUserId(String userId);
+
+    List<MessageDTO> selectMessByUserId(String userId);
 
     public void insertMessageUser(MessageUserPO messageUser);
 
@@ -35,4 +38,7 @@ public interface MessageMapper extends BaseMapper<MessagePO> {
 
 
     int updateMessageUserByread(ReadMessageVO readMessage);
+
+    @Select("select USER_ID from OSS_USER")
+    List<String> findUserIDs();
 }

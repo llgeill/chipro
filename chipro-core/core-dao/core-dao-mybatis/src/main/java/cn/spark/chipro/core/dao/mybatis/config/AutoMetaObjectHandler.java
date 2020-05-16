@@ -20,10 +20,10 @@ public class AutoMetaObjectHandler implements MetaObjectHandler {
         setFieldValByName("createTime",new Date(),metaObject);
         setFieldValByName("createDate",new Date(),metaObject);
         if(UserContext.getUserInfo()!=null){
-            setFieldValByName("createPerson", UserContext.getUserInfo().get("createPerson"),metaObject);
+            setFieldValByName("createPerson", UserContext.getUserInfo().get("userId"),metaObject);
         }
         if(UserContext.getUserInfo()!=null){
-            setFieldValByName("createUser", UserContext.getUserInfo().get("createPerson"),metaObject);
+            setFieldValByName("createUser", UserContext.getUserInfo().get("userId"),metaObject);
         }
 
     }
@@ -33,10 +33,10 @@ public class AutoMetaObjectHandler implements MetaObjectHandler {
         setFieldValByName("updateTime",new Date(),metaObject);
         setFieldValByName("updateDate",new Date(),metaObject);
         if(UserContext.getUserInfo()!=null){
-            setFieldValByName("updatePerson", UserContext.getUserInfo().get("updatePerson"),metaObject);
+            setFieldValByName("updatePerson", UserContext.getUserInfo().get("userId"),metaObject);
         }
         if(UserContext.getUserInfo()!=null){
-            setFieldValByName("updateUser", UserContext.getUserInfo().get("updatePerson"),metaObject);
+            setFieldValByName("updateUser", UserContext.getUserInfo().get("userId"),metaObject);
         }
     }
 }

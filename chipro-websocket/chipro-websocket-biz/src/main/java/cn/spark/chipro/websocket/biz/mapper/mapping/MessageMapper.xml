@@ -33,6 +33,12 @@
         where mu.IS_SEND = 0 and mu.USER_ID = #{userId}
     </select>
 
+    <select id="selectMessByUserId" resultType="cn.spark.chipro.websocket.api.model.dto.MessageDTO">
+        select m.MESSAGE_ID,m.TEXT,m.MESSAGE_TIME,m.MESSAGE_TYPE,m.BUSINESS_ID,mu.MESSAGE_USER_ID,mu.USER_ID from
+        TOOL_MESSAGE m left join TOOL_MESSAGE_USER mu on m.MESSAGE_ID = mu.MESSAGE_ID
+        where  mu.USER_ID = #{userId}
+    </select>
+
     <select id="selectNotReadPage" resultType="cn.spark.chipro.websocket.biz.entity.po.MessagePO">
 
         select t1.MESSAGE_ID,t1.TEXT,t1.MESSAGE_TIME,t1.MESSAGE_TYPE,t1.BUSINESS_ID from TOOL_MESSAGE t1

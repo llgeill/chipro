@@ -1,6 +1,7 @@
 package cn.spark.chipro.websocket.api.model.dto;
 
 import com.alibaba.fastjson.annotation.JSONField;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -26,7 +27,7 @@ public class MessageDTO implements Serializable {
     /**
      * 消息时间
      */
-    @JSONField(format = "yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date messageTime;
 
     /**

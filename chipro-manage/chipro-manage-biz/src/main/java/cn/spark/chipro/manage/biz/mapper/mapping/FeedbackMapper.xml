@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.spark.chipro.manage.biz.mapper.FeedbackMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="cn.spark.chipro.manage.biz.entity.Feedback">
+        <result column="FEEDBACK_ID" property="feedbackId" />
+        <result column="USER_NAME_ALIAS" property="userNameAlias" />
+        <result column="USER_NAME" property="userName" />
+        <result column="TITLE" property="title" />
+        <result column="CONTENT" property="content" />
+        <result column="CREATE_USER" property="createUser" />
+        <result column="CREATE_TIME" property="createTime" />
+        <result column="UPDATE_USER" property="updateUser" />
+        <result column="UPDATE_TIME" property="updateTime" />
+        <result column="CONTACT" property="contact" />
+        <result column="REPLY" property="reply" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        FEEDBACK_ID AS "feedbackId", USER_NAME_ALIAS AS "userNameAlias", USER_NAME AS "userName", TITLE AS "title", CONTENT AS "content", CREATE_USER AS "createUser", CREATE_TIME AS "createTime", UPDATE_USER AS "updateUser", UPDATE_TIME AS "updateTime", CONTACT AS "contact", REPLY AS "reply"
+    </sql>
+
+</mapper>

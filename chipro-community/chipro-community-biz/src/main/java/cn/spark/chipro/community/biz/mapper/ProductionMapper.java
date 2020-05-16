@@ -2,6 +2,7 @@ package cn.spark.chipro.community.biz.mapper;
 
 import cn.spark.chipro.community.biz.entity.Production;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import org.apache.ibatis.annotations.Select;
 
 /**
  * <p>
@@ -13,4 +14,6 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  */
 public interface ProductionMapper extends BaseMapper<Production> {
 
+    @Select("select USER_NAME_ALIAS from OSS_USER where USER_ID = #{id}")
+    String getUserNameById(String id);
 }

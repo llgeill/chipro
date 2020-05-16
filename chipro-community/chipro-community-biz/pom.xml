@@ -25,6 +25,13 @@
             <version>latest</version>
         </dependency>
 
+        <!--api-->
+        <dependency>
+            <groupId>cn.spark</groupId>
+            <artifactId>chipro-oss-api</artifactId>
+            <version>latest</version>
+        </dependency>
+
     </dependencies>
 
     <build>

@@ -34,6 +34,12 @@ public class Production implements Serializable {
     private String userId;
 
     /**
+     * 用户姓名
+     */
+    @TableField(exist = false)
+    private String userName;
+
+    /**
      * 作品名称
      */
     @TableField("NAME")
@@ -123,6 +129,21 @@ public class Production implements Serializable {
     @TableField("CLICK")
     private String click;
 
+    public String getGlike() {
+        return glike;
+    }
+
+    public void setGlike(String glike) {
+        this.glike = glike;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
 
     public String getProductionId() {
         return productionId;
