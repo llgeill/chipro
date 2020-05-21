@@ -12,6 +12,7 @@ import cn.spark.chipro.manage.biz.service.TestService;
 import cn.spark.chipro.core.page.PageInfo;
 import cn.spark.chipro.core.result.Result;
 import cn.spark.chipro.core.controller.BaseController;
+import cn.spark.chipro.manage.biz.vo.TestVO;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 
 /**
@@ -96,7 +98,6 @@ public class TestController extends BaseController {
                 .eq("test_id",testParam.getId()));
         List<Question> questions = new ArrayList<>();
         if (testQuestionList!= null && testQuestionList.size()>0){
-
             testQuestionList.forEach(testQuestion -> {
                 questions.add(questionService.getById(testQuestion.getQuestionId()));
             });
@@ -115,6 +116,12 @@ public class TestController extends BaseController {
     @RequestMapping("/list")
     public PageInfo list(@RequestBody TestParam testParam) {
         return this.testService.findPageBySpec(testParam);
+    }
+
+    @ResponseBody
+    @RequestMapping("/createRandomTest")
+    public Result<TestVO> list(@RequestBody Map<String,String> param) {
+        return Result.success(this.testService.createRandomTest(param.get("classify"),Integer.valueOf(param.get("questionQuantity"))));
     }
 
 }
