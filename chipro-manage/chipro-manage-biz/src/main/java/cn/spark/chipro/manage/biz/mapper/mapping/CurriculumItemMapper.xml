@@ -15,7 +15,7 @@
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        id AS "id", curriculum_id AS "curriculumId", name AS "name", desc AS "desc", vedio AS "vedio", ppt AS "ppt", create_time AS "createTime"
+        id AS "id", curriculum_id AS "curriculumId", `name` AS "`name`", desc AS "desc", vedio AS "vedio", ppt AS "ppt", create_time AS "createTime"
     </sql>
 
 </mapper>

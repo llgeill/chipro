@@ -28,7 +28,7 @@ public class Curriculum implements Serializable {
     /**
      * 课程名
      */
-    @TableField("name")
+    @TableField("`name`")
     private String name;
 
     /**

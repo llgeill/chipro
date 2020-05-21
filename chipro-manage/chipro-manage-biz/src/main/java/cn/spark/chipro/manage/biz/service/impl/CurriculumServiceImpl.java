@@ -40,8 +40,8 @@ public class CurriculumServiceImpl extends ServiceImpl<CurriculumMapper, Curricu
     @Override
     public void add(CurriculumParam param){
         Curriculum entity = getEntity(param);
-        this.save(entity);
-        if (param.getCurriculumItems().size()>0){
+        this.saveOrUpdate(entity);
+        if (param.getCurriculumItems()!=null && param.getCurriculumItems().size()>0){
             List<CurriculumItemParam> curriculumItems = param.getCurriculumItems();
             curriculumItems.forEach(curriculumItemParam -> {
                 CurriculumItem curriculumItem = new CurriculumItem();

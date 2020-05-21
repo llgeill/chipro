@@ -33,10 +33,10 @@ public class CurriculumItem implements Serializable {
     @TableField("curriculum_id")
     private String curriculumId;
 
-    @TableField("name")
+    @TableField("`name`")
     private String name;
 
-    @TableField("desc")
+    @TableField("`desc`")
     private String desc;
 
     /**

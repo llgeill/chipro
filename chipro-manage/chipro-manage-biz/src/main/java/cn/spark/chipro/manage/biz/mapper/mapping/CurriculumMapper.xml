@@ -15,7 +15,7 @@
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        id AS "id", name AS "name", img AS "img", type AS "type", hits AS "hits", likenum AS "likenum", create_time AS "createTime"
+        id AS "id", `name` AS "name", img AS "img", type AS "type", hits AS "hits", likenum AS "likenum", create_time AS "createTime"
     </sql>
 
 </mapper>
