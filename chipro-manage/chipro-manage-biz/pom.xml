@@ -37,6 +37,13 @@
             <version>latest</version>
         </dependency>
 
+        <!--oss api-->
+        <dependency>
+            <groupId>cn.spark</groupId>
+            <artifactId>chipro-websocket-api</artifactId>
+            <version>latest</version>
+        </dependency>
+
     </dependencies>
 
     <build>

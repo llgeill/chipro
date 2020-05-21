@@ -10,7 +10,7 @@ import cn.spark.chipro.manage.biz.mapper.TestMapper;
 import cn.spark.chipro.manage.api.model.params.TestParam;
 import cn.spark.chipro.manage.api.model.result.TestResult;
 import cn.spark.chipro.manage.biz.mapper.TestQuestionMapper;
-import  cn.spark.chipro.manage.biz.service.TestService;
+import cn.spark.chipro.manage.biz.service.TestService;
 import cn.spark.chipro.core.page.PageFactory;
 import cn.spark.chipro.core.page.PageInfo;
 import cn.spark.chipro.core.util.ToolUtil;

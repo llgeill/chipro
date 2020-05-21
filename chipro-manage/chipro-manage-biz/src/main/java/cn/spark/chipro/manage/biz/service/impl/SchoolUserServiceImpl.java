@@ -112,7 +112,7 @@ public class SchoolUserServiceImpl extends ServiceImpl<SchoolUserMapper, SchoolU
         return this.getById(getKey(param));
     }
 
-    private SchoolUser getEntity(SchoolUserParam param) {
+    public SchoolUser getEntity(SchoolUserParam param) {
         SchoolUser entity = new SchoolUser();
         ToolUtil.copyProperties(param, entity);
         return entity;

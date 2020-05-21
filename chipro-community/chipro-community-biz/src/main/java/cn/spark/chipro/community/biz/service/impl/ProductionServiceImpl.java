@@ -12,6 +12,7 @@ import cn.spark.chipro.core.page.PageInfo;
 import cn.spark.chipro.core.util.StringUtil;
 import cn.spark.chipro.core.util.ToolUtil;
 import cn.spark.chipro.core.util.UserContext;
+import cn.spark.chipro.oss.api.feign.UserFeignService;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
@@ -37,6 +38,9 @@ public class ProductionServiceImpl extends ServiceImpl<ProductionMapper, Product
 
     @Autowired
     private RedisTemplate redisTemplate;
+
+    @Autowired
+    private UserFeignService userFeignService;
 
     @Override
     public void add(ProductionParam param){
@@ -87,7 +91,12 @@ public class ProductionServiceImpl extends ServiceImpl<ProductionMapper, Product
             }
             objectQueryWrapper.orderByDesc("GLIKE","CLICK");
         }
-        IPage page=this.page(pageContext,objectQueryWrapper);
+        IPage<Production> page=this.page(pageContext,objectQueryWrapper);
+        List<Production> records = page.getRecords();
+        records.forEach(s->{
+            String userNameById = this.baseMapper.getUserNameById(s.getUserId());
+            s.setUserName(userNameById);
+        });
         return PageFactory.createPageInfo(page);
     }
 

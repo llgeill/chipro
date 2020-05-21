@@ -4,6 +4,7 @@ import cn.spark.chipro.community.api.model.params.ProductUser;
 import cn.spark.chipro.community.api.model.validated.InsertValidated;
 import cn.spark.chipro.community.biz.entity.Production;
 import cn.spark.chipro.community.api.model.params.ProductionParam;
+import cn.spark.chipro.community.biz.mapper.ProductionMapper;
 import cn.spark.chipro.community.biz.service.ProductionService;
 import cn.spark.chipro.core.page.PageInfo;
 import cn.spark.chipro.core.result.Result;
@@ -32,6 +33,9 @@ public class ProductionController extends BaseController {
 
     @Autowired
     private ProductionService productionService;
+
+    @Autowired
+    private ProductionMapper productionMapper;
 
     /**
      * 新增接口
