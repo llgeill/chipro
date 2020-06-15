@@ -43,7 +43,7 @@
         <!--spring-cloud-alibaba-->
         <spring-cloud-alibaba.version>2.1.0.RELEASE</spring-cloud-alibaba.version>
         <!--spring-->
-        <spring.version>5.0.8.RELEASE</spring.version><!-- 5.0.9.RELEASE -->
+        <spring.version>5.2.7.RELEASE</spring.version><!-- 5.0.9.RELEASE -->
         <!--json-->
         <fasterxml.jackson.version>2.9.7</fasterxml.jackson.version><!-- 2.9.5 -->
         <hibernate-validator.version>6.0.13.Final</hibernate-validator.version>
