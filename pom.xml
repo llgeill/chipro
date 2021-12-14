@@ -64,7 +64,7 @@
         <spring-data-redis.version>2.1.0.RELEASE</spring-data-redis.version>
         <!-- 日志 -->
         <slf4j.version>1.7.25</slf4j.version>
-        <log4j2.version>2.11.1</log4j2.version>
+        <log4j2.version>2.16.0</log4j2.version>
         <!-- lombok 插件 -->
         <lombok.version>1.18.2</lombok.version>
         <dubbo.boot.version>2.0.0</dubbo.boot.version>
