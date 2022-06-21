@@ -74,7 +74,7 @@
         <!--api在线文档-->
         <swagger.version>2.9.2</swagger.version>
         <!--mysql-->
-        <mysql.version>5.1.45</mysql.version>
+        <mysql.version>8.0.28</mysql.version>
         <!--docker私服地址-->
         <docker.image.host>www.liliguang.top</docker.image.host>
         <!--镜像前缀-->
