@@ -45,7 +45,7 @@
         <!--spring-->
         <spring.version>5.0.8.RELEASE</spring.version><!-- 5.0.9.RELEASE -->
         <!--json-->
-        <fasterxml.jackson.version>2.9.7</fasterxml.jackson.version><!-- 2.9.5 -->
+        <fasterxml.jackson.version>2.13.4.1</fasterxml.jackson.version><!-- 2.9.5 -->
         <hibernate-validator.version>6.0.13.Final</hibernate-validator.version>
         <!-- 阿里巴巴 JSON工具fastjson -->
         <fastjson.version>1.2.58</fastjson.version>
